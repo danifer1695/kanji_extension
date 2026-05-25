@@ -1,0 +1,25 @@
+{
+    "manifest_version": 3,
+    "name": "Kanji Extension Test",
+    "version": "0.1.0",
+    "description": "Test for an extension that lists a breakdown of selected Kanji",
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+    "host_permissions": [
+        "https://kanjiapi.dev/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["shared/constants.js", "shared/db.js", "shared/helpers_render.js", "shared/styles.js", "shared/api.js", "content/lookup_panel.js"]
+        }
+    ],
+    "action": {
+        "default_popup": "content/icon_popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}
