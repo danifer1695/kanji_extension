@@ -1,12 +1,14 @@
 # Kanji Lookup browser extension
 
->This Chromium extension will allow you to select any text containing Kanji to get some quick information on their readings, meanings and JLPT level.
+>This extension will allow you to select any text containing Kanji to get some quick information on their readings, meanings and JLPT level. This is intended as a portfolio project, and because of this its UI is intentionally made to resemble Migaku's fantastic visual identity.
 
-<!--Demo video / gif-->
+![Demo](assets/images/screenshots/screenshot_lookup_panel_00.png)
 
 ## A little bit of background
 
 As a long-time Japanese-learning app user (Migaku, big fan), my goal making this extension is to fill a gap I have noticed in most of the services that I've used. Many will include the functionality to scan any Japanese-language website and give you a detailed breakdown of the vocabulary contained within, but what's often lacking is information on the individual kanji those words are made up of. It will typically be up to me to go on to a different tab and look the character up by myself... let's fix that!
+
+![Demo](assets/images/screenshots/screenshot_collection_panel_00.png)
 
 ## Features
 
