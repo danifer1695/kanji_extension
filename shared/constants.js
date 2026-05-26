@@ -1,5 +1,6 @@
 //Structural constants
-const app_version = "v.0.1.0";
+const manifest = chrome.runtime.getManifest();
+const app_version = manifest.version;
 
 let active_palette = "migaku";
 

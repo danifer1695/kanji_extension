@@ -24,6 +24,7 @@ async function spawn_panel(e)
         //e.clientX gets the user's cursor's x coordinates relative to the viewport
         panel.style.left = `${e.clientX + 10}px`;
         panel.style.top = `${e.clientY + 10}px`;
+
         //First we set the text to say 'loading' so it displays this while the api searches
         panel.style.display = "block";
         panel.textContent = "Loading...";
@@ -123,7 +124,6 @@ function create_panel()
     //z-index: 99999 makes sure the panel renders on top of everything
     panel.style = STYLES.panel_idle(COLORS.bg_idle_00);    
 
-    panel.textContent = "Loading...";
     panel.style.display = "none";
     
     return panel;
