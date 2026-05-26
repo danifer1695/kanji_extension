@@ -1,6 +1,8 @@
 # Kanji Lookup browser extension
 
->This extension will allow you to select any text containing Kanji to get some quick information on their readings, meanings and JLPT level. This is intended as a portfolio project, and because of this its UI is intentionally made to resemble Migaku's fantastic visual identity.
+This extension will allow you to select any text containing Kanji to get some quick information on their readings, meanings and JLPT level.
+
+>This is intended as a portfolio project, and because of this its UI is intentionally made to resemble Migaku's fantastic visual identity.
 
 ![Demo](assets/images/screenshots/screenshot_lookup_panel_00.png)
 
