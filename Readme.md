@@ -27,6 +27,7 @@ All kanji data is fetched in real time from [kanjiapi.dev].
 ## Installation (in development)
 
 1. Clone this repo
+    git clone https://github.com/danifer1695/kanji_extension.git
 2. Open `chrome://extensions` (or `vivaldi://extensions`... browser just has to be chromium-based)
 3. Enable "Developer mode"
 4. Click on "Load unpacked" and select the project folder
