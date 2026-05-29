@@ -43,12 +43,12 @@ const PALETTES = {
         collection_button_01_text: "#fa6688",
 
         //------------JLPT Colors------------------
-        N5_FG: "#00c7a4", N5_BG: "#151314",
-        N4_FG: "#3c91ff", N4_BG: "#151314",
-        N3_FG: "#702bcb", N3_BG: "#151314",
-        N2_FG: "#fab73d", N2_BG: "#151314",
-        N1_FG: "#ff296d", N1_BG: "#151314",
-        NX_FG: "#9a9abd", NX_BG: "#151314",
+        N5_FG: "#00c7a4", N5_BG: "#15131470",
+        N4_FG: "#3c91ff", N4_BG: "#15131470",
+        N3_FG: "#8026f6", N3_BG: "#15131470",
+        N2_FG: "#fab73d", N2_BG: "#15131470",
+        N1_FG: "#ff296d", N1_BG: "#15131470",
+        NX_FG: "#9a9abd", NX_BG: "#15131470",
     },
 
 }; 
