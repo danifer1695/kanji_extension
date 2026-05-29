@@ -12,6 +12,7 @@
     ],
     "content_scripts": [
         {
+            "resources": ["fonts/*"],
             "matches": ["<all_urls>"],
             "js": ["shared/constants.js", "shared/db.js", "shared/helpers_render.js", "shared/styles.js", "shared/api.js", "content/lookup_panel.js"]
         }

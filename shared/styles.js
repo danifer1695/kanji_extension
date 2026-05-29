@@ -168,7 +168,6 @@ const STYLES = {
         margin-bottom: 8px;
         max-width:200px;
         min-width: 150px;
-        font-family: InterVariable, sans-serif;
         font-size: 14px;
         color: white;
     `,

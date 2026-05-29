@@ -2,7 +2,7 @@
 const manifest = chrome.runtime.getManifest();
 const app_version = manifest.version;
 
-let active_palette = "migaku";
+let active_palette = "default";
 
 //COLOR constants
 const PALETTES = {
@@ -29,25 +29,25 @@ const PALETTES = {
         NX_FG: "#9a9abd", NX_BG: "#ededf3",
     },
     default: {
-        gradient_top: "#7d86ff",
-        gradient_bottom: "#ea00ff",
-        bg_idle_00: "#263338",
-        bg_idle_01: "#101919",
-        bg_idle_02: "#2a4148",
-        bg_selected: "#1e525a",
-        border_idle: "#11738a",
-        border_hover: "#65a4ba",
+        gradient_top: "#f34bb0",
+        gradient_bottom: "#e80520",
+        bg_idle_00: "#2e2d2d",
+        bg_idle_01: "#151314",
+        bg_idle_02: "#3d393c",
+        bg_selected: "#585255",
+        border_idle: "#484348",
+        border_hover: "#b8b4b5",
 
         //------------Kanji Collection------------------
-        collection_button_01_bg: "#38516e",
-        collection_button_01_text: "#4ec3e7",
+        collection_button_01_bg: "#8b2437",
+        collection_button_01_text: "#fa6688",
 
         //------------JLPT Colors------------------
-        N5_FG: "#17d847", N5_BG: "#ddfff9",
-        N4_FG: "#07b3df", N4_BG: "#dff4ff",
-        N3_FG: "#4100ba", N3_BG: "#ede3ff",
-        N2_FG: "#e7ff0b", N2_BG: "#faf0d4",
-        N1_FG: "#bf0a74", N1_BG: "#ffe0e7",
+        N5_FG: "#00c7a4", N5_BG: "#ddfff9",
+        N4_FG: "#3c91ff", N4_BG: "#dff4ff",
+        N3_FG: "#702bcb", N3_BG: "#ede3ff",
+        N2_FG: "#fab73d", N2_BG: "#faf0d4",
+        N1_FG: "#ff296d", N1_BG: "#ffe0e7",
         NX_FG: "#9a9abd", NX_BG: "#ededf3",
     },
 

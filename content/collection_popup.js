@@ -159,7 +159,7 @@ async function render_card_data(e, kanji)
             ">
                 <div>
                     <div class="jlpt_label" style="${STYLES.kanji_jlpt_label(fg)}">
-                        <b>N</b>${k.jlpt}
+                        <b>N${k.jlpt}</b>
                     </div>
                 </div> 
                 <div class="info">

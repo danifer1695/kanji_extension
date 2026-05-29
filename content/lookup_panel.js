@@ -5,6 +5,18 @@ const panel = create_panel();
 let selected_entry = null;            //this holds a user-selected entry 
 document.body.appendChild(panel);
 
+//Add the font to the page's header
+const fontStyle = document.createElement("style");
+fontStyle.textContent = `
+  @font-face {
+    font-family: 'Noto Sans JP';
+    src: url(chrome-extension://__MSG_@@extension_id__/fonts/NotoSansJP-VariableFont_wght.ttf) format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+  }
+`;
+document.head.appendChild(fontStyle);
+
 //make the pop up show when kanji is selected
 document.addEventListener("mouseup", spawn_panel);
 
@@ -127,4 +139,40 @@ function create_panel()
     panel.style.display = "none";
     
     return panel;
+}
+
+async function render_entries(kanji_data)
+{
+    //We get the kanji's grade to color its box accordingly
+    const kanji_jlpt = kanji_data.jlpt;
+    const {fg, bg} = kanji_color(kanji_jlpt);
+    const button_icon = await db_contains_kanji(kanji_data.kanji) ? "✓" : "+";
+
+    let HTML = `
+            <div class="result_outline" 
+                style="${STYLES.result_outline(COLORS.border_idle)}">
+                <div class="result_panel" style="${STYLES.result_panel(COLORS.bg_idle_00)}">
+                    <div class="kanji_container" style="${STYLES.kanji_container}"> 
+                        <div class="kanji" 
+                            data-fg="${fg}"
+                            data-bg="${bg}"
+                            style="${STYLES.kanji_idle(fg, bg)}">
+                            ${kanji_data.kanji}
+                        </div>
+                        <div class="kanji_info" style="${STYLES.kanji_info}">
+                            <div><b>Onyomi:</b> ${kanji_data.on_readings.join(", ") || "-"}</div>
+                            <div><b>Kunyomi:</b> ${kanji_data.kun_readings.join(", ") || "-"}</div>
+                            <div><b>Meanings:</b> ${kanji_data.meanings.join(", ")}</div>
+                        </div>
+                    </div>
+                    <div class="add_button"
+                        data-kanji='${JSON.stringify(kanji_data)}' 
+                        style="${STYLES.add_button_idle(COLORS.bg_idle, COLORS.border_idle)}">
+                        ${button_icon}
+                    </div>
+                </div>
+            </div>
+        `;
+
+    return HTML;
 }

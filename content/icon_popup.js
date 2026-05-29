@@ -27,6 +27,7 @@ document.body.innerHTML = `
         <b>${app_version}</b>
     </div>
 `;
+document.body.style.backgroundColor = COLORS.bg_idle_01;
 
 document.getElementById("icon_popup_collection_btn").addEventListener("click", () => {
     chrome.windows.create({
