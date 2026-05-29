@@ -5,3 +5,6 @@
 - JLPT color coding
 - Personal kanji collection with chrome.storage
 
+## [0.1.1] - 2026-05-29
+### Added
+- Default color palette
