@@ -17,91 +17,21 @@ create_events();
 
 async function render_collection()
 {
-    //Apply styles
-    main_body.style = STYLES.collection_main_body(COLORS.bg_idle_01);
-    container.style = STYLES.collection_kanji_grid;
-
-    //=======================================================
-    //Middle section inner HTML
-    //=======================================================
-    middle.style.borderBottom = "1px solid rgba(255 255 255 / 22%)";
+    //Middle Section HTML----------------------------------------
     await render_grid();
 
-    //=======================================================
-    //Header inner HTML
-    //=======================================================
+    //Header inner HTML------------------------------------------
     const db_size = await get_db_size();
+    document.getElementById("collection_db_size").innerText = db_size;
 
-    header.style.backgroundColor = COLORS.bg_idle_00;
-    header.style.display = "flex";
-    header.style.justifyContent = "center";
-    header.style.borderBottom = "1px solid rgba(255 255 255 / 22%)";
-    header.innerHTML = `
-        <div style="
-            border-bottom: ;
-            padding: 16px 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        ">
-            <h3 style="
-                ${STYLES.title_text_gradient}; 
-                margin: 0px;
-                padding-bottom: 8px;">
-                Saved kanji
-            </h3>
-            <div style="
-                display: flex; 
-                justify-content: center; 
-            ">
-                <div style="font-size: 1.12rem; margin: 0px;">
-                    <b id="collection_db_size" style="
-                        color: ${COLORS.N5_FG};
-                        font-weight: 900;
-                    ">${db_size}</b>
-                    <b style="color: white;"> saved</b>
-                </div>
-            </div>
-        </div>
-    `;
-
-    //=======================================================
-    //Footer inner HTML
-    //=======================================================
-    footer.innerHTML = `
-        <div style="${STYLES.collection_footer}">
-            <input
-                style="
-                    ${STYLES.box_search_01}; 
-                    flex: 1; 
-                    min-width: 0;
-                "
-                id="collection_footer_searchbox"
-                type="text"
-                placeholder="Search for Kanji..."
-            >
-            <button 
-                style="${STYLES.collection_button_01}"
-                class="sort_old"
-            >
-                <span>Sort by date</span>
-            </button>
-            <button 
-                style="${STYLES.collection_button_01}"
-                class="sort_jlpt"
-            >
-                <span>Sort by level</span>
-            </button>
-        </div>
-    `;
-
-    footer.querySelector(".sort_old").addEventListener("click",
+    //Footer inner HTML------------------------------------------
+    //Add functions to buttons.
+    document.getElementById("sort_old").addEventListener("click",
         async () => {
             await render_grid('d');
         });
 
-    footer.querySelector(".sort_jlpt").addEventListener("click",
+    document.getElementById("sort_jlpt").addEventListener("click",
         async () => {
             await render_grid('l');
         });

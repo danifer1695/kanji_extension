@@ -1,0 +1,336 @@
+/* ── Palettes ──────────────────────────────────────────────── */
+body.theme-migaku {
+    --gradient-top:              #ff8c2a;
+    --gradient-bottom:           #ff296d;
+    --bg-idle-00:                #202047;
+    --bg-idle-01:                #0a002a;
+    --bg-idle-02:                #2b2b60;
+    --bg-selected:               #36206d;
+    --border-idle:               #54547e;
+    --border-hover:              #9a96a7;
+    --btn-01-bg:   #493085;
+    --btn-01-text: #bd6eff;
+    --N1-fg: #ff296d; --N1-bg: #ffe0e7;
+    --N2-fg: #fab73d; --N2-bg: #faf0d4;
+    --N3-fg: #702bcb; --N3-bg: #ede3ff;
+    --N4-fg: #3c91ff; --N4-bg: #dff4ff;
+    --N5-fg: #00c7a4; --N5-bg: #ddfff9;
+    --NX-fg: #9a9abd; --NX-bg: #ededf3;
+}
+
+body.theme-default {
+    --gradient-top:              #f34bb0;
+    --gradient-bottom:           #e80520;
+    --bg-idle-00:                #2e2d2d;
+    --bg-idle-01:                #151314;
+    --bg-idle-02:                #3d393c;
+    --bg-selected:               #585255;
+    --border-idle:               #484348;
+    --border-hover:              #b8b4b5;
+    --btn-01-bg:   #8b2437;
+    --btn-01-text: #fa6688;
+    --N1-fg: #ff296d; --N1-bg: #ffd0dc;
+    --N2-fg: #fab73d; --N2-bg: #fff3cc;
+    --N3-fg: #8026f6; --N3-bg: #e8d8ff;
+    --N4-fg: #3c91ff; --N4-bg: #cce8ff;
+    --N5-fg: #00c7a4; --N5-bg: #ccfff5;
+    --NX-fg: #9a9abd; --NX-bg: #e8e8f0;
+}
+
+/*======================================================*/ 
+/*Font*/
+/*======================================================*/ 
+@font-face
+{
+    font-family: 'Noto Sans JP';
+    src: url(chrome-extension://__MSG_@@extension_id__/fonts/NotoSansJP-VariableFont_wght.ttf) format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+/*======================================================*/ 
+/*Base*/
+/*======================================================*/ 
+body
+{
+    margin: 0;
+    color: white;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/*======================================================*/ 
+/*Boxes*/ 
+/*======================================================*/ 
+.box-00
+{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--bg-idle-01);
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.box-01
+{
+    border-radius: 12px;
+    border: 2px solid rgba(255 255 255 / 19%);
+    background-color: var(--bg-idle-02);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 12px;
+}
+
+.box-search-01
+{
+    border-radius: 20px;
+    border: 2px solid rgba(255 255 255 / 19%);
+    color: white;
+    background-color: var(--bg-idle-02);
+    padding: 8px 16px;
+}
+
+/*======================================================*/ 
+/*lookup result box*/
+/*-----------------*/
+/*Popup that shows when the user highlights text containing knaji*/ 
+/*======================================================*/ 
+.lookup-panel
+{
+    position: fixed;
+    background: var(--bg-idle-00);
+    border-radius: 15px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 99999;     
+    min-width: 150px;
+    font-family: InterVariable, sans-serif;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    font-size: 14px;
+    color: white;
+
+}
+
+.lookup-result-panel
+{
+    padding: 10px; 
+    display: flex; 
+    flex-direction: row; 
+    gap: 15px; 
+    align-items: center; 
+    justify-content: center;
+    border-radius: 13px;
+    width: 100%;
+    background: var(--bg-idle-00);
+}
+
+.lookup-result-outline
+{
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 2px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    display: flex;
+    background: var(--border-idle);
+}
+
+.lookup-kanji-container 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.lookup-kanji-info
+{
+    font-size: 12px; 
+    line-height: 1.6;
+    width: 200px;
+    word-wrap: break-word;
+}
+/*======================================================*/ 
+/*Gradient text*/
+/*======================================================*/ 
+.title-text-gradient
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/*======================================================*/ 
+/*Buttons*/
+/*======================================================*/ 
+.btn-00
+{
+    cursor: pointer;
+    display:inline-flex;
+    width: fit-content;
+    appearance:none;
+    border:none;
+    background:linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
+    font-size: 1rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1.25rem;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 20px;
+    position: relative;
+    flex-direction: row;
+    text-decoration: none;
+
+}
+
+.btn-01
+{
+    cursor: pointer;
+    appearance:none;
+    border:none;
+    background:none;
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1.25rem;
+    background-color: var(--btn-01-bg);
+    color: var(--btn-01-text);
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    gap:4px;
+    border-radius: 20px;
+    position: relative;
+    display:inline-flex;
+    flex-direction: row;
+    text-decoration: none;
+
+}
+
+.btn-add-idle
+{
+    background: var(--bg-idle-00);
+    box-shadow: inset 0 0 0 2px var(--border-idle);
+    color: var(--border-idle);
+    font-weight: bold;
+    font-size: 20px;
+    width: 32px; 
+    height : 32px; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.btn-add-hover
+{
+    background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
+    box-shadow: inset 0 0 0 0px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    width: 32px; 
+    height: 32px; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    padding: 2px;
+    cursor: pointer;
+
+}
+
+/*======================================================*/ 
+/*Kanji collection window*/ 
+/*-----------------------*/ 
+/*Window containing all saved kanji*/
+/*======================================================*/ 
+.collection-main-body
+{
+    background-color: var(--bg-idle-01);
+    color: white;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    align-items:center;
+    justify-content: center;
+
+}
+
+.collection-header
+{
+    background-color: var(--bg-idle-00);
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255 255 255 / 22%);
+}
+
+.collection-kanji-grid 
+{
+    display: grid;
+    grid-template-columns: repeat(6, 84px);
+    scrollbar-width: none;
+    overflow-y: auto;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+    height: 400px;
+    align-content: start;
+    justify-self: center;
+
+}
+
+.collection-footer
+{
+    display: flex;
+    padding: 16px;
+    gap:8px;
+    align-items: center;
+    bottom: 0;
+    left:0;
+    border-bottom: 1px solid rgba(255 255 255 / 22%);
+
+}
+
+.collection-card-data
+{
+    background: var(--bg-idle-00);
+    position: fixed;
+    flex-direction: column;
+    z-index: 9999;
+    border-radius: 15px;
+    padding: 16px;
+    gap: 16px;
+    margin-bottom: 8px;
+    max-width:200px;
+    min-width: 150px;
+    font-size: 14px;
+    color: white;
+
+}
+
+.collection-db-size-text
+{
+    color: var(--N5-fg);
+    font-weight: 900;
+}

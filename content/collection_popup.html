@@ -1,27 +1,67 @@
 <!doctype html>
 <html>
-    <head>
-        <title>Saved Kanji</title>
-        <script src="../shared/constants.js" defer></script>
-        <script src="../shared/db.js" defer></script>
-        <script src="../shared/api.js" defer></script>
-        <script src="../shared/styles.js" defer></script>
-        <script src="../shared/helpers_render.js" defer></script>
-        <script src="collection_popup.js" defer></script>
-        <style>
-            @font-face {
-            font-family: 'Noto Sans JP';
-            src: url(chrome-extension://__MSG_@@extension_id__/fonts/NotoSansJP-VariableFont_wght.ttf) format('truetype');
-            font-weight: 100 900;
-            font-style: normal;
-        }
-        </style>
-    </head>
-    <body id="main_body">
-        <div id="header"></div>
-        <div id="middle">
-            <div id="kanji_grid"></div>
+<head>
+    <title>Saved Kanji</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+    <script src="../shared/constants.js" defer></script>
+    <script src="../shared/db.js" defer></script>
+    <script src="../shared/api.js" defer></script>
+    <script src="../shared/styles.js" defer></script>
+    <script src="../shared/helpers_render.js" defer></script>
+    <script src="collection_popup.js" defer></script>
+</head>
+<body id="main_body" class="theme-default" style="background: var(--bg-idle-01);">
+
+    <div class="collection-main-body">
+        <!--- HEADER--------------------------------------------->
+        <div id="header" class="collection-header"> 
+            <div style="
+                        border-bottom: ;
+                        padding: 16px 32px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        ">
+                <h3 class="title-text-gradient" style="
+                           margin: 0px;
+                           padding-bottom: 8px;">
+                    Saved kanji
+                </h3>
+                <div style="
+                            display: flex; 
+                            justify-content: center; 
+                            ">
+                    <div style="font-size: 1.12rem; margin: 0px;">
+                        <b id="collection_db_size" class="collection-db-size-text"></b>
+                        <b style="color: white;"> saved</b>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="footer"></div>
-   </body>
+
+        <!--- MIDDLE SECTION (kanji grid) ------------------------>
+        <div id="middle" 
+            style="border-bottom: 1px solid rgba(255 255 255 / 22%)">
+            <div id="kanji_grid" class="collection-kanji-grid"></div>
+        </div>
+
+        <!--- FOOTER--------------------------------------------->
+        <div id="footer">
+            <div class="collection-footer">
+                <input class="box-search-01"
+                        style="flex: 1; min-width: 0;"
+                        id="collection_footer_searchbox"
+                        type="text"
+                        placeholder="Search for Kanji...">
+                <button class="btn-01" id="sort_old">
+                    <span>Sort by date</span>
+                </button>
+                <button class="btn-01" id="sort_jlpt">
+                    <span>Sort by level</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
