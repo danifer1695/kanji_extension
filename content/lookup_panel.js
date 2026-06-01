@@ -65,16 +65,16 @@ function insert_event_listeners(panel)
     //========================================================
     //"add_button" class members
     //========================================================
-    const buttons = panel.querySelectorAll(".add_button");
+    const buttons = panel.querySelectorAll(".btn-add-idle");
     buttons.forEach(btn => {
 
         //-------------mouseenter----------------------
         btn.addEventListener("mouseenter", () => {
-            btn.style = STYLES.add_button_hovered(COLORS.gradient_top, COLORS.gradient_bottom);
+            btn.style.background = "linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom))";
        });
         //-------------mouseleave----------------------
         btn.addEventListener("mouseleave", () => {
-            btn.style = STYLES.add_button_idle(COLORS.bg_idle_00, COLORS.border_idle);
+            btn.style.background = "var(--bg-idle-00)";
        });
         //-------------buttonDatabaseLogic----------------------
         btn.addEventListener("click", async (e) => {
@@ -89,40 +89,40 @@ function insert_event_listeners(panel)
     //========================================================
     //"result_outline" class members
     //========================================================
-    const rows = panel.querySelectorAll(".result_outline");
+    const rows = panel.querySelectorAll(".lookup-result-outline");
     rows.forEach(row => {
         //Get contained button
-        const button = row.querySelector(".add_button");
-        const result_panel = row.querySelector(".result_panel");
+        const button = row.querySelector(".btn-add-idle");
+        const result_panel = row.querySelector(".lookup-result-panel");
 
         //-------------mouseenter----------------------
         row.addEventListener("mouseenter", () => {
-            if(selected_entry !== row) row.style.background = COLORS.border_hover;
+            if(selected_entry !== row) row.style.background = "var(--border-hover)";
             //Also change its contained buttons
-            button.style.boxShadow = `inset 0 0 0 2px ${COLORS.border_hover}`;
-            button.style.color = COLORS.border_hover;
+            button.style.boxShadow = `inset 0 0 0 2px var(--border-hover)`;
+            button.style.color = "var(--border-hover)";
         });
 
         //-------------mouseleave----------------------
         row.addEventListener("mouseleave", () => {
-            if(selected_entry !== row) row.style.background = COLORS.border_idle;
+            if(selected_entry !== row) row.style.background = "var(--border-idle)";
 
-            button.style.boxShadow = `inset 0 0 0 2px ${COLORS.border_idle}`;
-            button.style.color = COLORS.border_idle;
+            button.style.boxShadow = `inset 0 0 0 2px var(--border-idle)`;
+            button.style.color = "var(--border-idle)";
         });
 
         //-------------click---------------------------
         row.addEventListener("click", (e) => {
 
             if (selected_entry && selected_entry !== row) {
-                selected_entry.style.background = COLORS.border_idle;
-                selected_entry.querySelector(".result_panel").style.background = COLORS.bg_idle_00;
-                selected_entry.querySelector(".add_button").style.background = COLORS.bg_idle_00;
+                selected_entry.style.background = "var(--border-idle)";
+                selected_entry.querySelector(".lookup-result-panel").style.background = "var(--bg-idle-00)";
+                selected_entry.querySelector(".btn-add-idle").style.background = "var(--bg-idle-00)";
             }
 
-            row.style.background = `linear-gradient(to bottom, ${COLORS.gradient_top}, ${COLORS.gradient_bottom})`;
-            result_panel.style.background = COLORS.bg_selected;
-            button.style.background = COLORS.bg_selected;
+            row.style.background = `linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom)`;
+            result_panel.style.background = "var(--bg-selected)";
+            button.style.background = "var(--bg-selected)";
 
             selected_entry = row;
         });
@@ -134,7 +134,7 @@ function create_panel()
 {
     const panel = document.createElement("div");
     //z-index: 99999 makes sure the panel renders on top of everything
-    panel.style = STYLES.panel_idle(COLORS.bg_idle_00);    
+    panel.className = "lookup-panel";    
 
     panel.style.display = "none";
     
@@ -149,25 +149,23 @@ async function render_entries(kanji_data)
     const button_icon = await db_contains_kanji(kanji_data.kanji) ? "✓" : "+";
 
     let HTML = `
-            <div class="result_outline" 
-                style="${STYLES.result_outline(COLORS.border_idle)}">
-                <div class="result_panel" style="${STYLES.result_panel(COLORS.bg_idle_00)}">
-                    <div class="kanji_container" style="${STYLES.kanji_container}"> 
+            <div class="lookup-result-outline">
+                <div class="lookup-result-panel">
+                    <div class="lookup-kanji-container" style="${STYLES.kanji_container}"> 
                         <div class="kanji" 
                             data-fg="${fg}"
                             data-bg="${bg}"
                             style="${STYLES.kanji_idle(fg, bg)}">
                             ${kanji_data.kanji}
                         </div>
-                        <div class="kanji_info" style="${STYLES.kanji_info}">
+                        <div class="lookup-kanji-info">
                             <div><b>Onyomi:</b> ${kanji_data.on_readings.join(", ") || "-"}</div>
                             <div><b>Kunyomi:</b> ${kanji_data.kun_readings.join(", ") || "-"}</div>
                             <div><b>Meanings:</b> ${kanji_data.meanings.join(", ")}</div>
                         </div>
                     </div>
-                    <div class="add_button"
-                        data-kanji='${JSON.stringify(kanji_data)}' 
-                        style="${STYLES.add_button_idle(COLORS.bg_idle, COLORS.border_idle)}">
+                    <div class="btn-add-idle"
+                        data-kanji='${JSON.stringify(kanji_data)}'>
                         ${button_icon}
                     </div>
                 </div>
