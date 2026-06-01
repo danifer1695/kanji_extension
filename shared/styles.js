@@ -111,7 +111,7 @@ const STYLES = {
         font-weight: bold;
         font-size: 20px;
         width: 32px; 
-        height: 32px; 
+        height : 32px; 
         border-radius: 50%;
         display: flex;
         align-items: center;

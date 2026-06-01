@@ -2,22 +2,41 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <script src="../shared/constants.js"></script>
-    <script src="../shared/styles.js"></script>
-    <style>
-        @font-face {
-            font-family: 'Noto Sans JP';
-            src: url(chrome-extension://__MSG_@@extension_id__/fonts/NotoSansJP-VariableFont_wght.ttf) format('truetype');
-            font-weight: 100 900;
-            font-style: normal;
-        }
-        body {
-            width: 270px;
-            margin: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="../shared/styles.css">
+    <script src="../shared/constants.js" defer></script>
+    <script src="../shared/styles.js" defer></script>
+    <script src="icon_popup.js" defer></script>
 </head>
-<body>
-    <script src="icon_popup.js"></script>
+<body class="theme-default" style="width: 270px; margin: 0; background-color: var(--bg-idle-01)">
+    <div class="title-text-gradient", style="
+        border-bottom: 1px solid rgba(255 255 255 / 22%);
+        padding: 16px;">
+        漢字
+    </div>
+    <div class="box-00">
+        <button id="icon_popup_collection_btn" 
+            class="btn-00"
+            style="width: 100%">
+            Open Kanji Collection
+        </button>
+        <button id="icon_popup_settings_btn" 
+            class="btn-01" >
+            Settings
+        </button>
+        <button id="icon_popup_exit_btn" 
+            class="btn-01">
+            Exit
+        </button>
+    </div> 
+    <div class="icon_popup_footer" style="
+        border-top: 1px solid rgba(255 255 255 / 22%);
+        color: rgba(255 255 255 / 35%);
+        padding: 8px 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    ">
+        <b id="app_version_text"></b>
+    </div>
 </body>
 </html>

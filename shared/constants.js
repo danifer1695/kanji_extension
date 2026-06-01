@@ -61,3 +61,9 @@ const COLORS = new Proxy({}, {
     }
 });
 
+function setPalette(name)
+{
+    document.body.className = `theme-${name}`;
+}
+
+setPalette("default");
