@@ -4,15 +4,16 @@ This extension will allow you to select any text containing Kanji to get some qu
 
 >This is intended as a portfolio project, and because of this its UI is intentionally made to resemble Migaku's fantastic visual identity.
 
-![Demo](assets/images/screenshots/screenshot_lookup_panel_01.png)
+![Demo](assets/videos/demo.mp4)
 
 ## A little bit of background
 
 As a long-time Japanese-learning app user (Migaku, big fan), my goal making this extension is to fill a gap I have noticed in most of the services that I've used. Many will include the functionality to scan any Japanese-language website and give you a detailed breakdown of the vocabulary contained within, but what's often lacking is information on the individual kanji those words are made up of. It will typically be up to me to go on to a different tab and look the character up by myself... let's fix that!
 
-![Demo](assets/images/screenshots/screenshot_collection_panel_01.png)
 
 ## Features
+![Demo](assets/images/screenshots/screenshot_lookup_panel_01.png)
+![Demo](assets/images/screenshots/screenshot_collection_panel_01.png)
 
 Using this extension that research process is simplified to simply highlighting the text containing the kanji(s) we are interested in. A handy pop-up will appear containing relevant data such as:
 
