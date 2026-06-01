@@ -4,7 +4,7 @@ This extension will allow you to select any text containing Kanji to get some qu
 
 >This is intended as a portfolio project, and because of this its UI is intentionally made to resemble Migaku's fantastic visual identity.
 
-![Demo](assets/videos/demo.mp4)
+![Demo](assets/images/screenshots/screenshot_collection_panel_01.png)
 
 ## A little bit of background
 
@@ -13,7 +13,6 @@ As a long-time Japanese-learning app user (Migaku, big fan), my goal making this
 
 ## Features
 ![Demo](assets/images/screenshots/screenshot_lookup_panel_01.png)
-![Demo](assets/images/screenshots/screenshot_collection_panel_01.png)
 
 Using this extension that research process is simplified to simply highlighting the text containing the kanji(s) we are interested in. A handy pop-up will appear containing relevant data such as:
 
