@@ -1,14 +1,10 @@
 //Get all different structures
 const main_body = document.getElementById("main_body");
 const container = document.getElementById("kanji_grid");
-const middle = document.getElementById("middle");
-const header = document.getElementById("header");
-const footer = document.getElementById("footer");
-
 
 //Create floating kanji card but hide it by default (like with littlepanel)
 const kanji_card_data = document.createElement("div");
-kanji_card_data.style.cssText = STYLES.collection_card_data(COLORS.bg_idle_00);
+kanji_card_data.className = "collection-card-data"
 kanji_card_data.style.display = "none";      //hide right away
 document.body.appendChild(kanji_card_data);
 
@@ -88,7 +84,7 @@ async function render_card_data(e, kanji)
                 flex-direction: column;
             ">
                 <div>
-                    <div class="jlpt_label" style="${STYLES.kanji_jlpt_label(fg)}">
+                    <div class="jlpt-label" style="background: ${fg}">
                         <b>N${k.jlpt}</b>
                     </div>
                 </div> 
@@ -98,13 +94,13 @@ async function render_card_data(e, kanji)
                     <div><b>Kun:</b> ${k.kun_readings.join(", ") || "-"}</div>
                 </div>
             </div>
-            <div class="kanji_card_buttons" style="
+            <div id="kanji_card_buttons" style="
                 display: flex; 
                 flex-direction: row;
                 gap: 8px;
             ">
-                <button class="kanji_card_remove_btn" data-char="${k.kanji}" style="${STYLES.collection_button_00}">Remove</button>
-                <button class="kanji_card_close_btn" style="${STYLES.collection_button_01}">Close</button>
+                <button id="kanji_card_remove_btn" data-char="${k.kanji}" class="btn-00">Remove</button>
+                <button id="kanji_card_close_btn" class="btn-01">Close</button>
             </div>
     `;
     
@@ -113,7 +109,7 @@ async function render_card_data(e, kanji)
     }, 0);
 
     //Remove button logic 
-    kanji_card_data.querySelector(".kanji_card_remove_btn").addEventListener("click", async (e) => {
+    document.getElementById("kanji_card_remove_btn").addEventListener("click", async (e) => {
         e.stopPropagation();
         const btn = e.currentTarget;
 
@@ -133,7 +129,7 @@ async function render_card_data(e, kanji)
     });
 
     //Close button
-    kanji_card_data.querySelector(".kanji_card_close_btn").addEventListener("click", (e) => {
+    document.getElementById("kanji_card_close_btn").addEventListener("click", (e) => {
         e.stopPropagation();
         kanji_card_data.style.display = "none";
     });

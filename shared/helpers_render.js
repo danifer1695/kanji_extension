@@ -49,12 +49,12 @@ async function render_entries(kanji_data)
 function kanji_color(kanji_jlpt)
 {
     switch(kanji_jlpt) {
-        case 5: return {fg: COLORS.N5_FG,bg: COLORS.N5_BG};
-        case 4: return {fg: COLORS.N4_FG,bg: COLORS.N4_BG};
-        case 3: return {fg: COLORS.N3_FG,bg: COLORS.N3_BG};
-        case 2: return {fg: COLORS.N2_FG,bg: COLORS.N2_BG};       
-        case 1: return {fg: COLORS.N1_FG,bg: COLORS.N1_BG}; 
-        default: return {fg: COLORS.NX_FG,bg: COLORS.NX_BG};
+        case 5: return {fg: "var(--N5-fg)",bg: "var(--N5-bg)"};
+        case 4: return {fg: "var(--N4-fg)",bg: "var(--N4-bg)"};
+        case 3: return {fg: "var(--N3-fg)",bg: "var(--N3-bg)"};
+        case 2: return {fg: "var(--N2-fg)",bg: "var(--N2-bg)"};
+        case 1: return {fg: "var(--N1-fg)",bg: "var(--N1-bg)"};
+        default: return {fg: "var(--NX-fg)",bg: "var(--NX-bg)"};
     }
 }
 

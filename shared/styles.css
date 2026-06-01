@@ -29,12 +29,12 @@ body.theme-default {
     --border-hover:              #b8b4b5;
     --btn-01-bg:   #8b2437;
     --btn-01-text: #fa6688;
-    --N1-fg: #ff296d; --N1-bg: #ffd0dc;
-    --N2-fg: #fab73d; --N2-bg: #fff3cc;
-    --N3-fg: #8026f6; --N3-bg: #e8d8ff;
-    --N4-fg: #3c91ff; --N4-bg: #cce8ff;
-    --N5-fg: #00c7a4; --N5-bg: #ccfff5;
-    --NX-fg: #9a9abd; --NX-bg: #e8e8f0;
+    --N1-fg: #ff296d; --N1-bg: #151314;
+    --N2-fg: #fab73d; --N2-bg: #151314;
+    --N3-fg: #8026f6; --N3-bg: #151314;
+    --N4-fg: #3c91ff; --N4-bg: #151314;
+    --N5-fg: #00c7a4; --N5-bg: #151314;
+    --NX-fg: #9a9abd; --NX-bg: #151314;
 }
 
 /*======================================================*/ 
@@ -333,4 +333,17 @@ body
 {
     color: var(--N5-fg);
     font-weight: 900;
+}
+
+.jlpt-label
+{
+    display: inline-flex;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 16px;
+    min-width: 30px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
 }
