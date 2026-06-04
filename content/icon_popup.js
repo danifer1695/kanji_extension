@@ -1,6 +1,16 @@
 
+//Get all the elements----------------------------------------------
+const version_text = document.getElementById("app_version_text");
+
+const button_settings = document.getElementById("icon_popup_settings_btn");
+const button_palette_dark = document.getElementById("palette-dark");
+const button_palette_light = document.getElementById("palette-dark");
+
+const drawer = document.getElementById("settings_drawer");
+let drawer_is_open = false;
+
 //Set inner variables------------------------------------------------
-document.getElementById("app_version_text").innerText = app_version;
+version_text.innerText = app_version;
 
 //Attach functions to buttons----------------------------------------
 document.getElementById("icon_popup_collection_btn").addEventListener("click", () => {
@@ -13,10 +23,15 @@ document.getElementById("icon_popup_collection_btn").addEventListener("click", (
     window.close(); //close popup
 });
 
-document.getElementById("icon_popup_settings_btn").addEventListener("click", () => {
-    //WIP
-    window.close();
+button_settings.addEventListener("click", () => {
+    drawer_is_open = !drawer_is_open;
+    drawer.style.display = drawer_is_open ? "flex" : "none";
 });
+
+button_palette_dark.addEventListener("click", () => {
+    //swap body class to change palette.
+    //save color palette in storage so that all scripts can detect it
+})
 
 document.getElementById("icon_popup_exit_btn").addEventListener("click", () => {
     //Just close the window.

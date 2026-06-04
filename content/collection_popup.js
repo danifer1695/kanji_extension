@@ -1,6 +1,7 @@
 //Get all different structures
 const main_body = document.getElementById("main_body");
 const container = document.getElementById("kanji_grid");
+const middle = document.getElementById("middle");
 
 //Create floating kanji card but hide it by default (like with littlepanel)
 const kanji_card_data = document.createElement("div");
@@ -20,8 +21,7 @@ async function render_collection()
     const db_size = await get_db_size();
     document.getElementById("collection_db_size").innerText = db_size;
 
-    //Footer inner HTML------------------------------------------
-    //Add functions to buttons.
+    //Add events to buttons--------------------------------------
     document.getElementById("sort_old").addEventListener("click",
         async () => {
             await render_grid('d');
@@ -37,13 +37,17 @@ async function render_collection()
         if(e.key === "Enter")
         {
             //Hide data card and show loading screen before request
-            container.innerHTML = "Loading...";
+            container.style.display = "flex";
+            container.innerHTML = `<p class="collection-text-warnings">Loading...</p>`;
             kanji_card_data.style.display = "none";
+
+            //Set display mode to grid before displaying kanjis.
+            container.style.display = "grid";
 
             const saved = await get_all_kanji(); //from db.js
             const query = e.target.value;
 
-            //Early return if query is empty
+            //Early return if query is empty, rendering all kanji
             if(query == "")
             {
                 render_grid('x');
@@ -52,9 +56,25 @@ async function render_collection()
 
             //Now get matches with those currently included in the database
             const result_json = await get_kanji_from_reading(query);
+
+            //Check for null returns (no matches or errors)
+            if(result_json == null)
+            {
+                display_no_results();
+                return;
+            }
+
+            //Process matches.
             const matches = result_json.main_kanji
                 .filter(kanji => kanji in saved)
                 .map(kanji => saved[kanji]);
+
+            //Check if there are no matches, and if so, display the no results message.
+            if(matches.length === 0)
+            {
+                display_no_results();
+                return;
+            }
 
             //render grid with only matching results
             container.innerHTML = get_grid_HTML(matches);
@@ -62,9 +82,14 @@ async function render_collection()
     });
 }
 
-//=======================================================
-//Helpers
-//=======================================================
+//Helpers----------------------------------------------------------------------
+//This function injects a "no results" text inside the middle section.
+function display_no_results()
+{
+    container.style.display = "flex";
+    container.innerHTML = `<p id="no_results" class="collection-text-warnings">No results found</p>`;
+}
+
 
 //This function will render the kanji's info card on hover over a kanji
 async function render_card_data(e, kanji)
@@ -79,7 +104,7 @@ async function render_card_data(e, kanji)
     const {fg, bg} = kanji_color(k.jlpt);
     kanji_card_data.innerHTML = `
             <div class="kanji_card_label_and_info" style="
-                display: flex; 
+                display: flex;  pp
                 gap: 12px; 
                 flex-direction: column;
             ">
