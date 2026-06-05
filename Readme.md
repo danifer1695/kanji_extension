@@ -4,7 +4,7 @@ This extension will allow you to select any text containing Kanji to get some qu
 
 >This is intended as a portfolio project, and because of this its UI is intentionally made to resemble Migaku's fantastic visual identity.
 
-<video src="https://github.com/danifer1695/kanji_extension/raw/main/assets/videos/demo.mp4" controls width="100%"></video>
+[Watch demo video](https://www.youtube.com/watch?v=4yQ6qccl5VA)
 ![Demo](assets/images/screenshots/screenshot_collection_panel_01.png)
 
 ## A little bit of background
