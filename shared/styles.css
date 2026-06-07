@@ -2,12 +2,14 @@
 body.theme-migaku {
     --gradient-top:              #ff8c2a;
     --gradient-bottom:           #ff296d;
+    --text-default-color:        white;
     --bg-idle-00:                #202047;
     --bg-idle-01:                #0a002a;
     --bg-idle-02:                #2b2b60;
     --bg-selected:               #36206d;
     --border-idle:               #54547e;
     --border-hover:              #9a96a7;
+    --border-box:                rgba(255 255 255 / 20%);
     --btn-01-bg:   #493085;
     --btn-01-text: #bd6eff;
     --btn-02-bg:   #2b2b60;
@@ -23,12 +25,14 @@ body.theme-migaku {
 body.theme-default {
     --gradient-top:              #f34bb0;
     --gradient-bottom:           #e80520;
+    --text-default-color:        white;
     --bg-idle-00:                #2e2d2d;
     --bg-idle-01:                #151314;
     --bg-idle-02:                #3d393c;
     --bg-selected:               #585255;
     --border-idle:               #484348;
     --border-hover:              #b8b4b5;
+    --border-box:                rgba(255 255 255 / 20%);
     --btn-01-bg:   #8b2437;
     --btn-01-text: #fa6688;
     --btn-02-bg:   #3d393c;
@@ -44,12 +48,14 @@ body.theme-default {
 body.theme-default-light {
     --gradient-top:              #f34bb0;
     --gradient-bottom:           #e80520;
+    --text-default-color:        #8b2437;
     --bg-idle-00:                #f5f0f4;
     --bg-idle-01:                #ede6ec;
     --bg-idle-02:                #fdf8fc;
     --bg-selected:               #f0d6eb;
     --border-idle:               #c9b8c6;
     --border-hover:              #8a7888;
+    --border-box:                rgba(100 0 0 / 20%);
     --btn-01-bg:                 #f7d6e0;
     --btn-01-text:               #b0103a;
     --btn-02-bg:                 #ede6ec;
@@ -79,7 +85,7 @@ body.theme-default-light {
 body
 {
     margin: 0;
-    color: white;
+    color: var(--text-default-color);
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 14px;
     box-sizing: border-box;
@@ -103,7 +109,7 @@ body
 .box-01
 {
     border-radius: 12px;
-    border: 2px solid rgba(255 255 255 / 19%);
+    border: 2px solid var(--border-box);
     background-color: var(--bg-idle-02);
     display: flex;
     flex-direction: column;
@@ -114,8 +120,8 @@ body
 .box-search-01
 {
     border-radius: 20px;
-    border: 2px solid rgba(255 255 255 / 19%);
-    color: white;
+    border: 2px solid var(--border-box);
+    color: var(--text-default-color);
     background-color: var(--bg-idle-02);
     padding: 8px 16px;
 }
@@ -139,7 +145,7 @@ body
     overflow-y: auto;
     scrollbar-width: none;
     font-size: 14px;
-    color: white;
+    color: var(--text-default-color);
 
 }
 
@@ -296,7 +302,7 @@ body
 {
     background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
     box-shadow: inset 0 0 0 0px;
-    color: white;
+    color: var(--text-default-color);
     font-weight: bold;
     font-size: 20px;
     width: 32px; 
@@ -319,7 +325,7 @@ body
 .collection-main-body
 {
     background-color: var(--bg-idle-01);
-    color: white;
+    color: var(--text-default-color);
     margin: 0;
     box-sizing: border-box;
     overflow-x: hidden;
@@ -333,7 +339,7 @@ body
     background-color: var(--bg-idle-00);
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid rgba(255 255 255 / 22%);
+    border-bottom: 1px solid var(--border-box);
 }
 
 .collection-kanji-grid 
@@ -376,7 +382,7 @@ body
     max-width:200px;
     min-width: 150px;
     font-size: 14px;
-    color: white;
+    color: var(--text-default-color);
 
 }
 

@@ -1,13 +1,6 @@
 //This script takes care of all rendering to HTML
 
 //function to switch active palette (in shared/constants.js)
-function setPalette(name) {
-  if (!PALETTES[name]) {
-    console.warn(`Palette "${name}" not found.`);
-    return;
-  }
-  active_palette = name;
-}
 
 async function render_entries(kanji_data)
 {
