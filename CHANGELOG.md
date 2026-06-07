@@ -7,6 +7,5 @@
 
 ## [0.1.1] - 2026-05-29
 ### Added
-- Default color palette
 - Collection search now recognizes romaji, hiragana and katakana for all readings.
 - Color palette switching through settings menu.
