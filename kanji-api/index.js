@@ -1,0 +1,19 @@
+//express builds the skeleton object that knows hot to listen on a port and receive HTTP requests.
+//for example, without express, I'd have to parse through GET and POST endpoints manually
+const express = require("express");
+const app = express();
+
+//get the .env file, where variables such as "PORT" are stored.
+require("dotenv").config();
+
+app.use(express.json());
+
+//get the "/kanji" route so we can access the endpoints defined in kanji.js
+const kanjiRoutes = require("./routes/kanji");
+app.use("/kanji", kanjiRoutes);
+
+//get the port defined in dotenv or if that cannot be found, set it to 3000 by default
+const PORT = process.env.PORT || 3000;
+
+//start listening on said port
+app.listen(PORT, () => console.log(`Shirabeyou API running on port ${PORT}`));
