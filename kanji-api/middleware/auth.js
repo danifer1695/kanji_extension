@@ -33,4 +33,5 @@ function auth_guard(req, res, next)
     }
 }
 
+//exports function "auth_guard" so that outside scripts can require() it
 module.exports = auth_guard;

@@ -9,8 +9,8 @@ require("dotenv").config();
 app.use(express.json());
 
 //get the "/kanji" route so we can access the endpoints defined in kanji.js
-const kanjiRoutes = require("./routes/kanji");
-app.use("/kanji", kanjiRoutes);
+app.use("/auth", require("./routes/auth"));
+app.use("/kanji", require("./routes/kanji"));
 
 //get the port defined in dotenv or if that cannot be found, set it to 3000 by default
 const PORT = process.env.PORT || 3000;
