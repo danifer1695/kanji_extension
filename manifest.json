@@ -9,7 +9,7 @@
     ],
     "host_permissions": [
         "https://kanjiapi.dev/*",
-        "http://localhost:3000/*"
+        "htpps://kanjiextensionbackend-production.up.railway.app/*"
     ],
     "content_scripts": [
         {
