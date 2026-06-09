@@ -9,7 +9,7 @@
     ],
     "host_permissions": [
         "https://kanjiapi.dev/*",
-        "htpps://kanjiextensionbackend-production.up.railway.app/*"
+        "https://kanjiextensionbackend-production.up.railway.app/"
     ],
     "content_scripts": [
         {
