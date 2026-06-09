@@ -1,6 +1,11 @@
 //express builds the skeleton object that knows hot to listen on a port and receive HTTP requests.
 //for example, without express, I'd have to parse through GET and POST endpoints manually
 const express = require("express");
+
+//CORS enables communication between different origins. In this project,
+//localhost would be one origin, the browser extension is another.
+//By default, the browser would block a request coming from the extension to the server at localhost.
+//CORS tells the browser where to accept requests from ("*" meaning from anywhere)
 const cors = require("cors");
 const app = express();
 
@@ -8,7 +13,11 @@ const app = express();
 require("dotenv").config();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "*",
+    methods: ["GET", "POST", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
 //get the "/kanji" route so we can access the endpoints defined in kanji.js
 app.use("/auth", require("./routes/auth"));

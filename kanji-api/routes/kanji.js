@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
         const result = await pool.query(`
             INSERT INTO saved_kanji (kanji, on_readings, kun_readings, meanings, jlpt, saved_at, user_id)
             VALUES ($1, $2, $3, $4, $5, $6, $7)
-            ON CONFLICT (kanji) DO NOTHING
+            ON CONFLICT (kanji, user_id) DO NOTHING
             RETURNING *`,
             [kanji, on_readings, kun_readings, meanings, jlpt, saved_at, req.user.id]
         );

@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Kanji Extension",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "Instant kanji data lookup for any Japanese-language text on the web.",
     "permissions": [
         "activeTab",
