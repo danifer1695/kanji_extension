@@ -5,6 +5,8 @@ This extension will allow you to select any text containing Kanji to get some qu
 >This is intended as a portfolio project, and because of this its UI is intentionally made to resemble Migaku's fantastic visual identity.
 
 [Watch demo video](https://www.youtube.com/watch?v=4yQ6qccl5VA)
+
+
 ![Demo](assets/images/screenshots/screenshot_collection_panel_01.png)
 
 ## A little bit of background
@@ -21,9 +23,13 @@ Using this extension that research process is simplified to simply highlighting 
 - **on'yomi and kun'yomi readings**, in kana. 
 - **JLPT level color coding**, a-la Migaku.
 - **A save button (+)**, to save any kanji for review.
-- **A collection navigator**, containing all previously saved kanji. This is accessible through the extension icon. Contents are saved locally and persist accross sessions, so no sign-up is required.
+- **Backend implemented with Node.js, Postgres, and hosted through Railway**, individual account registering and logging in are fully functional. 
 
 All kanji data is fetched in real time from [kanjiapi.dev].
+
+## Test it out!
+
+Test credentials are **username: test@test.com, pass: password123**.
 
 ## Installation (in development)
 
