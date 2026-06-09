@@ -1,4 +1,4 @@
-# Kanji Lookup browser extension
+# Shirabeyou
 
 This extension will allow you to select any text containing Kanji to get some quick information on their readings, meanings and JLPT level.
 
@@ -17,14 +17,14 @@ As a long-time Japanese-learning app user (Migaku, big fan), my goal making this
 ## Features
 ![Demo](assets/images/screenshots/screenshot_lookup_panel_01.png)
 
-Using this extension that research process is simplified to simply highlighting the text containing the kanji(s) we are interested in. A handy pop-up will appear containing relevant data such as:
+Using the Shirabeyou extension that research process is simplified to simply highlighting the text containing the kanji(s) we are interested in. A handy pop-up will appear containing relevant data such as:
 
 - **English meaning** 
 - **on'yomi and kun'yomi readings**, in kana. 
 - **JLPT level color coding**, a-la Migaku.
 - **A save button (+)**, to save any kanji for review.
 - **Backend implemented with Node.js, Postgres, and hosted through Railway**, individual account registering and logging in are fully functional. 
-
+Backend repository can be found at: [https://github.com/danifer1695/kanji_extension_backend]
 All kanji data is fetched in real time from [kanjiapi.dev].
 
 ## Test it out!
