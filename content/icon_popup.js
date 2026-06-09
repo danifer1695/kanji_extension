@@ -17,7 +17,7 @@ const button_palette_dark = document.getElementById("palette-dark");
 const button_palette_light = document.getElementById("palette-light");
 
 //Authorization
-const API_BASE = "http://kanjiextensionbackend-production.up.railway.app";
+const API_BASE = "https://kanjiextensionbackend-production.up.railway.app";
 
 //Auth helpers-------------------------------------------------------
 //Fill and show error message in case of bad authorization.
@@ -73,7 +73,7 @@ button_login.addEventListener("click", async () => {
     //get the contents of the input boxes
     const email = document.getElementById("login-email").value.trim();
     const password = document.getElementById("login-password").value;
-    if(!email || !password) show_error("Please fill in both fields.");
+    if(!email || !password) return show_error("Please fill in both fields.");
 
     //Request to route POST /auth/login, show error if server was unreachable
     const res = await api_auth("login", email, password);
@@ -93,7 +93,7 @@ button_register.addEventListener("click", async () => {
     //get contents of input boxes.
     const email = document.getElementById("login-email").value.trim();
     const password = document.getElementById("login-password").value;
-    if(!email || !password)  show_error("Please fill in both fields.");
+    if(!email || !password) return show_error("Please fill in both fields.");
 
     //Request to route POST /auth/register
     const res = await api_auth("register", email, password);
