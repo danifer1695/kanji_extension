@@ -8,6 +8,9 @@ const auth_guard = require("../middleware/auth");
 router.use(auth_guard); 
 
 //Routes-----------------------------------------------------------------------------------------
+//
+//TO DO: route to GET just one kanji, route to GET database size
+//
 //GET /kanji - fetch all saved kanji
 router.get("/", async (req, res) => {
     try {

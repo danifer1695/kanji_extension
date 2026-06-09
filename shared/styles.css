@@ -365,7 +365,7 @@ body
     align-items: center;
     bottom: 0;
     left:0;
-    border-bottom: 1px solid rgba(255 255 255 / 22%);
+    border-bottom: 1px solid var(--border-box);
 
 }
 

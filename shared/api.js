@@ -9,6 +9,7 @@ async function lookup_word(kanji_chars)
     {
         //Integrate error handling in case api is down
         try {
+            //Send request to kanjiapi.dev's API
             const kanji_response = await fetch(`https://kanjiapi.dev/v1/kanji/${kanji}`);
             if (!kanji_response.ok) throw new Error(`API error: ${kanji_response.status}`);
             const kanji_data = await kanji_response.json();

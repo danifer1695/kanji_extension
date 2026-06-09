@@ -29,7 +29,7 @@ async function spawn_panel(e)
     //Get raw string within selected text
     const raw = window.getSelection().toString().trim();
     
-    //using [...x] we filter out all characters that are outside of the kanji's unix range 
+    //we filter out all characters that are outside of the kanji's unix range 
     const selected = [...raw].filter(c => c.match(/[\u4e00-\u9fff]/));
     if (selected.length > 0 ) 
     {
@@ -62,9 +62,7 @@ async function spawn_panel(e)
 //This function takes care of injecting event triggers into HTML classes
 function insert_event_listeners(panel)
 {
-    //========================================================
     //"add_button" class members
-    //========================================================
     const buttons = panel.querySelectorAll(".btn-add-idle");
     buttons.forEach(btn => {
 
@@ -86,9 +84,7 @@ function insert_event_listeners(panel)
         });
     });
 
-    //========================================================
     //"result_outline" class members
-    //========================================================
     const rows = panel.querySelectorAll(".lookup-result-outline");
     rows.forEach(row => {
         //Get contained button

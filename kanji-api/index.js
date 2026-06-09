@@ -1,12 +1,14 @@
 //express builds the skeleton object that knows hot to listen on a port and receive HTTP requests.
 //for example, without express, I'd have to parse through GET and POST endpoints manually
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 //get the .env file, where variables such as "PORT" are stored.
 require("dotenv").config();
 
 app.use(express.json());
+app.use(cors());
 
 //get the "/kanji" route so we can access the endpoints defined in kanji.js
 app.use("/auth", require("./routes/auth"));

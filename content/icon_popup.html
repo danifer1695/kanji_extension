@@ -8,53 +8,92 @@
     <script src="icon_popup.js" defer></script>
 </head>
 <body class="theme-default" style="width: 270px; margin: 0; background-color: var(--bg-idle-01)">
-    <div class="title-text-gradient", style="
-        border-bottom: 1px solid rgba(255 255 255 / 22%);
-        padding: 16px;">
-        漢字
-    </div>
-    <div class="box-00">
-        <button id="icon_popup_collection_btn" 
-            class="btn-00"
-            style="width: 100%">
-            Open Kanji Collection
-        </button>
-        <button id="icon_popup_settings_btn" 
-            class="btn-01" >
-            Settings
-        </button>
-        <div id="settings_drawer" class="box-01" style="
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            padding: 8px;
-            overflow: hidden; 
-            transition: max-height 0.25s ease;
-        ">
-            <p style="margin: 0px; font-weight: bold; font-size: 1rem;">Color Palette</p>
-            <div id="settings-palette-section" style="display: flex; gap: 8px">
-                <button id="palette-dark" class="btn-02">
-                    Dark
-                </button>
-                <button id="palette-light" class="btn-02">
-                    Light
-                </button>
-            </div>
+    <!---LOGIN SCREEN-->
+    <div id="screen-login" style="display: none">
+        <div class="title-text-gradient", style="
+                    border-bottom: 1px solid rgba(255 255 255 / 22%);
+                    padding: 16px;">
+            調べよう
         </div>
-        <button id="icon_popup_exit_btn" 
-            class="btn-01">
-            Exit
-        </button>
-    </div> 
-    <div class="icon_popup_footer" style="
-        border-top: 1px solid rgba(255 255 255 / 22%);
-        color: var(--border-box);
-        padding: 8px 16px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    ">
-        <b id="app_version_text"></b>
+        <div class="box-00" style="box-shadow: 0px; border-radius: 0px">
+            <input id="login-email" class="box-search-01" type="email" placeholder="Email">
+            <input id="login-password" class="box-search-01" type="password" placeholder="Password">
+            <!--Hidden display for auth errors. Content to be set through script-->
+            <p id="login-auth-error" style="
+                    display: none; 
+                    margin: 0; 
+                    font-size: 0.85rem; 
+                    color: var(--gradient-bottom);
+                    text-align: center;">
+            </p>
+            <button id="login-btn-login" class="btn-00" style="width: 100%">
+                Log In
+            </button>
+            <button id="login-btn-register" class="btn-00" style="width: 100%">
+                Register
+            </button>
+        </div>
+        <div class="icon_popup_footer" style="
+                    border-top: 1px solid rgba(255 255 255 / 22%);
+                    color: var(--border-box);
+                    padding: 8px 16px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    ">
+            <b class="app-version-text"></b>
+        </div>
+    </div>
+
+    <!---MAIN SCREEN-->
+    <div id="screen-main" style="display: none">
+        <div class="title-text-gradient", style="
+                    border-bottom: 1px solid rgba(255 255 255 / 22%);
+                    padding: 16px;">
+            調べよう
+        </div>
+        <div class="box-00" style="box-shadow: 0px; border-radius: 0px">
+            <button id="icon_popup_collection_btn" 
+                    class="btn-00"
+                    style="width: 100%">
+                Open Kanji Collection
+            </button>
+            <button id="icon_popup_settings_btn" 
+                    class="btn-01" >
+                    Settings
+            </button>
+                <div id="settings_drawer" class="box-01" style="
+                         display: none;
+                         flex-direction: column;
+                         gap: 8px;
+                         padding: 8px;
+                         overflow: hidden; 
+                         transition: max-height 0.25s ease;
+                         ">
+                    <p style="margin: 0px; font-weight: bold; font-size: 1rem;">Color Palette</p>
+                    <div id="settings-palette-section" style="display: flex; gap: 8px">
+                        <button id="palette-dark" class="btn-02">
+                            Dark
+                        </button>
+                        <button id="palette-light" class="btn-02">
+                            Light
+                        </button>
+                    </div>
+                </div>
+                <button id="icon-popup-btn-logout" class="btn-01">
+                    Log Out
+                </button>
+        </div> 
+        <div class="icon_popup_footer" style="
+                    border-top: 1px solid rgba(255 255 255 / 22%);
+                    color: var(--border-box);
+                    padding: 8px 16px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    ">
+            <b class="app-version-text"></b>
+        </div>
     </div>
 </body>
 </html>

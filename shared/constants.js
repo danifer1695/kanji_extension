@@ -2,6 +2,28 @@
 const manifest = chrome.runtime.getManifest();
 const app_version = manifest.version;
 
+//Authentification----------------------------------------------------------------------------
+
+const AUTH_KEY = "auth_token";
+
+async function get_token()
+{
+    const result = await chrome.storage.local.get(AUTH_KEY);
+    return result[AUTH_KEY] || null;
+}
+
+async function set_token(token)
+{
+    await chrome.storage.local.set({[AUTH_KEY]: token});
+}
+
+async function clear_token()
+{
+    await chrome.storage.local.remove(AUTH_KEY);
+}
+
+//Color palette-------------------------------------------------------------------------------
+
 const PALETTE_KEY = "palette";
 const DEFAULT_PALETTE = "default";
 

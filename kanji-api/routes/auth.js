@@ -69,7 +69,7 @@ router.post("/login", async (req, res) => {
         const match = await bcrypt.compare(password, user.password_hash);
         if(!match) return res.status(401).json({error: "Invalid password"});
 
-        //If the client provided valid credentials, we attach a token to the response,
+        //If the client provided valid credentials, we encode and attach a token to the response,
         //which the client will use to validate future requests.
         const token = jwt.sign(
             {id: user.id, email: user.email},
