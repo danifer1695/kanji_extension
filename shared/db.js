@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000";
+const API_BASE = "http://kanjiextensionbackend-production.up.railway.app";
 
 //Request---------------------------------------------------------------------------------
 //api_request sends any kind of requests to the server.

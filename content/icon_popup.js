@@ -17,7 +17,7 @@ const button_palette_dark = document.getElementById("palette-dark");
 const button_palette_light = document.getElementById("palette-light");
 
 //Authorization
-const API_BASE = "http://localhost:3000";
+const API_BASE = "http://kanjiextensionbackend-production.up.railway.app";
 
 //Auth helpers-------------------------------------------------------
 //Fill and show error message in case of bad authorization.
