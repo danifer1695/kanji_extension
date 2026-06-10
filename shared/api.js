@@ -1,3 +1,17 @@
+
+//Connection health---------------------------------------------------------------------------
+//Return true or false depending on the state of the connection with the server
+async function check_connection()
+{
+    try {
+        const res = await fetch(`${API_BASE}/health`);
+        return res.ok;
+    } catch(e) {
+        return false;
+    }
+}
+
+//External APIs-------------------------------------------------------------------------------
 //This script takes contains functions that will take care of communicating with Kanjiapi's API
 
 async function lookup_word(kanji_chars)

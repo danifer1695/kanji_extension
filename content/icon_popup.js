@@ -16,8 +16,6 @@ const button_collection = document.getElementById("icon_popup_collection_btn");
 const button_palette_dark = document.getElementById("palette-dark");
 const button_palette_light = document.getElementById("palette-light");
 
-//Authorization
-const API_BASE = "https://kanjiextensionbackend-production.up.railway.app";
 
 //Auth helpers-------------------------------------------------------
 //Fill and show error message in case of bad authorization.
@@ -55,17 +53,35 @@ async function api_auth(endpoint, email, password)
 }
 
 //Initialization-----------------------------------------------------
-//Display current version
-document.querySelectorAll(".app-version-text").forEach(p => {
-    p.innerText = app_version;
-});
 
-//Check if there is an auth token and display the appropriate view
-//If no token: user is not logged in, display login screen.
-//If there is a token: user is logged in, display main screen.
-get_token().then(token => {
-    show_screen(token ? "main" : "login");
-})
+async function initialize()
+{
+    //Display current version
+    document.querySelectorAll(".app-version-text").forEach(p => {
+        p.innerText = app_version;
+    });
+
+    //Check if there is an auth token and display the appropriate view
+    //If no token: user is not logged in, display login screen.
+    //If there is a token: user is logged in, display main screen.
+    get_token().then(async token => {
+        //Check if there is an auth token.
+        if(!token) return show_screen("login");
+
+        //Check connection to the server, if there is none, kick the user out.
+        const connection_ok = check_connection();
+        if(connection_ok)
+        {
+            show_screen("main");
+        }
+        else
+        {
+            show_screen("login");
+            show_error("Could not reach server.");
+        }
+    });
+
+}
 
 //Attach functions to buttons----------------------------------------
 //Login screen-----------
@@ -129,3 +145,7 @@ button_logout.addEventListener("click", async () => {
     await clear_token();    //from constants.js
     show_screen("login");
 });
+
+//-------------------------------------------------------------------
+
+initialize();

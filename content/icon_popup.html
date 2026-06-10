@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../shared/styles.css">
     <script src="../shared/constants.js" defer></script>
     <script src="../shared/styles.js" defer></script>
+    <script src="../shared/api.js" defer></script>
     <script src="icon_popup.js" defer></script>
 </head>
 <body class="theme-default" style="width: 270px; margin: 0; background-color: var(--bg-idle-01)">
@@ -26,7 +27,7 @@
                     color: var(--gradient-bottom);
                     text-align: center;">
             </p>
-            <button id="login-btn-login" class="btn-00" style="width: 100%">
+            <button id="login-btn-login" class="btn-00" style="width: 100%; margin-top: 16px;">
                 Log In
             </button>
             <button id="login-btn-register" class="btn-00" style="width: 100%">
@@ -62,12 +63,9 @@
                     class="btn-01" >
                     Settings
             </button>
-                <div id="settings_drawer" class="box-01" style="
+                <div id="settings_drawer" class="box-02" style="
                          display: none;
-                         flex-direction: column;
-                         gap: 8px;
-                         padding: 8px;
-                         overflow: hidden; 
+                         margin-left: 16px;
                          transition: max-height 0.25s ease;
                          ">
                     <p style="margin: 0px; font-weight: bold; font-size: 1rem;">Color Palette</p>

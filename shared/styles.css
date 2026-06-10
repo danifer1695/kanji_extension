@@ -117,6 +117,17 @@ body
     padding: 10px 12px;
 }
 
+.box-02
+{
+    border-left: 2px solid var(--border-box);
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 16px;
+    overflow: hidden; 
+}
+
 .box-search-01
 {
     border-radius: 20px;

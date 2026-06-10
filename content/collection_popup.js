@@ -44,6 +44,13 @@ async function render_collection()
             //Set display mode to grid before displaying kanjis.
             container.style.display = "grid";
 
+            //Early return if there is no connection with server. check_connection() in api.js
+            if(!check_connection())
+            {
+                display_big_message("Connection to server lost.");
+                return;
+            }
+
             const saved = await get_all_kanji(); //from db.js
             const query = e.target.value;
 
@@ -60,7 +67,7 @@ async function render_collection()
             //Check for null returns (no matches or errors)
             if(result_json == null)
             {
-                display_no_results();
+                display_big_message("No results.");
                 return;
             }
 
@@ -72,7 +79,7 @@ async function render_collection()
             //Check if there are no matches, and if so, display the no results message.
             if(matches.length === 0)
             {
-                display_no_results();
+                display_big_message("No results.");
                 return;
             }
 
@@ -83,11 +90,11 @@ async function render_collection()
 }
 
 //Helpers----------------------------------------------------------------------
-//This function injects a "no results" text inside the middle section.
-function display_no_results()
+//This function injects a text inside the middle section.
+function display_big_message(message)
 {
     container.style.display = "flex";
-    container.innerHTML = `<p id="no_results" class="collection-text-warnings">No results found</p>`;
+    container.innerHTML = `<p id="no_results" class="collection-text-warnings">${message}</p>`;
 }
 
 

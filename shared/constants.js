@@ -2,7 +2,10 @@
 const manifest = chrome.runtime.getManifest();
 const app_version = manifest.version;
 
+const API_BASE = "https://kanjiextensionbackend-production.up.railway.app";
+
 //Authentification----------------------------------------------------------------------------
+//auth token is saved in chrome.storage.local
 
 const AUTH_KEY = "auth_token";
 
@@ -21,6 +24,7 @@ async function clear_token()
 {
     await chrome.storage.local.remove(AUTH_KEY);
 }
+
 
 //Color palette-------------------------------------------------------------------------------
 
