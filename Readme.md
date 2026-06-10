@@ -1,8 +1,6 @@
-# Shirabeyou
+# Shirabeyou - Kanji Lookup Extension
 
-This extension will allow you to select any text containing Kanji to get some quick information on their readings, meanings and JLPT level.
-
->This is intended as a portfolio project, and because of this its UI is intentionally made to resemble Migaku's fantastic visual identity.
+This extension will allow you to select any text containing Kanji to get some quick information on their readings, meanings and JLPT level.Built as a portfolio project targeting the Japanese language learning ecosystem.
 
 [Watch demo video](https://www.youtube.com/watch?v=4yQ6qccl5VA)
 
@@ -11,21 +9,35 @@ This extension will allow you to select any text containing Kanji to get some qu
 
 ## A little bit of background
 
-As a long-time Japanese-learning app user (Migaku, big fan), my goal making this extension is to fill a gap I have noticed in most of the services that I've used. Many will include the functionality to scan any Japanese-language website and give you a detailed breakdown of the vocabulary contained within, but what's often lacking is information on the individual kanji those words are made up of. It will typically be up to me to go on to a different tab and look the character up by myself... let's fix that!
+As a long-time Japanese-learning app user, my goal making this extension is to fill a gap I have noticed in most of the services that I've used. Many will include the functionality to scan any Japanese-language website and give you a detailed breakdown of the vocabulary contained within, but what's often lacking is information on the individual kanji those words are made up of. It will typically be up to me to go on to a different tab and look the character up by myself... let's fix that!
 
 
 ## Features
 ![Demo](assets/images/screenshots/screenshot_lookup_panel_01.png)
 
-Using the Shirabeyou extension that research process is simplified to simply highlighting the text containing the kanji(s) we are interested in. A handy pop-up will appear containing relevant data such as:
 
-- **English meaning** 
-- **on'yomi and kun'yomi readings**, in kana. 
-- **JLPT level color coding**, a-la Migaku.
-- **A save button (+)**, to save any kanji for review.
-- **Backend implemented with Node.js, Postgres, and hosted through Railway**, individual account registering and logging in are fully functional. 
-Backend repository can be found at: [https://github.com/danifer1695/kanji_extension_backend]
+- **Instant lookup** - highlight text containing kanji to trigger a popup with readings, meanings and JLPT level.
+- **JLPT level color coding** - a-la Migaku.
+- **Kanji collection** - save kanji for later review, sorted by saved date or JLPT level.
+- **Reading search** - search your collection by on'yomi or kun'yomi reading in romaji, hiragana or katakana.
+- **Theming** - Light or dark palettes.
+
 All kanji data is fetched in real time from [kanjiapi.dev].
+
+## Stack
+
+**Extension**
+- Vanilla JS, HTML/CSS - Manifest V3
+- [kanjiapi.net](https://kanjiapi.net) for kanji data.
+- [wanakana](https://github.com/WaniKani/WanaKana) for kana/romaji conversion.
+
+**Backend**
+- Node.js + Express REST API
+- PostgreSQL - per-user kanji storage
+- JWT authentication (bcrypt + jsonwebtoken)
+- Deployed on Railway
+
+Backend repository: [kanji_extension_backend](https://github.com/danifer1695/kanji_extension_backend)
 
 ## Test it out!
 
