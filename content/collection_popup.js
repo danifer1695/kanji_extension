@@ -210,7 +210,7 @@ function get_grid_HTML(list)
         <div  
             class="kanji-card" 
             data-char="${k.kanji}" 
-            style="${STYLES.kanji_idle(fg, bg)}
+            style="${STYLES.kanji_idle(fg, bg)}; cursor: pointer;
         ">
             ${k.kanji}
         </div>
@@ -222,7 +222,7 @@ function get_grid_HTML(list)
 
 function create_events()
 { 
-    container.addEventListener("mouseover", async (e) => { 
+    container.addEventListener("click", async (e) => { 
         //get card closest to the cursor
         const card = e.target.closest(".kanji-card");
 
