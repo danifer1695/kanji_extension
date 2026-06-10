@@ -13,7 +13,6 @@ body.theme-migaku {
     --btn-01-bg:   #493085;
     --btn-01-text: #bd6eff;
     --btn-02-bg:   #2b2b60;
-    --btn-02-text: white;
     --N1-fg: #ff296d; --N1-bg: #ffe0e7;
     --N2-fg: #fab73d; --N2-bg: #faf0d4;
     --N3-fg: #702bcb; --N3-bg: #ede3ff;
@@ -23,20 +22,19 @@ body.theme-migaku {
 }
 
 body.theme-default {
-    --gradient-top:              #f34bb0;
-    --gradient-bottom:           #e80520;
-    --text-default-color:        white;
-    --bg-idle-00:                #2e2d2d;
-    --bg-idle-01:                #151314;
-    --bg-idle-02:                #3d393c;
-    --bg-selected:               #585255;
-    --border-idle:               #484348;
-    --border-hover:              #b8b4b5;
-    --border-box:                rgba(255 255 255 / 20%);
-    --btn-01-bg:   #8b2437;
-    --btn-01-text: #fa6688;
-    --btn-02-bg:   #3d393c;
-    --btn-02-text: white;
+    --gradient-top:             #f34bb0;
+    --gradient-bottom:          #e80520;
+    --text-default-color:       white;
+    --bg-idle-00:               #2e2d2d;
+    --bg-idle-01:               #151314;
+    --bg-idle-02:               #3d393c;
+    --bg-selected:              #585255;
+    --border-idle:              #484348;
+    --border-hover:             #b8b4b5;
+    --border-box:               rgba(255 255 255 / 20%);
+    --btn-01-bg:                #6b0417;
+    --btn-01-text:              #fa6688;
+    --btn-02-bg:                #3d393c;
     --N1-fg: #ff296d; --N1-bg: #151314;
     --N2-fg: #fab73d; --N2-bg: #151314;
     --N3-fg: #8026f6; --N3-bg: #151314;
@@ -59,7 +57,6 @@ body.theme-default-light {
     --btn-01-bg:                 #f7d6e0;
     --btn-01-text:               #b0103a;
     --btn-02-bg:                 #ede6ec;
-    --btn-02-text:               #3a2e38;
     --N1-fg: #cc1040; --N1-bg: #fde8ee;
     --N2-fg: #c47a00; --N2-bg: #fff3d6;
     --N3-fg: #6010cc; --N3-bg: #ede0ff;
@@ -101,9 +98,7 @@ body
     flex-direction: column;
     gap: 8px;
     background: var(--bg-idle-01);
-    border-radius: 16px;
     padding: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .box-01
@@ -123,7 +118,7 @@ body
     background-color: transparent;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     padding: 8px 16px;
     overflow: hidden; 
 }
@@ -260,6 +255,7 @@ body
     padding: 8px 16px;
     gap:4px;
     border-radius: 20px;
+    border: 0px solid var(--btn-01-text);
     position: relative;
     display:inline-flex;
     flex-direction: row;
@@ -276,10 +272,10 @@ body
     font-size: 1rem;
     font-weight: 900;
     line-height: 1.25rem;
-    border: 2px solid rgba(255 255 255 / 19%);
+    border: 2px solid var(--border-box);
     border-radius: 20px;
     background-color: var(--btn-02-bg);
-    color: var(--btn-02-text);
+    color: var(--text-default-color);
     align-items: center;
     justify-content: center;
     padding: 8px 16px;
@@ -293,7 +289,7 @@ body
 
 .btn-add-idle
 {
-    background: var(--bg-idle-00);
+    background: transparent;
     box-shadow: inset 0 0 0 2px var(--border-idle);
     color: var(--border-idle);
     font-weight: bold;
@@ -309,15 +305,15 @@ body
     cursor: pointer;
 }
 
-.btn-add-hover
+.btn-add-hovered
 {
-    background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
-    box-shadow: inset 0 0 0 0px;
-    color: var(--text-default-color);
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--border-hover);
+    color: var(--border-hover);
     font-weight: bold;
     font-size: 20px;
     width: 32px; 
-    height: 32px; 
+    height : 32px; 
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -325,8 +321,24 @@ body
     float: right;
     padding: 2px;
     cursor: pointer;
-
 }
+.btn-add-selected
+{
+    background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
+    color: var(--text-default-color);
+    font-weight: bold;
+    font-size: 20px;
+    width: 32px; 
+    height : 32px; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    padding: 2px;
+    cursor: pointer;
+}
+
 
 /*======================================================*/ 
 /*Kanji collection window*/ 

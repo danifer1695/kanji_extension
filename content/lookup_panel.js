@@ -5,6 +5,7 @@ const panel = create_panel();
 let selected_entry = null;            //this holds a user-selected entry 
 document.body.appendChild(panel);
 
+//Append elements to the document----------------------------------------------------------------
 //Add the font to the page's header
 const fontStyle = document.createElement("style");
 fontStyle.textContent = `
@@ -15,12 +16,19 @@ fontStyle.textContent = `
     font-style: normal;
   }
 `;
+const link = document.createElement("link");
+link.rel = "stylesheet";
+link.href = chrome.runtime.getURL("shared/styles.css");
+
+document.head.appendChild(link);
 document.head.appendChild(fontStyle);
+//-----------------------------------------------------------------------------------------------
+
 
 //make the pop up show when kanji is selected
 document.addEventListener("mouseup", spawn_panel);
 
-//This function takes care of spawning the panel on triggered
+//Spawn the popup panel
 async function spawn_panel(e)
 {
     //If click was inside the panel, we do nothing and exit
@@ -59,6 +67,7 @@ async function spawn_panel(e)
 }
 
 
+//Event listeners--------------------------------------------------------------------
 //This function takes care of injecting event triggers into HTML classes
 function insert_event_listeners(panel)
 {
@@ -68,11 +77,11 @@ function insert_event_listeners(panel)
 
         //-------------mouseenter----------------------
         btn.addEventListener("mouseenter", () => {
-            btn.style.background = "linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom))";
+            btn.className = "btn-add-hovered";
        });
         //-------------mouseleave----------------------
         btn.addEventListener("mouseleave", () => {
-            btn.style.background = "var(--bg-idle-00)";
+            btn.className = "btn-add-hovered";
        });
         //-------------buttonDatabaseLogic----------------------
         btn.addEventListener("click", async (e) => {
@@ -80,6 +89,7 @@ function insert_event_listeners(panel)
             const data = JSON.parse(btn.dataset.kanji); //access HTML's "data-kanji"
             await save_kanji(data);     //from db.js
 
+            btn.className = "btn-add-selected"
             btn.textContent = "✓";
         });
     });
@@ -88,23 +98,20 @@ function insert_event_listeners(panel)
     const rows = panel.querySelectorAll(".lookup-result-outline");
     rows.forEach(row => {
         //Get contained button
-        const button = row.querySelector(".btn-add-idle");
+        const button = row.querySelector("#btn-add");
         const result_panel = row.querySelector(".lookup-result-panel");
 
         //-------------mouseenter----------------------
         row.addEventListener("mouseenter", () => {
             if(selected_entry !== row) row.style.background = "var(--border-hover)";
             //Also change its contained buttons
-            button.style.boxShadow = `inset 0 0 0 2px var(--border-hover)`;
-            button.style.color = "var(--border-hover)";
+            button.className = "btn-add-hovered";
         });
 
         //-------------mouseleave----------------------
         row.addEventListener("mouseleave", () => {
             if(selected_entry !== row) row.style.background = "var(--border-idle)";
-
-            button.style.boxShadow = `inset 0 0 0 2px var(--border-idle)`;
-            button.style.color = "var(--border-idle)";
+            button.className = "btn-add-idle";
         });
 
         //-------------click---------------------------
@@ -113,12 +120,10 @@ function insert_event_listeners(panel)
             if (selected_entry && selected_entry !== row) {
                 selected_entry.style.background = "var(--border-idle)";
                 selected_entry.querySelector(".lookup-result-panel").style.background = "var(--bg-idle-00)";
-                selected_entry.querySelector(".btn-add-idle").style.background = "var(--bg-idle-00)";
             }
 
             row.style.background = `linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom)`;
             result_panel.style.background = "var(--bg-selected)";
-            button.style.background = "var(--bg-selected)";
 
             selected_entry = row;
         });
@@ -160,7 +165,7 @@ async function render_entries(kanji_data)
                             <div><b>Meanings:</b> ${kanji_data.meanings.join(", ")}</div>
                         </div>
                     </div>
-                    <div class="btn-add-idle"
+                    <div id="btn-add" class="btn-add-idle"
                         data-kanji='${JSON.stringify(kanji_data)}'>
                         ${button_icon}
                     </div>
