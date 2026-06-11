@@ -2,7 +2,7 @@
 
 This extension will allow you to select any text containing Kanji to get some quick information on their readings, meanings and JLPT level.Built as a portfolio project targeting the Japanese language learning ecosystem.
 
-[Watch demo video](https://www.youtube.com/watch?v=4yQ6qccl5VA)
+[Watch demo video](https://youtu.be/9hpsqcAc0_0)
 
 
 ![Demo](assets/images/screenshots/screenshot_collection_panel_01.png)
