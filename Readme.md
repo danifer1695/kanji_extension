@@ -5,7 +5,8 @@ This extension will allow you to select any text containing Kanji to get some qu
 [Watch demo video](https://youtu.be/9hpsqcAc0_0)
 
 
-![Demo](assets/images/screenshots/screenshot_collection_panel_01.png)
+![Demo](assets/images/screenshots/screenshot_collection_panel_01.png) ![Demo](assets/images/screenshots/screenshot_collection_panel_02.png)
+
 
 ## A little bit of background
 
@@ -13,7 +14,7 @@ As a long-time Japanese-learning app user, my goal making this extension is to f
 
 
 ## Features
-![Demo](assets/images/screenshots/screenshot_lookup_panel_01.png)
+![Demo](assets/images/screenshots/screenshot_lookup_panel_01.png) ![Demo](assets/images/screenshots/screenshot_lookup_panel_02)
 
 
 - **Instant lookup** - highlight text containing kanji to trigger a popup with readings, meanings and JLPT level.
