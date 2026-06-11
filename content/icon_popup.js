@@ -127,6 +127,8 @@ button_collection.addEventListener("click", () => {
     chrome.windows.create({
         url: chrome.runtime.getURL("content/collection_popup.html"),
         type: "popup",
+        left: 500,
+        top: 200,
         width: 700,
         height: 700,
     });

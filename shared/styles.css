@@ -114,7 +114,7 @@ body
 
 .box-02
 {
-    border-left: 2px solid var(--border-box);
+    /*border-left: 2px solid var(--border-box);*/
     background-color: transparent;
     display: flex;
     flex-direction: column;

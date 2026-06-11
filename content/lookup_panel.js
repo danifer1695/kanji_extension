@@ -31,6 +31,10 @@ document.addEventListener("mouseup", spawn_panel);
 //Spawn the popup panel
 async function spawn_panel(e)
 {
+    //If there is no auth token, we exit early
+    const token  = await get_token();
+    if(!token) return;
+
     //If click was inside the panel, we do nothing and exit
     if(panel.contains(e.target)) return;
 
