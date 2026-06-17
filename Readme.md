@@ -43,8 +43,8 @@ All kanji data is fetched in real time from [kanjiapi.dev].
 - PostgreSQL - per-user kanji storage
 - JWT authentication (bcrypt + jsonwebtoken)
 - Deployed on Railway
-- API local testing with SuperTest.
-- Input validation with Zod.
+- Jest + SuperTest - integration testing covering auth, kanji CRUD, input validation and rate limiting
+- Rate limit and input validation on all endpoints (using Zod and express-rate-limit)
 
 Backend repository: [kanji_extension_backend](https://github.com/danifer1695/kanji_extension_backend)
 
