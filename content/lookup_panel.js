@@ -16,12 +16,21 @@ fontStyle.textContent = `
     font-style: normal;
   }
 `;
-const link = document.createElement("link");
-link.rel = "stylesheet";
-link.href = chrome.runtime.getURL("shared/styles.css");
 
-document.head.appendChild(link);
+//We add both stylesheets: 
+const styles00 = document.createElement("link");
+styles00.rel = "stylesheet";
+styles00.href = chrome.runtime.getURL("styles/styles.css");
+ 
+const styles01 = document.createElement("link");
+styles01.rel = "stylesheet";
+styles01.href = chrome.runtime.getURL("styles/lookup_panel.css");
+
+//Append all head elements.
+document.head.appendChild(styles00);
+document.head.appendChild(styles01);
 document.head.appendChild(fontStyle);
+
 //-----------------------------------------------------------------------------------------------
 
 

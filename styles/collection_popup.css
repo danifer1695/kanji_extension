@@ -43,3 +43,73 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.collection-main-body
+{
+    background-color: var(--bg-idle-01);
+    color: var(--text-default-color);
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    align-items:center;
+    justify-content: center;
+
+}
+
+.collection-kanji-grid 
+{
+    display: grid;
+    grid-template-columns: repeat(6, 84px);
+    scrollbar-width: none;
+    overflow-y: auto;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+    height: 400px;
+    align-content: start;
+    justify-self: center;
+
+}
+
+.collection-footer
+{
+    display: flex;
+    padding: 16px;
+    gap:8px;
+    align-items: center;
+    bottom: 0;
+    left:0;
+    border-bottom: 1px solid var(--border-box);
+
+}
+
+.collection-card-data
+{
+    background: var(--bg-idle-00);
+    position: fixed;
+    flex-direction: column;
+    z-index: 9999;
+    border-radius: 15px;
+    padding: 16px;
+    gap: 16px;
+    margin-bottom: 8px;
+    max-width:200px;
+    min-width: 150px;
+    font-size: 14px;
+    color: var(--text-default-color);
+
+}
+
+.collection-text-warnings
+{
+    justify-self: center;
+    font-weight: bold; 
+    font-size: 1.25rem; 
+    color: rgba(255 255 255 / 20%);
+}
+
+.collection-db-size-text
+{
+    color: var(--N5-fg);
+    font-weight: 900;
+}

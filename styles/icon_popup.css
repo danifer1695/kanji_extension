@@ -1,0 +1,17 @@
+.icon-popup-footer
+{
+    border-top: 2px solid var(--border-box);
+    color: var(--border-box);
+    padding: 8px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-item
+{
+    margin: 0px; 
+    font-weight: bold; 
+    font-size: 1rem;
+    color: var(--text-default-color);
+}

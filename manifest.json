@@ -15,7 +15,11 @@
         {
             "resources": ["fonts/*"],
             "matches": ["<all_urls>"],
-            "css": ["shared/styles.css", "styles/collection_popup.css"],
+            "css": [
+                "styles/styles.css", 
+                "styles/collection_popup.css",
+                "styles/icon_popup.css"
+            ],
             "js": [
                 "lib/wanakana.min.js", 
                 "shared/constants.js", 

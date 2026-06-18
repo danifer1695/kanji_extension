@@ -1,3 +1,5 @@
+/* ── These are styles that are applicable application - wide ─ */
+
 /* ── Palettes ──────────────────────────────────────────────── */
 body.theme-migaku {
     --gradient-top:              #ff8c2a;
@@ -77,19 +79,6 @@ body.theme-default-light {
 }
 
 /*======================================================*/ 
-/*Base*/
-/*======================================================*/ 
-/*body
-{
-    margin: 0;
-    color: var(--text-default-color);
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 14px;
-    box-sizing: border-box;
-    overflow-x: hidden;
-}*/
-
-/*======================================================*/ 
 /*Boxes*/ 
 /*======================================================*/ 
 .box-00
@@ -133,72 +122,16 @@ body.theme-default-light {
 }
 
 /*======================================================*/ 
-/*lookup result box*/
-/*-----------------*/
-/*Popup that shows when the user highlights text containing knaji*/ 
+/*Text styles*/
 /*======================================================*/ 
-.lookup-panel
+.text-error
 {
-    position: fixed;
-    background: var(--bg-idle-00);
-    border-radius: 15px;
-    padding: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 99999;     
-    min-width: 150px;
-    font-family: InterVariable, sans-serif;
-    max-height: 400px;
-    overflow-y: auto;
-    scrollbar-width: none;
-    font-size: 14px;
-    color: var(--text-default-color);
-
+    display: none; 
+    margin: 0; 
+    font-size: 0.85rem; 
+    color: var(--gradient-bottom);
+    text-align: center;
 }
-
-.lookup-result-panel
-{
-    padding: 10px; 
-    display: flex; 
-    flex-direction: row; 
-    gap: 15px; 
-    align-items: center; 
-    justify-content: center;
-    border-radius: 13px;
-    width: 100%;
-    background: var(--bg-idle-00);
-}
-
-.lookup-result-outline
-{
-    border-radius: 15px;
-    box-sizing: border-box;
-    padding: 2px;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5px;
-    display: flex;
-    background: var(--border-idle);
-}
-
-.lookup-kanji-container 
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
-
-.lookup-kanji-info
-{
-    font-size: 12px; 
-    line-height: 1.6;
-    width: 200px;
-    word-wrap: break-word;
-}
-/*======================================================*/ 
-/*Test styles*/
-/*======================================================*/ 
-
 
 .title-text-gradient
 {
@@ -322,6 +255,7 @@ body.theme-default-light {
     padding: 2px;
     cursor: pointer;
 }
+
 .btn-add-selected
 {
     background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
@@ -337,82 +271,6 @@ body.theme-default-light {
     float: right;
     padding: 2px;
     cursor: pointer;
-}
-
-
-/*======================================================*/ 
-/*Kanji collection window*/ 
-/*-----------------------*/ 
-/*Window containing all saved kanji*/
-/*======================================================*/ 
-.collection-main-body
-{
-    background-color: var(--bg-idle-01);
-    color: var(--text-default-color);
-    margin: 0;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    align-items:center;
-    justify-content: center;
-
-}
-
-.collection-kanji-grid 
-{
-    display: grid;
-    grid-template-columns: repeat(6, 84px);
-    scrollbar-width: none;
-    overflow-y: auto;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding: 16px;
-    height: 400px;
-    align-content: start;
-    justify-self: center;
-
-}
-
-.collection-footer
-{
-    display: flex;
-    padding: 16px;
-    gap:8px;
-    align-items: center;
-    bottom: 0;
-    left:0;
-    border-bottom: 1px solid var(--border-box);
-
-}
-
-.collection-card-data
-{
-    background: var(--bg-idle-00);
-    position: fixed;
-    flex-direction: column;
-    z-index: 9999;
-    border-radius: 15px;
-    padding: 16px;
-    gap: 16px;
-    margin-bottom: 8px;
-    max-width:200px;
-    min-width: 150px;
-    font-size: 14px;
-    color: var(--text-default-color);
-
-}
-
-.collection-text-warnings
-{
-    justify-self: center;
-    font-weight: bold; 
-    font-size: 1.25rem; 
-    color: rgba(255 255 255 / 20%);
-}
-
-.collection-db-size-text
-{
-    color: var(--N5-fg);
-    font-weight: 900;
 }
 
 .jlpt-label
