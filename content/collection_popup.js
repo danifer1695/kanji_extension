@@ -1,7 +1,8 @@
 //Get all different structures
-const main_body = document.getElementById("main_body");
-const container = document.getElementById("kanji_grid");
-const middle = document.getElementById("middle");
+const main_body =   document.getElementById("main_body");
+const container =   document.getElementById("kanji_grid");
+const middle =      document.getElementById("middle");
+const tab_bar =     document.getElementById("tab-bar");
 
 //Create floating kanji card but hide it by default (like with littlepanel)
 const kanji_card_data = document.createElement("div");
@@ -232,6 +233,25 @@ function create_events()
         await render_card_data(e, card.dataset.char);
     });
 
+    //Attach an unload event listener to remove the collectionWindowId variable when closed.
+    window.addEventListener("unload", () => {
+        chrome.storage.local.remove("collectionWindowId");
+    });
+
+    //Tab switching
+    tab_bar.addEventListener("click", (e) => {
+        const btn = e.target.closest(".btn-tab");
+        if(!btn) return;
+
+        //set all tab buttons to "not-active"
+        document.querySelectorAll(".btn-tab-active").forEach(b => b.className = "btn-tab");
+        //set current button to "active"
+        btn.className = "btn-tab-active";
+
+        //hide all tabs then display only the one selected.
+        document.querySelectorAll(".tab-panel").forEach(p => p.style.display = "none");
+        document.getElementById(`tab-${btn.dataset.tab}`).style.display = "block";
+    });
 }
 
 render_collection();

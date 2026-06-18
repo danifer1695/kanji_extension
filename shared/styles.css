@@ -357,14 +357,6 @@ body.theme-default-light {
 
 }
 
-.collection-header
-{
-    background-color: var(--bg-idle-00);
-    display: flex;
-    justify-content: center;
-    border-bottom: 1px solid var(--border-box);
-}
-
 .collection-kanji-grid 
 {
     display: grid;

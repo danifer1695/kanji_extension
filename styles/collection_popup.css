@@ -1,0 +1,41 @@
+.btn-tab {
+    flex: 1;
+    padding: 12px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-default-color);
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.btn-tab-active {
+    flex: 1;
+    padding: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border-bottom: 2px solid var(--gradient-top);
+    color: var(--gradient-top);
+    font-weight: bold;
+}
+
+.tab-panel {
+    display: block;
+}
+
+.collection-header {
+    background-color: var(--bg-idle-00);
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-box);
+}
+
+.collection-header-container {
+    padding: 16px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,68 +1,95 @@
 <!doctype html>
 <html>
 <head>
-    <title>Saved Kanji</title>
+    <title>Shirabeyou</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../shared/styles.css">
-    <script src="../lib/wanakana.min.js" defer></script>
     <script src="../shared/constants.js" defer></script>
+    <script src="../shared/styles.js" defer></script>
+    <script src="../styles/collection_popup.js" defer></script>
+    <script src="../lib/wanakana.min.js" defer></script>
     <script src="../shared/db.js" defer></script>
     <script src="../shared/api.js" defer></script>
-    <script src="../shared/styles.js" defer></script>
     <script src="../shared/helpers_render.js" defer></script>
+    <script src="../shared/window_manager.js" defer></script>
     <script src="collection_popup.js" defer></script>
 </head>
 <body id="main_body" class="theme-default" style="background: var(--bg-idle-01);">
-
     <div class="collection-main-body">
-        <!--- HEADER--------------------------------------------->
-        <div id="header" class="collection-header"> 
-            <div style="
-                        padding: 16px 32px;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        ">
-                <h3 class="title-text-gradient" style="
-                           margin: 0px;
-                           padding-bottom: 8px;">
-                    Saved kanji
-                </h3>
-                <div style="
-                            display: flex; 
-                            justify-content: center; 
-                            ">
-                    <div style="font-size: 1.12rem; margin: 0px;">
-                        <b id="collection_db_size" class="collection-db-size-text"></b>
-                        <b style="color: var(--text-default-color);"> saved</b>
+
+        <!--- TAB: COLLECTION------------------------------------>
+        <div id="tab-collection" class="tab-panel">
+            <!--- HEADER -->
+            <div id="header" class="collection-header"> 
+                <div class="collection-header-container">
+                    <h3 class="title-text-gradient" style="
+                               margin: 0px;
+                               padding-bottom: 8px;">
+                        Saved kanji
+                    </h3>
+                    <div style="display: flex; 
+                                justify-content: center; 
+                                ">
+                        <div style="font-size: 1.12rem; margin: 0px;">
+                            <b id="collection_db_size" class="collection-db-size-text"></b>
+                            <b style="color: var(--text-default-color);"> saved</b>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <!--- MIDDLE SECTION (kanji grid) -->
+            <div id="middle" 
+                style="border-bottom: 1px solid var(--border-box)">
+                <div id="kanji_grid" class="collection-kanji-grid"></div>
+            </div>
+
+            <!--- FOOTER -->
+            <div id="footer">
+                <div class="collection-footer">
+                    <input class="box-search-01"
+                            style="flex: 1; min-width: 0;"
+                            id="collection_footer_searchbox"
+                            type="text"
+                            placeholder="Search for Kanji...">
+                    <button class="btn-01" id="sort_old">
+                        <span>Sort by date</span>
+                    </button>
+                    <button class="btn-01" id="sort_jlpt">
+                        <span>Sort by level</span>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!--- MIDDLE SECTION (kanji grid) ------------------------>
-        <div id="middle" 
-            style="border-bottom: 1px solid var(--border-box)">
-            <div id="kanji_grid" class="collection-kanji-grid"></div>
+        <!--- TAB: ACCOUNT--------------------------------------->
+        <div id="tab-account" class="tab-panel" style="display: none">
+
         </div>
 
-        <!--- FOOTER--------------------------------------------->
-        <div id="footer">
-            <div class="collection-footer">
-                <input class="box-search-01"
-                        style="flex: 1; min-width: 0;"
-                        id="collection_footer_searchbox"
-                        type="text"
-                        placeholder="Search for Kanji...">
-                <button class="btn-01" id="sort_old">
-                    <span>Sort by date</span>
-                </button>
-                <button class="btn-01" id="sort_jlpt">
-                    <span>Sort by level</span>
-                </button>
-            </div>
+        <!--- TAB: SETTINGS-------------------------------------->
+        <div id="tab-settings" class="tab-panel" style="display: none">
+
         </div>
+
+        <!--- TAB BAR-------------------------------------------->
+        <div id="tab-bar" style="
+            display: flex;
+            flex-direction: row;
+            padding: 0px;
+        ">
+            <button class="btn-tab-active" data-tab="collection">
+                Collection
+            </button>
+            <button class="btn-tab" data-tab="account">
+                Account
+            </button>
+            <button class="btn-tab" data-tab="settings">
+                Settings
+            </button>
+
+        </div>
+
     </div>
 </body>
 </html>
