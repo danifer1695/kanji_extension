@@ -4,9 +4,9 @@
     <title>Shirabeyou</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../shared/styles.css">
+    <link rel="stylesheet" href="../styles/collection_popup.css">
     <script src="../shared/constants.js" defer></script>
     <script src="../shared/styles.js" defer></script>
-    <script src="../styles/collection_popup.js" defer></script>
     <script src="../lib/wanakana.min.js" defer></script>
     <script src="../shared/db.js" defer></script>
     <script src="../shared/api.js" defer></script>
@@ -16,6 +16,24 @@
 </head>
 <body id="main_body" class="theme-default" style="background: var(--bg-idle-01);">
     <div class="collection-main-body">
+
+        <!--- TAB BAR-------------------------------------------->
+        <div id="tab-bar" style="
+            display: flex;
+            flex-direction: row;
+            padding: 0px;
+        ">
+            <button class="btn-tab-active" data-tab="collection">
+                Collection
+            </button>
+            <button class="btn-tab" data-tab="account">
+                Account
+            </button>
+            <button class="btn-tab" data-tab="settings">
+                Settings
+            </button>
+
+        </div>
 
         <!--- TAB: COLLECTION------------------------------------>
         <div id="tab-collection" class="tab-panel">
@@ -72,23 +90,6 @@
 
         </div>
 
-        <!--- TAB BAR-------------------------------------------->
-        <div id="tab-bar" style="
-            display: flex;
-            flex-direction: row;
-            padding: 0px;
-        ">
-            <button class="btn-tab-active" data-tab="collection">
-                Collection
-            </button>
-            <button class="btn-tab" data-tab="account">
-                Account
-            </button>
-            <button class="btn-tab" data-tab="settings">
-                Settings
-            </button>
-
-        </div>
 
     </div>
 </body>

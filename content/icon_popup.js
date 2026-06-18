@@ -124,14 +124,7 @@ button_register.addEventListener("click", async () => {
 
 //Main screen------------
 button_collection.addEventListener("click", () => {
-    chrome.windows.create({
-        url: chrome.runtime.getURL("content/collection_popup.html"),
-        type: "popup",
-        left: 500,
-        top: 200,
-        width: 700,
-        height: 700,
-    });
+    open_collection_popup("collection");
     window.close(); //close popup
 });
 

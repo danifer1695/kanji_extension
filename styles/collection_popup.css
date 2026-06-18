@@ -1,9 +1,13 @@
+body {
+    margin: 0;
+}
+
 .btn-tab {
     flex: 1;
     padding: 12px;
     background: none;
     border: none;
-    border-bottom: 2px solid transparent;
+    border-bottom: 1px solid var(--border-box);
     color: var(--text-default-color);
     cursor: pointer;
     font-size: 0.95rem;
@@ -16,8 +20,8 @@
     border: none;
     cursor: pointer;
     font-size: 0.95rem;
-    border-bottom: 2px solid var(--gradient-top);
-    color: var(--gradient-top);
+    border-bottom: 2px solid var(--btn-01-text);
+    color: var(--btn-01-text);
     font-weight: bold;
 }
 

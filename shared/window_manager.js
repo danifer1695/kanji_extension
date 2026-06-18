@@ -25,8 +25,8 @@ async function open_collection_popup(tab = "collection")
         type: "popup",
         left: 500, 
         top: 200, 
-        width: 700, 
-        height: 700
+        width: 654, 
+        height: 720
     });
 
     //Set the internal ID variable we tried and failed to get earlier.

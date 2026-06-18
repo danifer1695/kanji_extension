@@ -34,7 +34,7 @@ async function api_request(method, path, body = null)
     if(!res.ok) 
     {
         //Get status text from response.
-        const error = await res.json.catch(() => ({error: res.statusText}));
+        const error = await res.json().catch(() => ({error: res.statusText}));
         console.error(`db.js:: ${method} ${path} failed (${res.status}): `, error.error);
         return null;
     }

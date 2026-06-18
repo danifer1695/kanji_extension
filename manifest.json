@@ -16,7 +16,16 @@
             "resources": ["fonts/*"],
             "matches": ["<all_urls>"],
             "css": ["shared/styles.css", "styles/collection_popup.css"],
-            "js": ["lib/wanakana.min.js", "shared/constants.js", "shared/db.js", "shared/helpers_render.js", "shared/styles.js", "shared/api.js", "content/lookup_panel.js"]
+            "js": [
+                "lib/wanakana.min.js", 
+                "shared/constants.js", 
+                "shared/db.js", 
+                "shared/helpers_render.js", 
+                "shared/styles.js", 
+                "shared/api.js", 
+                "shared/window_manager.js", 
+                "content/lookup_panel.js"
+            ]
         }
     ],
     "action": {
