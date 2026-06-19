@@ -73,6 +73,7 @@ body {
 
 .collection-footer
 {
+    background-color: var(--bg-idle-00);
     display: flex;
     padding: 16px;
     gap:8px;
@@ -112,4 +113,11 @@ body {
 {
     color: var(--N5-fg);
     font-weight: 900;
+}
+
+.settings-item
+{
+    margin: 0px; 
+    font-weight: bold; 
+    font-size: 1rem;
 }

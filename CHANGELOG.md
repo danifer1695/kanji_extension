@@ -13,5 +13,6 @@
 
 ## [0.2.1] - 2026-06-17
 ### Added
-- Login and Settings menu items moved over to the main collection window popup.
+- Login, Account management, and Settings menu items moved over to the main Shirabeyou window popup.
 - Stylesheets broken up by script
+- "Open Shirabeyou" button now spawns a single instance of the Shirabeyou popup.
