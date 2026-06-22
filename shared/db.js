@@ -5,7 +5,8 @@
 async function api_request(method, path, body = null)
 {
     const token = await get_token();    //From constants.js
-    if(!token) throw new Error("Authentification failed");
+    //if(!token) throw new Error("Authentification failed");
+    if(!token) return null;
 
     const options = 
         {

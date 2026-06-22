@@ -49,7 +49,7 @@
                                 justify-content: center; 
                                 ">
                         <div style="font-size: 1.12rem; margin: 0px;">
-                            <b id="collection_db_size" class="collection-db-size-text"></b>
+                            <b id="collection-db-size" class="collection-db-size-text"></b>
                             <b style="color: var(--text-default-color);"> saved</b>
                         </div>
                     </div>
@@ -67,13 +67,13 @@
                 <div class="collection-footer">
                     <input class="box-search-01"
                             style="flex: 1; min-width: 0;"
-                            id="collection_footer_searchbox"
+                            id="collection-footer-searchbox"
                             type="text"
                             placeholder="Search for Kanji...">
-                    <button class="btn-01" id="sort_old">
+                    <button class="btn-01" id="sort-old">
                         <span>Sort by date</span>
                     </button>
-                    <button class="btn-01" id="sort_jlpt">
+                    <button class="btn-01" id="sort-jlpt">
                         <span>Sort by level</span>
                     </button>
                 </div>
@@ -111,6 +111,44 @@
                 <button id="account-btn-delete" class="btn-02" style="width: 100%">
                     Delete Account
                 </button>
+            </div>
+
+            <!-- Change Password --->
+            <div id="account-screen-change-pass" class="box-00" style="display: none">
+                <p style="margin: 0; font-weight: bold;">
+                    Change Password
+                </p>
+                <input id="change-pass-current" class="box-search-01" type="password" placeholder="Current Password">
+                <input id="change-pass-new" class="box-search-01" type="password" placeholder="New Password">
+                <input id="change-pass-confirm" class="box-search-01" type="password" placeholder="Confirm new Password">
+                
+                <!--Error message - hidden by default-->
+                <p id="change-pass-error" class="text-error" style="display: none"></p>
+
+                <button id="change-pass-submit-btn" class="btn-00" style="width: 100%;">
+                    Change Password
+                </button>
+                <button id="change-pass-back-btn" class="btn-01" style="width: 100%;">
+                    Back
+                </button>
+    
+            </div>
+
+            <!-- Delete Account --->
+            <div id="account-screen-delete" class="box-00" style="display: none;">
+                <p style="margin: 0; color var(--text-default-color);">
+                    This will permanently delete your account and all saved Kanji. This action cannot be undone.
+                </p>
+                
+                <!--Error message - hidden by default-->
+                <p id="delete-error" class="text-error" style="display: none"></p>
+
+                <button id="delete-confirm-btn" class="btn-00" style="width: 100%">
+                    Confirm Delete
+                </button>
+                <button id="delete-back-btn" class="btn-01" style="width: 100%">
+                    Back
+                </Button>
             </div>
 
         </div>
