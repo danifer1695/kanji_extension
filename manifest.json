@@ -9,7 +9,7 @@
     ],
     "host_permissions": [
         "https://kanjiapi.dev/*",
-        "https://kanjiextensionbackend-production.up.railway.app/"
+        "https://kanjiextensionbackend-production.up.railway.app/*"
     ],
     "content_scripts": [
         {
@@ -17,8 +17,7 @@
             "matches": ["<all_urls>"],
             "css": [
                 "styles/styles.css", 
-                "styles/collection_popup.css",
-                "styles/icon_popup.css"
+                "styles/lookup_panel.css"
             ],
             "js": [
                 "lib/wanakana.min.js", 
