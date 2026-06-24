@@ -77,19 +77,17 @@ async function db_contains_kanji(kanji)
 {
     const res = await api_request("GET", `/kanji/contains?kanji=${kanji}`);
     if(!res) return false;
+
+    //Response should contain a single true / false value
     return await res.json();
 }
 
-//Retrieve all saved kanji in dictionary form and look for a matching entry
-async function get_kanji_data(kanji)
-{
-    const saved = await get_all_kanji();
-    return saved[kanji] || {};
-}
-
-//Get size of the database by retrieing its contents in dictionary form and returning its length.
+//Send a request to GET /kanji/size
 async function get_db_size()
 {
-    const saved = await get_all_kanji();
-    return Object.keys(saved).length;
+    const res = await api_request("GET", "/kanji/size");
+    //if response is null, return 999999 so we know something is awry
+    if(!res) return 999999;
+    
+    return await res.json();
 }

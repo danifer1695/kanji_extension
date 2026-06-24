@@ -155,7 +155,15 @@ async function render_card_data(e, kanji)
     kanji_card_data.textContent = "Loading...";  //default content
 
     const k = await get_kanji_data(kanji);
-    const {fg, bg} = kanji_color(k.jlpt);
+
+    //Null check kanji data response, early return if null.
+    if(!k)
+    {
+        console.error(`Could nnot retrieve data for ${kanji}`);
+        return;
+    }
+
+    const {fg} = kanji_color(k.jlpt);
     kanji_card_data.innerHTML = `
             <div class="kanji_card_label_and_info" style="
                 display: flex;  pp

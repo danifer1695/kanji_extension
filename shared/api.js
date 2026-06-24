@@ -14,6 +14,16 @@ async function check_connection()
 //External APIs-------------------------------------------------------------------------------
 //This script takes contains functions that will take care of communicating with Kanjiapi's API
 
+//Get information about a single kanji from kanjiapi.dev
+async function get_kanji_data(kanji)
+{
+    const kanji_response = await fetch(`https://kanjiapi.dev/v1/kanji/${kanji}`);
+    if (!kanji_response.ok) return null;
+    const kanji_data = await kanji_response.json();
+    
+    return kanji_data;
+}
+
 async function lookup_word(kanji_chars)
 {
     let HTML = "";
@@ -24,9 +34,7 @@ async function lookup_word(kanji_chars)
         //Integrate error handling in case api is down
         try {
             //Send request to kanjiapi.dev's API
-            const kanji_response = await fetch(`https://kanjiapi.dev/v1/kanji/${kanji}`);
-            if (!kanji_response.ok) throw new Error(`API error: ${kanji_response.status}`);
-            const kanji_data = await kanji_response.json();
+            const kanji_data = await get_kanji_data(kanji);
             HTML += await render_entries(kanji_data);
         }
         catch (e) {
