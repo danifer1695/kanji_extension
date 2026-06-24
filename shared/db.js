@@ -75,8 +75,9 @@ async function get_all_kanji()
 //find if a given kanji is dictionary returned by get_all_kanji()
 async function db_contains_kanji(kanji)
 {
-    const saved = await get_all_kanji();
-    return kanji in saved;
+    const res = await api_request("GET", `/kanji/contains?kanji=${kanji}`);
+    if(!res) return false;
+    return await res.json();
 }
 
 //Retrieve all saved kanji in dictionary form and look for a matching entry
