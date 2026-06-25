@@ -94,7 +94,7 @@ body.theme-default-light {
 {
     border-radius: 12px;
     border: 2px solid var(--border-box);
-    background-color: var(--bg-idle-02);
+    background-color: var(--bg-idle-00);
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -104,7 +104,8 @@ body.theme-default-light {
 .box-02
 {
     /*border-left: 2px solid var(--border-box);*/
-    background-color: transparent;
+    background-color: var(--bg-idle-00);
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -117,7 +118,7 @@ body.theme-default-light {
     border-radius: 20px;
     border: 2px solid var(--border-box);
     color: var(--text-default-color);
-    background-color: var(--bg-idle-02);
+    background-color: var(--bg-idle-00);
     padding: 8px 16px;
 }
 
@@ -207,7 +208,7 @@ body.theme-default-light {
     line-height: 1.25rem;
     border: 2px solid var(--border-box);
     border-radius: 20px;
-    background-color: var(--btn-02-bg);
+    background-color: transparent;
     color: var(--text-default-color);
     align-items: center;
     justify-content: center;

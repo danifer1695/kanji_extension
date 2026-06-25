@@ -82,85 +82,95 @@
 
         <!--- TAB: ACCOUNT--------------------------------------->
         <div id="tab-account" class="tab-panel" style="display: none">
+
             <!-- Logged Out ---->
-            <div id="account-screen-login" class="box-00" style="display: none;">
+            <div id="account-screen-login" class="tab-screen" style="display: none;">
+                <div class="tab-account-container box-01">
+                    <input id="login-email" class="box-search-01" type="email" placeholder="Email">
+                    <input id="login-password" class="box-search-01" type="password" placeholder="Password">
 
-                <input id="login-email" class="box-search-01" type="email" placeholder="Email">
-                <input id="login-password" class="box-search-01" type="password" placeholder="Password">
+                    <!--Hidden display for auth errors. Content to be set through script-->
+                    <p id="login-auth-error" class="text-error"></p>
+                    <!-------------------------------------------------------------------->
 
-                <!--Hidden display for auth errors. Content to be set through script-->
-                <p id="login-auth-error" class="text-error"></p>
-                <!-------------------------------------------------------------------->
-
-                <button id="login-btn-login" class="btn-00" style="width: 100%; margin-top: 16px;">
-                    Log In
-                </button>
-                <button id="login-btn-register" class="btn-00" style="width: 100%">
-                    Register
-                </button>
+                    <button id="login-btn-login" class="btn-00" style="width: 100%; margin-top: 16px;">
+                        Log In
+                    </button>
+                    <button id="login-btn-register" class="btn-00" style="width: 100%">
+                        Register
+                    </button>
+                </div>
             </div>
 
             <!-- Logged In ---->
-            <div id="account-screen-main" class="box-00" style="display: none;">
-                <button id="account-btn-logout" class="btn-01" style="width: 100%">
-                    Log Out
-                </button>
-                <button id="account-btn-change-pass" class="btn-01" style="width: 100%">
-                    Change Password
-                </button>
-                <button id="account-btn-delete" class="btn-02" style="width: 100%">
-                    Delete Account
-                </button>
+            <div id="account-screen-main" class="tab-screen" style="display: none;">
+                <div class="tab-account-container box-01">
+                    <button id="account-btn-logout" class="btn-01" style="width: 100%">
+                        Log Out
+                    </button>
+                    <button id="account-btn-change-pass" class="btn-01" style="width: 100%">
+                        Change Password
+                    </button>
+                    <button id="account-btn-delete" class="btn-02" style="width: 100%">
+                        Delete Account
+                    </button>
+                </div>
             </div>
 
             <!-- Change Password --->
-            <div id="account-screen-change-pass" class="box-00" style="display: none">
-                <p style="margin: 0; font-weight: bold;">
-                    Change Password
-                </p>
-                <input id="change-pass-current" class="box-search-01" type="password" placeholder="Current Password">
-                <input id="change-pass-new" class="box-search-01" type="password" placeholder="New Password">
-                <input id="change-pass-confirm" class="box-search-01" type="password" placeholder="Confirm new Password">
-                
-                <!--Error message - hidden by default-->
-                <p id="change-pass-error" class="text-error" style="display: none"></p>
+            <div id="account-screen-change-pass" class="tab-screen" style="display: none">
+                <div class="tab-account-container box-01">
+                    
+                    <h3>Change Password</h3>
+                    <input id="change-pass-current" class="box-search-01" type="password" placeholder="Current Password">
+                    <input id="change-pass-new" class="box-search-01" type="password" placeholder="New Password">
+                    <input id="change-pass-confirm" class="box-search-01" type="password" placeholder="Confirm new Password">
+                    
+                    <!--Error message - hidden by default-->
+                    <p id="change-pass-error" class="text-error" style="display: none"></p>
 
-                <button id="change-pass-submit-btn" class="btn-00" style="width: 100%;">
-                    Change Password
-                </button>
-                <button id="change-pass-back-btn" class="btn-01" style="width: 100%;">
-                    Back
-                </button>
-    
+                    <button id="change-pass-submit-btn" class="btn-00" style="width: 100%;">
+                        Change Password
+                    </button>
+                    <button id="change-pass-back-btn" class="btn-01" style="width: 100%;">
+                        Back
+                    </button>
+                </div>
             </div>
 
             <!-- Delete Account --->
-            <div id="account-screen-delete" class="box-00" style="display: none;">
-                <p style="margin: 0; color var(--text-default-color);">
-                    This will permanently delete your account and all saved Kanji. This action cannot be undone.
-                </p>
-                
-                <!--Error message - hidden by default-->
-                <p id="delete-error" class="text-error" style="display: none"></p>
+            <div id="account-screen-delete" class="tab-screen" style="display: none;">
+                <div class="tab-account-container box-01">
+                    <p style="margin: 0; color var(--text-default-color);">
+                        This will permanently delete your account and all saved Kanji. This action cannot be undone.
+                    </p>
+                    
+                    <!--Error message - hidden by default-->
+                    <p id="delete-error" class="text-error" style="display: none"></p>
 
-                <button id="delete-confirm-btn" class="btn-00" style="width: 100%">
-                    Confirm Delete
-                </button>
-                <button id="delete-back-btn" class="btn-01" style="width: 100%">
-                    Back
-                </Button>
+                    <button id="delete-confirm-btn" class="btn-00" style="width: 100%">
+                        Confirm Delete
+                    </button>
+                    <button id="delete-back-btn" class="btn-01" style="width: 100%">
+                        Back
+                    </Button>
+                </div>
             </div>
 
         </div>
         <!--- TAB: SETTINGS-------------------------------------->
         <div id="tab-settings" class="tab-panel" style="display: none">
-            <div class="box-00">
+            <div id="settings-screen-main" class="tab-screen">
 
-                <!-- Palette switcher --->
-                <p class="settings-item">Color Palette</p>
-                <div style="flex; gap 8px;">
-                    <button id="palette-dark" class="btn-02">Dark</button>
-                    <button id="palette-light" class="btn-02">Light</button>
+                <div id="settings-content" class="box-01">
+                    <!-- Palette switcher --->
+                    <div class="settings-item">
+                        <h3>Color Palette</h3>
+                        <div style="display: flex; gap: 8px;">
+                            <button id="palette-dark" class="btn-02">Dark</button>
+                            <button id="palette-light" class="btn-02">Light</button>
+                        </div>
+                    </div>
                 </div>
 
             </div>

@@ -2,6 +2,23 @@ body {
     margin: 0;
 }
 
+h2 {
+    font-size: 3rem;
+    font-weight: bolder;
+    color: var(--text-default-color);
+    margin: 0px; 
+    margin-bottom: 8px;
+}
+
+h3
+{
+    font-size: 1.25rem;
+    font-weight: bold; 
+    color: var(--text-default-color);
+    margin: 0px; 
+    margin-bottom: 8px;
+}
+
 .btn-tab {
     flex: 1;
     padding: 12px;
@@ -25,8 +42,19 @@ body {
     font-weight: bold;
 }
 
-.tab-panel {
+.tab-panel 
+{
     display: block;
+}
+
+.tab-screen
+{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 8px;
+    background: var(--bg-idle-01);
+    padding: 32px;
 }
 
 .collection-header {
@@ -117,7 +145,26 @@ body {
 
 .settings-item
 {
-    margin: 0px; 
-    font-weight: bold; 
-    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#settings-content
+{
+    gap: 16px;
+    padding: 16px;
+}
+
+.tab-account-container
+{
+    justify-self: center;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+    padding: 32px;
+    width: 250px;
+    display:flex;
+    flex-direction: column;
+    gap: 8px;
 }
