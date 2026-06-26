@@ -6,8 +6,7 @@ This extension will allow you to select any text containing Kanji to get some qu
 
 
 <p>
-  <img src="assets/images/screenshots/screenshot_collection_panel_01.png" width="400" />
-  <img src="assets/images/screenshots/screenshot_collection_panel_02.png" width="400" />
+  <img src="assets/images/screenshots/screenshot_lookup_00.png" width="400" />
 </p>
 
 
@@ -18,8 +17,8 @@ As a long-time Japanese-learning app user, my goal making this extension is to f
 
 ## Features
 <p>
-  <img src="assets/images/screenshots/screenshot_lookup_panel_02.png" width="400" />
-  <img src="assets/images/screenshots/screenshot_lookup_panel_01.png" width="400" />
+  <img src="assets/images/screenshots/screenshot_collection_00.png" width="400" />
+  <img src="assets/images/screenshots/screenshot_collection_01.png" width="400" />
 </p>
 
 
