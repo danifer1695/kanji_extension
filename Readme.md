@@ -24,12 +24,12 @@ As a long-time Japanese-learning app user, my goal making this extension is to f
 
 
 - **Instant lookup** - highlight text containing kanji to trigger a popup with readings, meanings and JLPT level.
+- **Individual Account** - Create and manager your own Shirabeyou account. Your kanji library will follow you.
 - **JLPT level color coding** - a-la Migaku.
 - **Kanji collection** - save kanji for later review, sorted by saved date or JLPT level.
 - **Reading search** - search your collection by on'yomi or kun'yomi reading in romaji, hiragana or katakana.
 - **Theming** - Light or dark palettes.
 
-All kanji data is fetched in real time from [kanjiapi.dev].
 
 ## Stack
 
@@ -37,6 +37,7 @@ All kanji data is fetched in real time from [kanjiapi.dev].
 - Vanilla JS, HTML/CSS - Manifest V3
 - [kanjiapi.net](https://kanjiapi.net) for kanji data.
 - [wanakana](https://github.com/WaniKani/WanaKana) for kana/romaji conversion.
+- [Lucide](https://lucide.net) for UI icons.
 
 **Backend**
 - Node.js + Express REST API
