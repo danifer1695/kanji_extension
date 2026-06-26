@@ -1,68 +1,184 @@
 <!doctype html>
 <html>
 <head>
-    <title>Saved Kanji</title>
+    <title>Shirabeyou</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../shared/styles.css">
-    <script src="../lib/wanakana.min.js" defer></script>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/collection_popup.css">
     <script src="../shared/constants.js" defer></script>
+    <script src="../shared/styles.js" defer></script>
+    <script src="../lib/wanakana.min.js" defer></script>
     <script src="../shared/db.js" defer></script>
     <script src="../shared/api.js" defer></script>
-    <script src="../shared/styles.js" defer></script>
     <script src="../shared/helpers_render.js" defer></script>
+    <script src="../shared/window_manager.js" defer></script>
     <script src="collection_popup.js" defer></script>
 </head>
-<body id="main_body" class="theme-default" style="background: var(--bg-idle-01);">
-
+<body id="main-body" class="theme-default" style="background: var(--bg-idle-01);">
     <div class="collection-main-body">
-        <!--- HEADER--------------------------------------------->
-        <div id="header" class="collection-header"> 
-            <div style="
-                        padding: 16px 32px;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        ">
-                <h3 class="title-text-gradient" style="
-                           margin: 0px;
-                           padding-bottom: 8px;">
-                    Saved kanji
-                </h3>
-                <div style="
-                            display: flex; 
-                            justify-content: center; 
-                            ">
-                    <div style="font-size: 1.12rem; margin: 0px;">
-                        <b id="collection_db_size" class="collection-db-size-text"></b>
-                        <b style="color: var(--text-default-color);"> saved</b>
+
+        <!--- TAB BAR-------------------------------------------->
+        <div id="tab-bar" style="
+            display: flex;
+            flex-direction: row;
+            padding: 0px;
+        ">
+            <button id="btn-tab-collection" class="btn-tab-active" data-tab="collection">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked-icon lucide-book-marked"><path d="M10 2v8l3-3 3 3V2"/><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
+            </button>
+            <button id="btn-tab-account" class="btn-tab" data-tab="account">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-round-icon lucide-circle-user-round"><path d="M17.925 20.056a6 6 0 0 0-11.851.001"/><circle cx="12" cy="11" r="4"/><circle cx="12" cy="12" r="10"/></svg>
+            </button>
+            <button id="btn-tab-settings" class="btn-tab" data-tab="settings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+
+        </div>
+
+        <!--- TAB: COLLECTION------------------------------------>
+        <div id="tab-collection" class="tab-panel">
+            <!--- HEADER -->
+            <div id="header" class="collection-header"> 
+                <div class="collection-header-container">
+                    <h3 class="title-text-gradient" style="
+                               margin: 0px;
+                               padding-bottom: 8px;">
+                        Saved kanji
+                    </h3>
+                    <div style="display: flex; 
+                                justify-content: center; 
+                                ">
+                        <div style="font-size: 1.12rem; margin: 0px;">
+                            <b id="collection-db-size" class="collection-db-size-text"></b>
+                            <b style="color: var(--text-default-color);"> saved</b>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <!--- MIDDLE SECTION (kanji grid) -->
+            <div id="middle" 
+                style="border-bottom: 1px solid var(--border-box)">
+                <div id="kanji-grid" class="collection-kanji-grid"></div>
+            </div>
+
+            <!--- FOOTER -->
+            <div id="footer">
+                <div class="collection-footer">
+                    <input class="box-search-01"
+                            style="flex: 1; min-width: 0;"
+                            id="collection-footer-searchbox"
+                            type="text"
+                            placeholder="Search for Kanji...">
+                    <button class="btn-01" id="sort-old">
+                        <span>Sort by date</span>
+                    </button>
+                    <button class="btn-01" id="sort-jlpt">
+                        <span>Sort by level</span>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!--- MIDDLE SECTION (kanji grid) ------------------------>
-        <div id="middle" 
-            style="border-bottom: 1px solid var(--border-box)">
-            <div id="kanji_grid" class="collection-kanji-grid"></div>
-        </div>
+        <!--- TAB: ACCOUNT--------------------------------------->
+        <div id="tab-account" class="tab-panel" style="display: none">
 
-        <!--- FOOTER--------------------------------------------->
-        <div id="footer">
-            <div class="collection-footer">
-                <input class="box-search-01"
-                        style="flex: 1; min-width: 0;"
-                        id="collection_footer_searchbox"
-                        type="text"
-                        placeholder="Search for Kanji...">
-                <button class="btn-01" id="sort_old">
-                    <span>Sort by date</span>
-                </button>
-                <button class="btn-01" id="sort_jlpt">
-                    <span>Sort by level</span>
-                </button>
+            <!-- Logged Out ---->
+            <div id="account-screen-login" class="tab-screen" style="display: none;">
+                <h2>Log In</h2>
+                <div class="tab-account-container box-01">
+                    <input id="login-email" class="box-search-01" type="email" placeholder="Email">
+                    <input id="login-password" class="box-search-01" type="password" placeholder="Password">
+
+                    <!--Hidden display for auth errors. Content to be set through script-->
+                    <p id="login-auth-error" class="text-error"></p>
+                    <!-------------------------------------------------------------------->
+
+                    <button id="login-btn-login" class="btn-00" style="width: 100%; margin-top: 16px;">
+                        Log In
+                    </button>
+                    <button id="login-btn-register" class="btn-00" style="width: 100%">
+                        Register
+                    </button>
+                </div>
+            </div>
+
+            <!-- Logged In ---->
+            <div id="account-screen-main" class="tab-screen" style="display: none;">
+                <h2>Account</h2>
+                <div class="tab-account-container box-01">
+                    <button id="account-btn-logout" class="btn-01" style="width: 100%">
+                        Log Out
+                    </button>
+                    <button id="account-btn-change-pass" class="btn-01" style="width: 100%">
+                        Change Password
+                    </button>
+                    <button id="account-btn-delete" class="btn-02" style="width: 100%">
+                        Delete Account
+                    </button>
+                </div>
+            </div>
+
+            <!-- Change Password --->
+            <div id="account-screen-change-pass" class="tab-screen" style="display: none">
+                <div class="tab-account-container box-01">
+                    
+                    <h3>Change Password</h3>
+                    <input id="change-pass-current" class="box-search-01" type="password" placeholder="Current Password">
+                    <input id="change-pass-new" class="box-search-01" type="password" placeholder="New Password">
+                    <input id="change-pass-confirm" class="box-search-01" type="password" placeholder="Confirm new Password">
+                    
+                    <!--Error message - hidden by default-->
+                    <p id="change-pass-error" class="text-error" style="display: none"></p>
+
+                    <button id="change-pass-submit-btn" class="btn-00" style="width: 100%;">
+                        Change Password
+                    </button>
+                    <button id="change-pass-back-btn" class="btn-01" style="width: 100%;">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- Delete Account --->
+            <div id="account-screen-delete" class="tab-screen" style="display: none;">
+                <div class="tab-account-container box-01">
+                    <p style="margin: 0; color var(--text-default-color);">
+                        This will permanently delete your account and all saved Kanji. This action cannot be undone.
+                    </p>
+                    
+                    <!--Error message - hidden by default-->
+                    <p id="delete-error" class="text-error" style="display: none"></p>
+
+                    <button id="delete-confirm-btn" class="btn-00" style="width: 100%">
+                        Confirm Delete
+                    </button>
+                    <button id="delete-back-btn" class="btn-01" style="width: 100%">
+                        Back
+                    </Button>
+                </div>
+            </div>
+
+        </div>
+        <!--- TAB: SETTINGS-------------------------------------->
+        <div id="tab-settings" class="tab-panel" style="display: none">
+            <div id="settings-screen-main" class="tab-screen">
+
+                <h2>Settings</h2>
+                <div id="settings-content" class="box-01">
+                    <!-- Palette switcher --->
+                    <div id="settings-palette" class="settings-item">
+                        <h3>Color Palette</h3>
+                        <div style="display: flex; gap: 8px;">
+                            <button id="palette-dark" class="btn-02">Dark</button>
+                            <button id="palette-light" class="btn-02">Light</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </div>
 </body>
 </html>

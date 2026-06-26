@@ -1,0 +1,33 @@
+body 
+{
+    width: 270px; 
+    margin: 0; 
+    background-color: var(--bg-idle-01)
+}
+
+.icon-popup-footer
+{
+    border-top: 2px solid var(--border-box);
+    color: var(--border-box);
+    padding: 8px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-text-gradient
+{
+    /*This is an ammendment to styles.css's main style for this class*/
+    border-bottom: 2px solid var(--border-box);
+    padding: 16px;
+}
+
+#icon-popup-btn-open
+{
+    width: 100%; 
+}
+
+#icon-popup-btn-close
+{
+    width: 100%; 
+}

@@ -5,7 +5,8 @@
 async function api_request(method, path, body = null)
 {
     const token = await get_token();    //From constants.js
-    if(!token) throw new Error("Authentification failed");
+    //if(!token) throw new Error("Authentification failed");
+    if(!token) return null;
 
     const options = 
         {
@@ -34,7 +35,7 @@ async function api_request(method, path, body = null)
     if(!res.ok) 
     {
         //Get status text from response.
-        const error = await res.json.catch(() => ({error: res.statusText}));
+        const error = await res.json().catch(() => ({error: res.statusText}));
         console.error(`db.js:: ${method} ${path} failed (${res.status}): `, error.error);
         return null;
     }
@@ -74,20 +75,19 @@ async function get_all_kanji()
 //find if a given kanji is dictionary returned by get_all_kanji()
 async function db_contains_kanji(kanji)
 {
-    const saved = await get_all_kanji();
-    return kanji in saved;
+    const res = await api_request("GET", `/kanji/contains?kanji=${kanji}`);
+    if(!res) return false;
+
+    //Response should contain a single true / false value
+    return await res.json();
 }
 
-//Retrieve all saved kanji in dictionary form and look for a matching entry
-async function get_kanji_data(kanji)
-{
-    const saved = await get_all_kanji();
-    return saved[kanji] || {};
-}
-
-//Get size of the database by retrieing its contents in dictionary form and returning its length.
+//Send a request to GET /kanji/size
 async function get_db_size()
 {
-    const saved = await get_all_kanji();
-    return Object.keys(saved).length;
+    const res = await api_request("GET", "/kanji/size");
+    //if response is null, return 999999 so we know something is awry
+    if(!res) return 999999;
+    
+    return await res.json();
 }

@@ -1,0 +1,59 @@
+.lookup-panel
+{
+    position: fixed;
+    background: var(--bg-idle-00);
+    border-radius: 15px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 99999;     
+    min-width: 150px;
+    font-family: InterVariable, sans-serif;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    font-size: 14px;
+    color: var(--text-default-color);
+
+}
+
+.lookup-result-panel
+{
+    padding: 10px; 
+    display: flex; 
+    flex-direction: row; 
+    gap: 15px; 
+    align-items: center; 
+    justify-content: center;
+    border-radius: 13px;
+    width: 100%;
+    background: var(--bg-idle-00);
+}
+
+.lookup-result-outline
+{
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 2px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    display: flex;
+    background: var(--border-idle);
+}
+
+.lookup-kanji-container 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.lookup-kanji-info
+{
+    font-size: 12px; 
+    line-height: 1.6;
+    width: 200px;
+    word-wrap: break-word;
+}
+
