@@ -11,8 +11,8 @@
 - Color palette switching through settings menu.
 - Backend fully implemented, register / login is now required, data now saved remotely.
 
-## [0.2.1] - 2026-06-17
+## [0.3.0] - 2026-06-26
 ### Added
-- Login, Account management, and Settings menu items moved over to the main Shirabeyou window popup.
+- UI/UX overhaul: Login, Account management, and Settings menu items moved over to the main Shirabeyou window popup.
 - Stylesheets broken up by script
 - "Open Shirabeyou" button now spawns a single instance of the Shirabeyou popup.

@@ -8,6 +8,7 @@ h2 {
     color: var(--text-default-color);
     margin: 0px; 
     margin-bottom: 8px;
+    align-self: center;
 }
 
 h3
@@ -25,7 +26,7 @@ h3
     background: none;
     border: none;
     border-bottom: 1px solid var(--border-box);
-    color: var(--text-default-color);
+    color: var(--btn-03-idle);
     cursor: pointer;
     font-size: 0.95rem;
 }
@@ -54,7 +55,7 @@ h3
     height: 100%;
     gap: 8px;
     background: var(--bg-idle-01);
-    padding: 32px;
+    padding: 16px 32px;
 }
 
 .collection-header {
