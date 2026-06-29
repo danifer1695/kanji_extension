@@ -1,5 +1,6 @@
 //Create a host element to attach the shadow root to.
-const shadow_host = document.createEvent("div");
+const shadow_host = document.createElement("div");
+shadow_host.id = "shirabeyou_shadow_host";
 document.body.appendChild(shadow_host);
 
 //Attach a shadow root.
@@ -20,26 +21,30 @@ fontStyle.textContent = `
     font-style: normal;
   }
 `;
+document.head.appendChild(fontStyle);
 
-//We add both stylesheets: 
-const styles00 = document.createElement("link");
-styles00.rel = "stylesheet";
-styles00.href = chrome.runtime.getURL("styles/styles.css");
- 
-const styles01 = document.createElement("link");
-styles01.rel = "stylesheet";
-styles01.href = chrome.runtime.getURL("styles/lookup_panel.css");
+async function inject_shadow_styles() 
+{
+    const urls = [
+        chrome.runtime.getURL("styles/styles.css"),
+        chrome.runtime.getURL("styles/lookup_panel.css"),
+    ];
 
-//Append all head elements to shadow root
-shadow.appendChild(styles00);
-shadow.appendChild(styles01);
-shadow.appendChild(fontStyle);
+    for(const url of urls)
+    {
+        const res = await fetch(url);
+        const css = await res.text();
+        const style = document.createElement("style");
+        style.textContent = css;
+        shadow.appendChild(style);
+    }
+};
+
+inject_shadow_styles().then(() => {
+    document.addEventListener("mouseup", spawn_panel);
+});
 
 //-----------------------------------------------------------------------------------------------
-
-
-//make the pop up show when kanji is selected
-document.addEventListener("mouseup", spawn_panel);
 
 //Spawn the popup panel
 async function spawn_panel(e)
@@ -47,6 +52,11 @@ async function spawn_panel(e)
     //If there is no auth token, we exit early
     const token  = await get_token();
     if(!token) return;
+    
+    //set color palette when opening the panel
+    load_palette().then(name => {
+        shadow_host.className = `theme-${name}`;
+    });
 
     //If click was inside the panel, we do nothing and exit
     if(panel.contains(e.target)) return;
@@ -152,10 +162,10 @@ function create_panel()
 {
     const panel = document.createElement("div");
     //z-index: 99999 makes sure the panel renders on top of everything
-    panel.className = "lookup-panel";    
+    panel.id = "shirabeyou-lookup-panel";    
 
     panel.style.display = "none";
-    
+
     return panel;
 }
 

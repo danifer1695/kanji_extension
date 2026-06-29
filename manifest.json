@@ -8,6 +8,16 @@
         "48": "assets/images/icons/icon_48.png",
         "128": "assets/images/icons/icon_128.png"
     },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "styles/styles.css",
+                "styles/lookup_panel.css",
+                "fonts/*"
+            ],
+            "matches": ["<all_urls>"]
+        }
+    ],
     "permissions": [
         "activeTab",
         "storage"
@@ -21,8 +31,6 @@
             "resources": ["fonts/*"],
             "matches": ["<all_urls>"],
             "css": [
-                "styles/styles.css", 
-                "styles/lookup_panel.css"
             ],
             "js": [
                 "lib/wanakana.min.js", 

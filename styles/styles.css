@@ -1,7 +1,8 @@
 /* ── These are styles that are applicable application - wide ─ */
 
 /* ── Palettes ──────────────────────────────────────────────── */
-body.theme-migaku {
+/* ":host" is for lookup_panel's shadow dom, which uses a div, not a body*/
+:host(.theme-migaku), body.theme-migaku {
     --gradient-top:              #ff8c2a;
     --gradient-bottom:           #ff296d;
     --text-default-color:        white;
@@ -23,7 +24,7 @@ body.theme-migaku {
     --NX-fg: #9a9abd; --NX-bg: #ededf3;
 }
 
-body.theme-default {
+:host(.theme-default), body.theme-default {
     --gradient-top:             #f34bb0;
     --gradient-bottom:          #e80520;
     --text-default-color:       white;
@@ -45,7 +46,7 @@ body.theme-default {
     --NX-fg: #9a9abd; --NX-bg: #151314;
 }
 
-body.theme-default-light {
+:host(.theme-default-light), body.theme-default-light {
     --gradient-top:              #f34bb0;
     --gradient-bottom:           #e80520;
     --text-default-color:        #8b2437;

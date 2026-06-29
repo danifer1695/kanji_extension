@@ -522,10 +522,12 @@ delete_confirm_btn.addEventListener("click", async () => {
 // Settings Tab -------------------------------------------------------------------------------------
 
 settings_palette_dark.addEventListener("click", () => {
+    document.body.className = "theme-default";
     choose_palette("default");
 });
 
 settings_palette_light.addEventListener("click", () => {
+    document.body.className = "theme-default-light";
     choose_palette("default-light");
 })
 
@@ -596,6 +598,11 @@ function create_events()
 //Read the target tab from the URL and open there.
 const initial_tab = params.get("tab");
 if (initial_tab) display_tab(initial_tab);
+
+//get and apply color palette.
+load_palette().then(name => {
+    document.body.className = `theme-${name}`;
+})
 
 render_collection();
 initialize_account_tab();

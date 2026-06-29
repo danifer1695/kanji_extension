@@ -4,6 +4,11 @@ const version_text = document.getElementById("version-text");
 
 async function initialize()
 {
+    //set color palette
+    load_palette().then(name => {
+        document.body.className = `theme-${name}`;
+    })
+
     //Display version text.
     version_text.innerText = app_version; //defined in shared/constants.js
 
