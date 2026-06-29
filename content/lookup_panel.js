@@ -1,9 +1,13 @@
-//Create the panel element
-//this creates an element of type 'div'
+//Create a host element to attach the shadow root to.
+const shadow_host = document.createEvent("div");
+document.body.appendChild(shadow_host);
+
+//Attach a shadow root.
+const shadow = shadow_host.attachShadow({mode: "closed"});
 
 const panel = create_panel();
+shadow.appendChild(panel);
 let selected_entry = null;            //this holds a user-selected entry 
-document.body.appendChild(panel);
 
 //Append elements to the document----------------------------------------------------------------
 //Add the font to the page's header
@@ -26,10 +30,10 @@ const styles01 = document.createElement("link");
 styles01.rel = "stylesheet";
 styles01.href = chrome.runtime.getURL("styles/lookup_panel.css");
 
-//Append all head elements.
-document.head.appendChild(styles00);
-document.head.appendChild(styles01);
-document.head.appendChild(fontStyle);
+//Append all head elements to shadow root
+shadow.appendChild(styles00);
+shadow.appendChild(styles01);
+shadow.appendChild(fontStyle);
 
 //-----------------------------------------------------------------------------------------------
 

@@ -16,3 +16,7 @@
 - UI/UX overhaul: Login, Account management, and Settings menu items moved over to the main Shirabeyou window popup.
 - Stylesheets broken up by script
 - "Open Shirabeyou" button now spawns a single instance of the Shirabeyou popup.
+
+## [1.0.0] - 2026-06-29
+### Added
+- Google Play Store full release.
