@@ -123,6 +123,11 @@
 /*======================================================*/ 
 /*Text styles*/
 /*======================================================*/ 
+p
+{
+    font-family: 'Noto Sans JP';
+}
+
 .text-error
 {
     display: none; 
@@ -130,6 +135,12 @@
     font-size: 0.85rem; 
     color: var(--gradient-bottom);
     text-align: center;
+}
+
+.text-section-title
+{
+    font-family: 'Noto Sans JP';
+    color: var(--text-default-color);
 }
 
 .title-text-gradient
@@ -150,6 +161,11 @@
 /*======================================================*/ 
 /*Buttons*/
 /*======================================================*/ 
+button
+{
+    font-family: 'Noto Sans JP';
+}
+
 .btn-00
 {
     cursor: pointer;
