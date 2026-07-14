@@ -23,7 +23,7 @@ const account_screen_delete =       document.getElementById("account-screen-dele
 const account_error =               document.getElementById("login-auth-error");
 const account_screen_login_btn =    document.getElementById("login-btn-login");
 const account_register_btn =        document.getElementById("login-btn-register");
-const account_email_field =         document.getElementById("login-email");
+const account_username_field =      document.getElementById("login-username");
 const account_pass_field =          document.getElementById("login-password");
 const account_logout_btn =          document.getElementById("account-btn-logout");
 const account_delete_btn =          document.getElementById("account-btn-delete");
@@ -298,7 +298,7 @@ function account_show_error(message)
     account_error.style.display = "block";
 }
 
-async function api_auth(endpoint, email, password)
+async function api_auth(endpoint, username, password)
 {
     //Send a request to the API to get an auth token.
     try
@@ -306,7 +306,7 @@ async function api_auth(endpoint, email, password)
         const res = await fetch(`${API_BASE}/auth/${endpoint}`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({email, password}),
+            body: JSON.stringify({username, password}),
         });
         return res;
     }
@@ -346,11 +346,11 @@ async function initialize_account_tab()
 }
 
 account_screen_login_btn.addEventListener("click", async() => {
-    const email = account_email_field.value.trim();
+    const username = account_username_field.value.trim();
     const password = account_pass_field.value;
     //null check on both fields is done on the back end.
 
-    const res = await api_auth("login", email, password);
+    const res = await api_auth("login", username, password);
     if(!res) return account_show_error("Could not reach server.");
 
     const data = await res.json();
@@ -370,10 +370,10 @@ account_screen_login_btn.addEventListener("click", async() => {
 });
 
 account_register_btn.addEventListener("click", async() => {
-    const email = account_email_field.value.trim();
+    const username = account_username_field.value.trim();
     const password = account_pass_field.value;
 
-    const res = await api_auth("register", email, password);
+    const res = await api_auth("register", username, password);
     if(!res) return account_show_error("Could not reach server.");
 
     const data = await res.json();
