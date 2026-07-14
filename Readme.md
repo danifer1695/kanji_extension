@@ -38,6 +38,12 @@ As a long-time Japanese-learning app user, my goal making this extension is to f
 - [wanakana](https://github.com/WaniKani/WanaKana) for kana/romaji conversion.
 - [Lucide](https://lucide.net) for UI icons.
 
+**Companion Mobile App**
+- TypeScript, React Native.
+- Compatible with iOS & Android.
+- "Search" tab to look any kanji up and add it to your collection (feature exclusive to Companion app).
+- kanjiapi.net & wanakana used once again for Kanji data & kana/romaji conversion.
+
 **Backend**
 - Node.js + Express REST API
 - PostgreSQL - per-user kanji storage
@@ -47,6 +53,7 @@ As a long-time Japanese-learning app user, my goal making this extension is to f
 - Rate limit and input validation on all endpoints (using Zod and express-rate-limit)
 
 Backend repository: [kanji_extension_backend](https://github.com/danifer1695/kanji_extension_backend)
+Companion App repository: [Shirabeyou_app](https://github.com/danifer1695/Shirabeyou_app)
 
 ## Test it out!
 

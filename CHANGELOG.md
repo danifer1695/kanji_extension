@@ -17,3 +17,4 @@
 ## [1.0.0] - 2026-06-29
 - Google Play Store full release.
 - lookup_panel moved to its own shadow_dom
+- Shirabeyou no longer requires an email to register - a unique username is now enough
