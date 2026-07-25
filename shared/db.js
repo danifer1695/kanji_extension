@@ -1,8 +1,10 @@
+import { get_token } from "./auth.js";
+import { API_BASE } from "./constants.js";
 
 //Request---------------------------------------------------------------------------------
 //api_request sends any kind of requests to the server.
 //returns null if an error occurs.
-async function api_request(method, path, body = null)
+export async function api_request(method, path, body = null)
 {
     const token = await get_token();    //From constants.js
     //if(!token) throw new Error("Authentification failed");
@@ -44,7 +46,7 @@ async function api_request(method, path, body = null)
 }
 
 //send request to save a kanji in the db
-async function save_kanji(kanji_data) 
+export async function save_kanji(kanji_data) 
 {
     const res = await api_request("POST", "/kanji", {
         ...kanji_data,
@@ -54,14 +56,14 @@ async function save_kanji(kanji_data)
 }
 
 //send request to remove a kanji from the db
-async function remove_kanji(kanji_char)
+export async function remove_kanji(kanji_char)
 {
     const res = await api_request("DELETE", `/kanji/${encodeURIComponent(kanji_char)}`);
     if(!res) console.warn(`db.js::remove_kanji:: Failed for: ${kanji_char}`);
 }
 
 //Send request to retrieve all kanji saved in the db
-async function get_all_kanji()
+export async function get_all_kanji()
 {
     const res = await api_request("GET", "/kanji");
     if(!res) return {};
@@ -72,8 +74,8 @@ async function get_all_kanji()
     return Object.fromEntries(rows.map(k => [k.kanji, k]));
 }
 
-//find if a given kanji is dictionary returned by get_all_kanji()
-async function db_contains_kanji(kanji)
+//find if a given kanji is in dictionary returned by get_all_kanji()
+export async function db_contains_kanji(kanji)
 {
     const res = await api_request("GET", `/kanji/contains?kanji=${kanji}`);
     if(!res) return false;
@@ -83,7 +85,7 @@ async function db_contains_kanji(kanji)
 }
 
 //Send a request to GET /kanji/size
-async function get_db_size()
+export async function get_db_size()
 {
     const res = await api_request("GET", "/kanji/size");
     //if response is null, return 999999 so we know something is awry

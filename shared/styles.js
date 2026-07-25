@@ -1,4 +1,4 @@
-const STYLES = {
+export const STYLES = {
     //===========================================================
     //KANJI BOX
     //===========================================================
@@ -29,3 +29,19 @@ const STYLES = {
         align-items: center;
     `,
 }
+
+//This function sets the colors of the kanji boxes depending on their jlpt level
+export function kanji_color(kanji_jlpt)
+{
+    switch(kanji_jlpt) {
+        case 5: return {fg: "var(--N5-fg)",bg: "var(--N5-bg)"};
+        case 4: return {fg: "var(--N4-fg)",bg: "var(--N4-bg)"};
+        case 3: return {fg: "var(--N3-fg)",bg: "var(--N3-bg)"};
+        case 2: return {fg: "var(--N2-fg)",bg: "var(--N2-bg)"};
+        case 1: return {fg: "var(--N1-fg)",bg: "var(--N1-bg)"};
+        default: return {fg: "var(--NX-fg)",bg: "var(--NX-bg)"};
+    }
+}
+
+
+

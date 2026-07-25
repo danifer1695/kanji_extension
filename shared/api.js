@@ -1,12 +1,15 @@
+import { render_entries } from "./helpers_render.js";
+import { API_BASE } from "./constants.js";
 
 //Connection health---------------------------------------------------------------------------
 //Return true or false depending on the state of the connection with the server
-async function check_connection()
+export async function check_connection()
 {
     try {
         const res = await fetch(`${API_BASE}/health`);
         return res.ok;
     } catch(e) {
+        console.error(`Connection health-check failed: ${e}`);
         return false;
     }
 }
@@ -15,7 +18,7 @@ async function check_connection()
 //This script takes contains functions that will take care of communicating with Kanjiapi's API
 
 //Get information about a single kanji from kanjiapi.dev
-async function get_kanji_data(kanji)
+export async function get_kanji_data(kanji)
 {
     const kanji_response = await fetch(`https://kanjiapi.dev/v1/kanji/${kanji}`);
     if (!kanji_response.ok) return null;
@@ -24,7 +27,7 @@ async function get_kanji_data(kanji)
     return kanji_data;
 }
 
-async function lookup_word(kanji_chars)
+export async function lookup_word(kanji_chars)
 {
     let HTML = "";
 
@@ -46,7 +49,7 @@ async function lookup_word(kanji_chars)
     return HTML;
 }
 
-async function get_kanji_from_reading(reading)
+export async function get_kanji_from_reading(reading)
 {
     //First check if reading is in romanji, and turn it into katakana if that's the case.
     let reading_kata = "";

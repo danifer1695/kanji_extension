@@ -1,4 +1,14 @@
-//Create a host element to attach the shadow root to.
+import { get_token } from "../shared/auth.js";
+import { load_palette } from "../shared/palette.js";
+import { correct_position } from "../shared/helpers_render.js";
+import { save_kanji, db_contains_kanji } from "../shared/db.js";
+import { get_kanji_data } from "../shared/api.js"
+import { kanji_color, STYLES } from "../shared/styles.js";
+
+//Shadow DOM--------------------------------------------------------------
+
+//We want to isolate this panel from the host page's environment so
+//our logic and styling does not affect it.
 const shadow_host = document.createElement("div");
 shadow_host.id = "shirabeyou_shadow_host";
 document.body.appendChild(shadow_host);
@@ -8,21 +18,32 @@ const shadow = shadow_host.attachShadow({mode: "closed"});
 
 const panel = create_panel();
 shadow.appendChild(panel);
-let selected_entry = null;            //this holds a user-selected entry 
 
-//Append elements to the document----------------------------------------------------------------
-//Add the font to the page's header
-const fontStyle = document.createElement("style");
-fontStyle.textContent = `
-  @font-face {
-    font-family: 'Noto Sans JP';
-    src: url(chrome-extension://__MSG_@@extension_id__/fonts/NotoSansJP-VariableFont_wght.ttf) format('truetype');
-    font-weight: 100 900;
-    font-style: normal;
-  }
-`;
-document.head.appendChild(fontStyle);
+//user-selected kanji entry within the lookup panel
+let selected_entry = null; 
 
+//Fonts-------------------------------------------------------------------
+
+//We inject our font into the document's head
+function inject_font()
+{
+    //create element to be attached
+    const font_url = chrome.runtime.getURL("fonts/NotoSansJP-VariableFont_wght.ttf");
+    const font_style = document.createElement("style");
+    font_style.textContent = `
+          @font-face {
+            font-family: 'Noto Sans JP';
+            src: url("${font_url}") format('truetype');
+            font-weight: 100 900;
+            font-style: normal;
+          }
+        `;
+
+    //append font to document's head
+    document.head.appendChild(font_style);
+}
+
+//inject lookup panel's stylesheets to the shadow dom.
 async function inject_shadow_styles() 
 {
     const urls = [
@@ -30,153 +51,55 @@ async function inject_shadow_styles()
         chrome.runtime.getURL("styles/lookup_panel.css"),
     ];
 
-    for(const url of urls)
+    const sheets = await Promise.all(
+        urls.map(url => fetch(url).then(res => res.text()))
+    );
+
+    for(const css of sheets)
     {
-        const res = await fetch(url);
-        const css = await res.text();
         const style = document.createElement("style");
         style.textContent = css;
         shadow.appendChild(style);
     }
 };
 
-inject_shadow_styles().then(() => {
-    document.addEventListener("mouseup", spawn_panel);
-});
+//Panel-------------------------------------------------------------------
 
-//-----------------------------------------------------------------------------------------------
-
-//Spawn the popup panel
-async function spawn_panel(e)
-{
-    //If there is no auth token, we exit early
-    const token  = await get_token();
-    if(!token) return;
-    
-    //set color palette when opening the panel
-    load_palette().then(name => {
-        shadow_host.className = `theme-${name}`;
-    });
-
-    //If click was inside the panel, we do nothing and exit
-    if(panel.contains(e.target)) return;
-
-    //Get raw string within selected text
-    const raw = window.getSelection().toString().trim();
-    
-    //we filter out all characters that are outside of the kanji's unix range 
-    const selected = [...raw].filter(c => c.match(/[\u4e00-\u9fff]/));
-    if (selected.length > 0 ) 
-    {
-        //e.clientX gets the user's cursor's x coordinates relative to the viewport
-        panel.style.left = `${e.clientX + 10}px`;
-        panel.style.top = `${e.clientY + 10}px`;
-
-        //First we set the text to say 'loading' so it displays this while the api searches
-        panel.style.display = "block";
-        panel.textContent = "Loading...";
-        panel.innerHTML = await lookup_word(selected);
-
-        //Correct position of panel in case it appears out of screen
-        //Wait for browser to render before measuring
-        setTimeout(() => { 
-            correct_position(panel, e.clientX, e.clientY);    
-        }, 0);
-        
-        //insert event listeners to the newly created entries within the panel
-        insert_event_listeners(panel);
-    } 
-    else 
-    {
-        panel.style.display = "none";
-    }
-    
-}
-
-
-//Event listeners--------------------------------------------------------------------
-//This function takes care of injecting event triggers into HTML classes
-function insert_event_listeners(panel)
-{
-    //"add_button" class members
-    const buttons = panel.querySelectorAll(".btn-add-idle");
-    buttons.forEach(btn => {
-
-        //-------------mouseenter----------------------
-        btn.addEventListener("mouseenter", () => {
-            btn.className = "btn-add-hovered";
-       });
-        //-------------mouseleave----------------------
-        btn.addEventListener("mouseleave", () => {
-            btn.className = "btn-add-hovered";
-       });
-        //-------------buttonDatabaseLogic----------------------
-        btn.addEventListener("click", async (e) => {
-            e.stopPropagation();
-            const data = JSON.parse(btn.dataset.kanji); //access HTML's "data-kanji"
-            await save_kanji(data);     //from db.js
-
-            btn.className = "btn-add-selected"
-            btn.textContent = "✓";
-        });
-    });
-
-    //"result_outline" class members
-    const rows = panel.querySelectorAll(".lookup-result-outline");
-    rows.forEach(row => {
-        //Get contained button
-        const button = row.querySelector("#btn-add");
-        const result_panel = row.querySelector(".lookup-result-panel");
-
-        //-------------mouseenter----------------------
-        row.addEventListener("mouseenter", () => {
-            if(selected_entry !== row) row.style.background = "var(--border-hover)";
-            //Also change its contained buttons
-            button.className = "btn-add-hovered";
-        });
-
-        //-------------mouseleave----------------------
-        row.addEventListener("mouseleave", () => {
-            if(selected_entry !== row) row.style.background = "var(--border-idle)";
-            button.className = "btn-add-idle";
-        });
-
-        //-------------click---------------------------
-        row.addEventListener("click", (e) => {
-
-            if (selected_entry && selected_entry !== row) {
-                selected_entry.style.background = "var(--border-idle)";
-                selected_entry.querySelector(".lookup-result-panel").style.background = "var(--bg-idle-00)";
-            }
-
-            row.style.background = `linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom)`;
-            result_panel.style.background = "var(--bg-selected)";
-
-            selected_entry = row;
-        });
-    });
-}
-
-//This function creates the main panel that will contain all the request results
+//Inject panel element into the document's HTML
 function create_panel()
 {
     const panel = document.createElement("div");
-    //z-index: 99999 makes sure the panel renders on top of everything
     panel.id = "shirabeyou-lookup-panel";    
-
     panel.style.display = "none";
-
     return panel;
 }
 
-async function render_entries(kanji_data)
+function hide_panel()
 {
-    //We get the kanji's grade to color its box accordingly
-    const kanji_jlpt = kanji_data.jlpt;
-    const {fg, bg} = kanji_color(kanji_jlpt);
-    const button_icon = await db_contains_kanji(kanji_data.kanji) ? "✓" : "+";
+    panel.style.display = "none";
+    selected_entry = null;
+}
 
-    let HTML = `
+async function create_entry_HTML(kanji_chars)
+{
+    let HTML = "";
+
+    //We concatenate information on each of the kanji within the selection, one after another
+    for (const kanji of kanji_chars)
+    {
+        //Integrate error handling in case api is down
+        try {
+            //Send request to kanjiapi.dev's API
+            const kanji_data = await get_kanji_data(kanji);
+
+            //We get the kanji's grade to color its box accordingly
+            const kanji_jlpt = kanji_data.jlpt;
+            const {fg, bg} = kanji_color(kanji_jlpt);
+
+            //Confirm whether the kanji already exists in the user's library or not
+            const button_icon = await db_contains_kanji(kanji_data.kanji) ? "✓" : "+";
+
+            HTML += `
             <div class="lookup-result-outline">
                 <div class="lookup-result-panel">
                     <div class="lookup-kanji-container" style="${STYLES.kanji_container}"> 
@@ -187,18 +110,165 @@ async function render_entries(kanji_data)
                             ${kanji_data.kanji}
                         </div>
                         <div class="lookup-kanji-info">
-                            <div><b>Onyomi:</b> ${kanji_data.on_readings.join(", ") || "-"}</div>
-                            <div><b>Kunyomi:</b> ${kanji_data.kun_readings.join(", ") || "-"}</div>
-                            <div><b>Meanings:</b> ${kanji_data.meanings.join(", ")}</div>
+                            <div>
+                                <b style="color: var(--text-muted); font-weight: 800;">Onyomi:</b> 
+                                <b>${kanji_data.on_readings.join(", ") || "-"}</b>
+                            </div>
+                            <div>
+                                <b style="color: var(--text-muted); font-weight: 800;">Kunyomi:</b> 
+                                <b>${kanji_data.kun_readings.join(", ") || "-"}</b>
+                            </div>
+                            <div>
+                                <b style="color: var(--text-muted); font-weight: 800;">Meanings:</b> 
+                                <b>${kanji_data.meanings.join(", ") || "-"}</b>
+                            </div>
                         </div>
                     </div>
-                    <div id="btn-add" class="btn-add-idle"
+                    <div class="btn-add btn-add-idle"
                         data-kanji='${JSON.stringify(kanji_data)}'>
                         ${button_icon}
                     </div>
                 </div>
             </div>
         `;
+        }
+        catch (e) {
+            console.error(`Failed to fetch kanji: ${kanji}`, e);
+            HTML += `<div>Could not load data for ${kanji}</div>`;
+
+        }
+    }        
 
     return HTML;
 }
+
+async function spawn_panel(e)
+{
+    //check connection first, dont spawn if 
+    //user is not connnected
+    const token = await get_token();
+    if(!token) return;
+
+    //dont close panel if user clicks inside of it.
+    if(shadow_host.contains(e.target)){
+        //console.log("clicked inside panel");
+        return;
+    } 
+    //get text selection, trim it, and keep only 
+    //kanji characters
+    const raw = window.getSelection().toString().trim();
+    const selected = [...raw].filter(c => c.match(/[\u4e00-\u9fff]/));
+
+    //hide panel if selection is 0 chars long
+    if(selected.length === 0)
+    {
+        hide_panel();
+        return;
+    }
+
+    //Apply active color theme
+    const palette = await load_palette();
+    shadow_host.className = `theme-${palette}`;
+
+    //Adjust position of the panel
+    panel.style.left = `${e.clientX + 10}px`;
+    panel.style.top = `${e.clientY + 10}px`;
+
+    //Display panel, show placeholder content while actual content loads
+    panel.style.display = "block";
+    panel.textContent = "Loading...";
+
+    panel.innerHTML = await create_entry_HTML(selected);
+
+    //Correct position of panel in case it appears out of screen
+    //Wait for browser to render before measuring
+    setTimeout(() => { 
+        correct_position(panel, e.clientX, e.clientY);    
+    }, 0);
+}
+
+//Events------------------------------------------------------------------
+
+//Attached once on startup.
+//Listeners are attached to the panel, kanji items are not stable.
+function init_panel_events()
+{
+    //Highlight events
+    panel.addEventListener("mouseover", (e) => {
+        const row = e.target.closest(".lookup-result-outline");
+        if(!row) return;
+
+        if(selected_entry !== row) row.style.background = "var(--border-hover)";
+
+        const btn = row.querySelector(".btn-add");
+        //Do not stomp on a button that has already been used to save.
+        if(btn && !btn.classList.contains("btn-add-selected"))
+        {
+            btn.className = "btn-add btn-add-hovered";
+        }
+    });
+
+    //Un-hover events
+    panel.addEventListener("mouseout", (e) => {
+        const row = e.target.closest(".lookup-result-outline");
+        if(!row) return;
+
+        //ignore moves between children of the same row.
+        if(row.contains(e.relatedTarget)) return;
+
+        if(selected_entry !== row) row.style.background = "var(--border-idle)"
+        const btn = row.querySelector(".btn-add");
+
+        //set button to idle if it is not tagged as selected
+        if(btn && !btn.classList.contains("btn-add-selected"))
+        {
+            btn.className = "btn-add btn-add-idle";
+        }
+    });
+
+    //click events
+    panel.addEventListener("click", async (e) => {
+        const btn = e.target.closest(".btn-add");
+        if(btn)
+        {
+            e.stopPropagation();
+
+            const data = JSON.parse(btn.dataset.kanji);
+            await save_kanji(data);
+
+            btn.className = "btn-add btn-add-selected";
+            btn.textContent = "✓";
+            return;
+        }
+
+        const row = e.target.closest(".lookup-result-outline");
+        if(!row) return;
+
+        //deselect whatever was selected before.
+        if(selected_entry && selected_entry !== row)
+        {
+            selected_entry.style.background = "var(--border-idle)";
+            selected_entry.querySelector(".lookup-result-panel")
+                .style.background = "var(--bg-idle-00)";
+        }
+
+        row.style.background = 
+            "linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom))";
+        row.querySelector(".lookup-result-panel").style.background = "var(--bg-selected)";
+
+        selected_entry = row;
+    });
+}
+
+//Startup-----------------------------------------------------------------
+
+inject_font();
+init_panel_events();
+
+inject_shadow_styles().then(() => {
+    //console.log("Mouse Up!")
+    document.addEventListener("mouseup", async (e) => {
+        /*Space for debugging*/
+        await spawn_panel(e);
+    });
+})

@@ -1,4 +1,4 @@
-async function open_collection_popup(tab = "collection")
+export async function open_collection_popup(tab = "collection")
 {
     const stored = await chrome.storage.local.get("collectionWindowId");
     const id = stored.collectionWindowId;
@@ -26,7 +26,7 @@ async function open_collection_popup(tab = "collection")
         left: 500, 
         top: 200, 
         width: 654, 
-        height: 730
+        height: 750,
     });
 
     //Set the internal ID variable we tried and failed to get earlier.

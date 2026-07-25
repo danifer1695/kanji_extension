@@ -1,8 +1,11 @@
-//This script takes care of all rendering to HTML
+import { kanji_color } from "./styles.js";
+import { db_contains_kanji } from "./db.js";
+import { STYLES } from "./styles.js";
 
+//This script takes care of all rendering to HTML
 //function to switch active palette (in shared/constants.js)
 
-async function render_entries(kanji_data)
+export async function render_entries(kanji_data)
 {
     //We get the kanji's grade to color its box accordingly
     const kanji_jlpt = kanji_data.jlpt;
@@ -10,25 +13,32 @@ async function render_entries(kanji_data)
     const button_icon = await db_contains_kanji(kanji_data.kanji) ? "✓" : "+";
 
     let HTML = `
-            <div class="result_outline" 
-                style="${STYLES.result_outline(COLORS.border_idle)}">
-                <div class="result_panel" style="${STYLES.result_panel(COLORS.bg_idle_00)}">
-                    <div class="kanji_container" style="${STYLES.kanji_container}"> 
+            <div class="lookup-result-outline">
+                <div class="lookup-result-panel">
+                    <div class="lookup-kanji-container" style="${STYLES.kanji_container}"> 
                         <div class="kanji" 
                             data-fg="${fg}"
                             data-bg="${bg}"
                             style="${STYLES.kanji_idle(fg, bg)}">
                             ${kanji_data.kanji}
                         </div>
-                        <div class="kanji_info" style="${STYLES.kanji_info}">
-                            <div><b>Onyomi:</b> ${kanji_data.on_readings.join(", ") || "-"}</div>
-                            <div><b>Kunyomi:</b> ${kanji_data.kun_readings.join(", ") || "-"}</div>
-                            <div><b>Meanings:</b> ${kanji_data.meanings.join(", ")}</div>
+                        <div class="lookup-kanji-info">
+                            <div>
+                                <b style="color: var(--text-muted); font-weight: 800;">Onyomi:</b> 
+                                <b>${kanji_data.on_readings.join(", ") || "-"}</b>
+                            </div>
+                            <div>
+                                <b style="color: var(--text-muted); font-weight: 800;">Kunyomi:</b> 
+                                <b>${kanji_data.kun_readings.join(", ") || "-"}</b>
+                            </div>
+                            <div>
+                                <b style="color: var(--text-muted); font-weight: 800;">Meanings:</b> 
+                                <b>${kanji_data.meanings.join(", ") || "-"}</b>
+                            </div>
                         </div>
                     </div>
-                    <div class="add_button"
-                        data-kanji='${JSON.stringify(kanji_data)}' 
-                        style="${STYLES.add_button_idle(COLORS.bg_idle, COLORS.border_idle)}">
+                    <div id="btn-add" class="btn-add-idle"
+                        data-kanji='${JSON.stringify(kanji_data)}'>
                         ${button_icon}
                     </div>
                 </div>
@@ -38,22 +48,8 @@ async function render_entries(kanji_data)
     return HTML;
 }
 
-//This function sets the colors of the kanji boxes depending on their jlpt level
-function kanji_color(kanji_jlpt)
-{
-    switch(kanji_jlpt) {
-        case 5: return {fg: "var(--N5-fg)",bg: "var(--N5-bg)"};
-        case 4: return {fg: "var(--N4-fg)",bg: "var(--N4-bg)"};
-        case 3: return {fg: "var(--N3-fg)",bg: "var(--N3-bg)"};
-        case 2: return {fg: "var(--N2-fg)",bg: "var(--N2-bg)"};
-        case 1: return {fg: "var(--N1-fg)",bg: "var(--N1-bg)"};
-        default: return {fg: "var(--NX-fg)",bg: "var(--NX-bg)"};
-    }
-}
-
-
 //This function will make sure that the panel spawns within range
-function correct_position(panel, x, y)
+export function correct_position(panel, x, y)
 {
     //get bounding box
     const rect = panel.getBoundingClientRect();

@@ -7,7 +7,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     z-index: 99999;     
     min-width: 150px;
-    font-family: InterVariable, sans-serif;
+    font-family: 'Noto Sans JP';
     max-height: 400px;
     overflow-y: auto;
     scrollbar-width: none;

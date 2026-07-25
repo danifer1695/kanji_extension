@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Shirabeyou",
     "version": "1.0.0",
-    "description": "Instant kanji data lookup for any Japanese-language text on the web.",
+    "description": "Instant kanji data lookup, storage and review for any Japanese-language text on the web.",
     "icons" : {
         "16": "assets/images/icons/icon_16.png",
         "48": "assets/images/icons/icon_48.png",
@@ -11,6 +11,8 @@
     "web_accessible_resources": [
         {
             "resources": [
+                "content/lookup_panel.js",
+                "shared/*.js",
                 "styles/styles.css",
                 "styles/lookup_panel.css",
                 "fonts/*"
@@ -28,19 +30,10 @@
     ],
     "content_scripts": [
         {
-            "resources": ["fonts/*"],
             "matches": ["<all_urls>"],
-            "css": [
-            ],
             "js": [
                 "lib/wanakana.min.js", 
-                "shared/constants.js", 
-                "shared/db.js", 
-                "shared/helpers_render.js", 
-                "shared/styles.js", 
-                "shared/api.js", 
-                "shared/window_manager.js", 
-                "content/lookup_panel.js"
+                "content/loader.js"
             ]
         }
     ],
