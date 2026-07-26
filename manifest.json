@@ -30,6 +30,7 @@
     ],
     "content_scripts": [
         {
+            "resources": ["fonts/*"],
             "matches": ["<all_urls>"],
             "js": [
                 "lib/wanakana.min.js", 

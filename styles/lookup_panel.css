@@ -7,11 +7,11 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     z-index: 99999;     
     min-width: 150px;
-    font-family: 'Noto Sans JP';
+    font-family: 'Shirabeyou Noto';
+    font-size: 14px;
     max-height: 400px;
     overflow-y: auto;
     scrollbar-width: none;
-    font-size: 14px;
     color: var(--text-default-color);
 
 }
@@ -52,6 +52,7 @@
 .lookup-kanji-info
 {
     font-size: 12px; 
+    font-weight: 300;
     line-height: 1.6;
     width: 200px;
     word-wrap: break-word;

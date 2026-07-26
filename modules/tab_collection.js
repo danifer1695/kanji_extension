@@ -145,9 +145,18 @@ async function render_card_data(e, kanji)
                     </div>
                 </div> 
                 <div class="info">
-                    <div><b>Meanings:</b> ${k.meanings.join(", ")}</div>
-                    <div><b>On:</b> ${k.on_readings.join(", ") || "-"}</div>
-                    <div><b>Kun:</b> ${k.kun_readings.join(", ") || "-"}</div>
+                    <div>
+                        <b style="color: var(--text-muted)">Meanings:</b> 
+                        <b style="font-weight: 600">${k.meanings.join(", ")}</b>
+                    </div>
+                    <div>
+                        <b style="color: var(--text-muted)">On:</b> 
+                        <b style="font-weight: 600">${k.on_readings.join(", ")}</b>
+                    </div>
+                    <div>
+                        <b style="color: var(--text-muted)">Kun:</b> 
+                        <b style="font-weight: 600">${k.kun_readings.join(", ")}</b>
+                    </div>
                 </div>
             </div>
             <div id="kanji-card-buttons" style="

@@ -73,7 +73,7 @@
 /*======================================================*/ 
 @font-face
 {
-    font-family: 'Noto Sans JP';
+    font-family: 'Shirabeyou Noto';
     src: url(chrome-extension://__MSG_@@extension_id__/fonts/NotoSansJP-VariableFont_wght.ttf) format('truetype');
     font-weight: 100 900;
     font-style: normal;
@@ -128,7 +128,7 @@
 /*======================================================*/ 
 p, b
 {
-    font-family: 'Noto Sans JP';
+    font-family: 'Shirabeyou Noto';
 }
 
 .text-error
@@ -142,14 +142,14 @@ p, b
 
 .text-section-title
 {
-    font-family: 'Noto Sans JP';
+    font-family: 'Shirabeyou Noto';
     color: var(--text-default-color);
 }
 
 .title-text-gradient
 {
     display: flex;
-    font-family: 'Noto Sans JP';
+    font-family: 'Shirabeyou Noto';
     align-items: center;
     justify-content: center;
     background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
@@ -166,7 +166,7 @@ p, b
 /*======================================================*/ 
 button
 {
-    font-family: 'Noto Sans JP';
+    font-family: 'Shirabeyou Noto';
 }
 
 .btn-00
@@ -277,7 +277,7 @@ button
 
 .btn-add-selected
 {
-    background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
+    background: var(--border-hover);
     color: var(--text-default-color);
     font-weight: bold;
     font-size: 20px;

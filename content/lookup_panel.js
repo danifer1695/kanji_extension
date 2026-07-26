@@ -5,6 +5,7 @@ import { save_kanji, db_contains_kanji } from "../shared/db.js";
 import { get_kanji_data } from "../shared/api.js"
 import { kanji_color, STYLES } from "../shared/styles.js";
 
+
 //Shadow DOM--------------------------------------------------------------
 
 //We want to isolate this panel from the host page's environment so
@@ -25,22 +26,20 @@ let selected_entry = null;
 //Fonts-------------------------------------------------------------------
 
 //We inject our font into the document's head
-function inject_font()
+async function inject_font()
 {
-    //create element to be attached
     const font_url = chrome.runtime.getURL("fonts/NotoSansJP-VariableFont_wght.ttf");
-    const font_style = document.createElement("style");
-    font_style.textContent = `
-          @font-face {
-            font-family: 'Noto Sans JP';
-            src: url("${font_url}") format('truetype');
-            font-weight: 100 900;
-            font-style: normal;
-          }
-        `;
+    const font = new FontFace(
+        "Shirabeyou Noto",
+        `url(${font_url}) format('truetype-variations')`,
+        { weight: "100 900" }
+    );
 
-    //append font to document's head
-    document.head.appendChild(font_style);
+    //force font to be loaded on boot, otherwise it will load dynamically
+    //once the panel is first called, showing the wrong font fro a few 
+    //milliseconds, which is kind of jarring.
+    document.fonts.add(font);
+    await font.load();
 }
 
 //inject lookup panel's stylesheets to the shadow dom.
@@ -111,16 +110,16 @@ async function create_entry_HTML(kanji_chars)
                         </div>
                         <div class="lookup-kanji-info">
                             <div>
-                                <b style="color: var(--text-muted); font-weight: 800;">Onyomi:</b> 
-                                <b>${kanji_data.on_readings.join(", ") || "-"}</b>
+                                <b style="color: var(--text-muted);">Onyomi:</b> 
+                                <b style="font-weight: 600">${kanji_data.on_readings.join(", ") || "-"}</b>
                             </div>
                             <div>
-                                <b style="color: var(--text-muted); font-weight: 800;">Kunyomi:</b> 
-                                <b>${kanji_data.kun_readings.join(", ") || "-"}</b>
+                                <b style="color: var(--text-muted);">Kunyomi:</b> 
+                                <b style="font-weight: 600">${kanji_data.kun_readings.join(", ") || "-"}</b>
                             </div>
                             <div>
-                                <b style="color: var(--text-muted); font-weight: 800;">Meanings:</b> 
-                                <b>${kanji_data.meanings.join(", ") || "-"}</b>
+                                <b style="color: var(--text-muted);">Meanings:</b> 
+                                <b style="font-weight: 600">${kanji_data.meanings.join(", ") || "-"}</b>
                             </div>
                         </div>
                     </div>
@@ -252,9 +251,8 @@ function init_panel_events()
                 .style.background = "var(--bg-idle-00)";
         }
 
-        row.style.background = 
-            "linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom))";
-        row.querySelector(".lookup-result-panel").style.background = "var(--bg-selected)";
+        row.style.background = "var(--border-hover)";
+        //row.querySelector(".lookup-result-panel").style.background = "var(--bg-selected)";
 
         selected_entry = row;
     });
@@ -262,11 +260,11 @@ function init_panel_events()
 
 //Startup-----------------------------------------------------------------
 
-inject_font();
 init_panel_events();
 
-inject_shadow_styles().then(() => {
+inject_shadow_styles().then(async () => {
     //console.log("Mouse Up!")
+    await inject_font();
     document.addEventListener("mouseup", async (e) => {
         /*Space for debugging*/
         await spawn_panel(e);
