@@ -1,6 +1,8 @@
 import { render_entries } from "./helpers_render.js";
 import { API_BASE } from "./constants.js";
 
+const {toHiragana, toKatakana, isRomaji, isHiragana, isKatakana} = window.wanakana;
+
 //Connection health---------------------------------------------------------------------------
 //Return true or false depending on the state of the connection with the server
 export async function check_connection()
@@ -56,20 +58,20 @@ export async function get_kanji_from_reading(reading)
     let reading_hira = "";
 
     //Cover cases for hiragana, katakana and romanji input.
-    if(wanakana.isRomaji(reading)) 
+    if(isRomaji(reading)) 
     {
-        reading_kata = wanakana.toKatakana(reading);
-        reading_hira = wanakana.toHiragana(reading);
+        reading_kata = toKatakana(reading);
+        reading_hira = toHiragana(reading);
     }
-    else if(wanakana.isHiragana(reading)) 
+    else if(isHiragana(reading)) 
     {
         reading_hira = reading;
-        reading_kata = wanakana.toKatakana(reading); // convert to kata too
+        reading_kata = toKatakana(reading); // convert to kata too
     }
-    else if(wanakana.isKatakana(reading)) 
+    else if(isKatakana(reading)) 
     {
         reading_kata = reading;
-        reading_hira = wanakana.toHiragana(reading); // convert to hira too
+        reading_hira = toHiragana(reading); // convert to hira too
     }
 
     //returns a list of kanji

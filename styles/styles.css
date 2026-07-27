@@ -2,28 +2,6 @@
 
 /* ── Palettes ──────────────────────────────────────────────── */
 /* ":host" is for lookup_panel's shadow dom, which uses a div, not a body*/
-:host(.theme-migaku), body.theme-migaku {
-    --gradient-top:              #ff8c2a;
-    --gradient-bottom:           #ff296d;
-    --text-default-color:        white;
-    --text_muted:                #888;
-    --bg-idle-00:                #202047;
-    --bg-idle-01:                #0a002a;
-    --bg-selected:               #36206d;
-    --border-idle:               #54547e;
-    --border-hover:              #9a96a7;
-    --border-box:                rgba(255 255 255 / 20%);
-    --btn-01-bg:   #493085;
-    --btn-01-text: #bd6eff;
-    --btn-03-idle:             #2b2b60;
-    --N1-fg: #ff296d; --N1-bg: #ffe0e7;
-    --N2-fg: #fab73d; --N2-bg: #faf0d4;
-    --N3-fg: #702bcb; --N3-bg: #ede3ff;
-    --N4-fg: #3c91ff; --N4-bg: #dff4ff;
-    --N5-fg: #00c7a4; --N5-bg: #ddfff9;
-    --NX-fg: #9a9abd; --NX-bg: #ededf3;
-}
-
 :host(.theme-default), body.theme-default {
     --gradient-top:             #f34bb0;
     --gradient-bottom:          #e80520;
@@ -35,9 +13,11 @@
     --border-idle:              #484348;
     --border-hover:             #b8b4b5;
     --border-box:               rgba(255 255 255 / 20%);
-    --btn-01-bg:                #6b0417;
+    --btn-01-bg:                #7b1427;
     --btn-01-text:              #fa6688;
     --btn-03-idle:              #4c4a4b;
+    --correct:                  #2ec571;
+    --error:                    #d32;
     --N1-fg: #ff296d; --N1-bg: #151314;
     --N2-fg: #fab73d; --N2-bg: #151314;
     --N3-fg: #8026f6; --N3-bg: #151314;
@@ -60,6 +40,8 @@
     --btn-01-bg:                #f7d6e0;
     --btn-01-text:              #b0103a;
     --btn-03-idle:              #d5b6bd;
+    --correct:                  #5a4;
+    --error:                    #b32;
     --N1-fg: #cc1040; --N1-bg: #fde8ee;
     --N2-fg: #c47a00; --N2-bg: #fff3d6;
     --N3-fg: #6010cc; --N3-bg: #ede0ff;
@@ -205,14 +187,8 @@ button
     align-items: center;
     justify-content: center;
     padding: 8px 16px;
-    gap:4px;
     border-radius: 20px;
     border: 0px solid var(--btn-01-text);
-    position: relative;
-    display:inline-flex;
-    flex-direction: row;
-    text-decoration: none;
-
 }
 
 .btn-02
@@ -233,10 +209,6 @@ button
     padding: 8px 16px;
     gap:4px;
     position: relative;
-    display:inline-flex;
-    flex-direction: row;
-    text-decoration: none;
-
 }
 
 .btn-add-idle

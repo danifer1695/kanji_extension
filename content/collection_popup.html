@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../styles/styles.css">
     <link rel="stylesheet" href="../styles/collection_popup.css">
+    <script src="../lib/wanakana.min.js"></script>
     <script type="module" src="collection_popup.js"></script>
 </head>
 <body id="main-body" class="theme-default" style="background: var(--bg-idle-01);">
@@ -18,6 +19,9 @@
         ">
             <button id="btn-tab-collection" class="btn-tab-active" data-tab="collection">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked-icon lucide-book-marked"><path d="M10 2v8l3-3 3 3V2"/><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
+            </button>
+            <button id="btn-tab-practice" class="btn-tab" data-tab="practice">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain-icon lucide-brain"><path d="M12 18V5"/><path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/><path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/><path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/><path d="M18 18a4 4 0 0 0 2-7.464"/><path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/><path d="M6 18a4 4 0 0 1-2-7.464"/><path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/></svg>
             </button>
             <button id="btn-tab-account" class="btn-tab" data-tab="account">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-round-icon lucide-circle-user-round"><path d="M17.925 20.056a6 6 0 0 0-11.851.001"/><circle cx="12" cy="11" r="4"/><circle cx="12" cy="12" r="10"/></svg>
@@ -50,8 +54,7 @@
             </div>
 
             <!--- MIDDLE SECTION (kanji grid) -->
-            <div id="middle" 
-                style="border-bottom: 1px solid var(--border-box)">
+            <div id="middle" style="border-bottom: 1px solid var(--border-box)">
                 <div id="kanji-grid" class="collection-kanji-grid"></div>
             </div>
 
@@ -71,6 +74,56 @@
                     </button>
                 </div>
             </div>
+        </div>
+
+        <!--- TAB: PRACTICE-------------------------------------->
+        <div id="tab-practice" class="tab-panel" style="display: none;">
+            
+            <!-- Question Screen ---->
+            <div id="practice-question-screen" class="practice-screen" style="display: none">
+                <div class="practice-prompt-box box-01">
+                    <b id="practice-question-prompt">Prompt</b>
+                    <b id="practice-question-kanji">調</b>
+                </div>
+                <div id="practice-question-answer-row">
+                    <input class="box-search-01"
+                           style="flex: 4; min-width: 0;"
+                           id="practice-question-input"
+                           type="text"
+                           placeholder="This should be set dynamically">
+                    <button id="practice-question-btn" class="btn-00" style="flex: 1">
+                        Check
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feedback Screen ---->
+            <div id="practice-feedback-screen" class="practice-screen" style="display: none">
+                <div id="practice-feedback-correct">
+                    <b>Placeholder</b>
+                </div>
+                <div class="practice-prompt-box box-01">
+                    <b id="practice-feedback-kanji" style="margin: 0px">調</b>
+                    <div id="practice-feedback-feedback">
+                        <b style="color: var(--text-muted);">Also accepted:</b>
+                        <b id="practice-feedback-accepted">placeholder, placeholder, placeholder</b>
+                    </div>
+                    <button class="btn-01" style="
+                        margin: 16px;
+                        margin-bottom: 32;
+                        align-self: stretch;
+                    ">
+                        Next
+                    </button>
+                </div>
+            </div>
+
+            <!-- Message Screen ---->
+            <div id="practice-message-screen" class="practice-screen" style="display: flex">
+                <b id="practice-message-title">This is a placeholder</b>
+                <b id="practice-message-subtitle">This is a placeholder</b>
+            </div>
+
         </div>
 
         <!--- TAB: ACCOUNT--------------------------------------->

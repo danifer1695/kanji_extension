@@ -6,6 +6,7 @@
 const tab_bar =             document.getElementById("tab-bar");
 const tab_collection_btn =  document.getElementById("btn-tab-collection");
 const tab_settings_btn =    document.getElementById("btn-tab-settings");
+const tab_practice_btn =    document.getElementById("btn-tab-practice");
 
 //Tab switching---------------------------------------------
 
@@ -44,6 +45,7 @@ export function show_unauthenticated_ui()
 {
     tab_collection_btn.style.display = "none";
     tab_settings_btn.style.display = "none";
+    tab_practice_btn.style.display = "none";
     display_tab("account");
 }
 
@@ -51,4 +53,5 @@ export function show_authenticated_ui()
 {
     tab_collection_btn.style.display = "block";
     tab_settings_btn.style.display = "block";
+    tab_practice_btn.style.display = "block";
 }

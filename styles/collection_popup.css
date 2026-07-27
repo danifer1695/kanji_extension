@@ -174,3 +174,86 @@ h3 {
     flex-direction: column;
     gap: 8px;
 }
+
+.practice-prompt-box
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    min-width: 300px;
+    min-height: 300px;
+    margin-bottom: 16px;
+}
+
+.practice-screen
+{
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding: 64px;
+}
+
+#practice-question-prompt
+{
+    font-size: 1.5rem;
+}
+
+#practice-question-kanji, #practice-feedback-kanji
+{
+    display: flex;
+    font-size: 6rem;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+#practice-question-answer-row
+{
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    gap: 8px;
+}
+
+#practice-feedback-correct
+{
+    padding: 8px 16px;
+    border-radius: 50px;
+    background-color: var(--correct);
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 16px;
+}
+
+#practice-feedback-feedback
+{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 1rem;
+    margin: 16px;
+}
+
+#practice-message-screen
+{
+    flex: 1;
+    flex-direction: column;
+    gap: 16px;
+    justify-items: center;
+    align-self: stretch;
+    align-items: center;
+    margin-top: 128px;
+    color: var(--text-muted);
+}
+
+#practice-message-title
+{
+    font-size: 3rem;
+}
+
+#practice-message-subtitle
+{
+    font-size: 1.5rem;
+}
