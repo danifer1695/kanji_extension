@@ -9,7 +9,7 @@ import { init_settings } from "../modules/tab_settings.js";
 import { load_palette } from "../shared/palette.js"
 import { get_token } from "../shared/auth.js";
 import { check_connection } from "../shared/api.js";
-import { render_practice } from "../modules/tab-practice.js";
+import { init_practice, next_practice } from "../modules/tab-practice.js";
 
 //Init----------------------------------------------------------------------------
 
@@ -18,6 +18,7 @@ init_tab_bar();
 init_account();
 init_collection();
 init_settings();
+init_practice();
 
 //Remove the window ID marker so that when the popup reopens it calls a fresh window
 window.addEventListener("unload", () => {
@@ -50,7 +51,7 @@ async function launch()
     {
         display_tab(initial_tab);
         render_collection();
-        render_practice();
+        next_practice();
     }
 
     //else go to straight to account tab
