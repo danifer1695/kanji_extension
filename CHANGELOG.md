@@ -14,7 +14,8 @@
 - Stylesheets broken up by script
 - "Open Shirabeyou" button now spawns a single instance of the Shirabeyou popup.
 
-## [1.0.0] - 2026-06-29
+## [1.0.0] - 2026-07-29
 - Google Play Store full release.
 - lookup_panel moved to its own shadow_dom
 - Shirabeyou no longer requires an email to register - a unique username is now enough
+- Practice tab added, master your saved kanji through spaced repetition!

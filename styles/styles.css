@@ -247,23 +247,6 @@ button
     cursor: pointer;
 }
 
-.btn-add-selected
-{
-    background: var(--border-hover);
-    color: var(--text-default-color);
-    font-weight: bold;
-    font-size: 20px;
-    width: 32px; 
-    height : 32px; 
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    float: right;
-    padding: 2px;
-    cursor: pointer;
-}
-
 .jlpt-label
 {
     display: inline-flex;

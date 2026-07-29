@@ -235,7 +235,6 @@ function init_panel_events()
             const data = JSON.parse(btn.dataset.kanji);
             await save_kanji(data);
 
-            btn.className = "btn-add btn-add-selected";
             btn.textContent = "✓";
             return;
         }
