@@ -25,7 +25,7 @@ const feedback_btn      = document.getElementById("practice-feedback-btn");
 const message_title     = document.getElementById("practice-message-title");
 const message_subtitle  = document.getElementById("practice-message-subtitle");
 
-//Switching subscreens---------------------------------------------------------------
+//Helpters---------------------------------------------------------------------------
 
 function show_screen(screen)
 {
@@ -49,6 +49,16 @@ function update_message(title, subtitle = "")
 {
     message_title.textContent = title;
     message_subtitle.textContent = subtitle;
+}
+
+function formatDue(iso)
+{
+    const diffMs = new Date(iso).getTime() - Date.now();
+    const hours = Math.round(diffMs / (1000 * 60 * 60));
+    if(hours <= 0) return "shortly";
+    if(hours < 24) return `in about ${hours}h`;
+    const days = Math.round(hours / 24);
+    return days === 1 ? "tomorrow" : `in ${days} days`;
 }
 
 //Render-----------------------------------------------------------------------------
@@ -76,7 +86,11 @@ export async function next_practice()
     //if card returns null, no reviews at this moment
     if(res_j.card === null)
     {
-        update_message("No reviews for now.");
+        //get next due at date and transform it into a readable date
+        const next_raw = res_j.next_due_at;
+        const next = formatDue(next_raw); 
+
+        update_message("No reviews for now", `Next due ${next}`);
         return;
     }
 
@@ -95,7 +109,10 @@ export async function next_practice()
 }
 
 async function get_feedback()
-{
+{    
+    //do not process an empty string
+    if(!question_input.value) return;
+
     //disable submit button during processing to prevent
     //multiple simultaneous requests
     question_btn.disabled = true;
@@ -120,7 +137,7 @@ async function get_feedback()
         "Correct" : "Not quite";
     feedback_correct.style.background = res_j.correct === true ?
         "var(--correct)" : "var(--error)";
-    feedback_accepted.textContent = res_j.accepted_answers;
+    feedback_accepted.textContent = res_j.accepted_answers.join(", ");
     feedback_kanji.textContent = current_kanji;
 
     //show screen

@@ -1,6 +1,7 @@
 import { kanji_color } from "./styles.js";
 import { db_contains_kanji } from "./db.js";
 import { STYLES } from "./styles.js";
+import { api_request } from "./db.js";
 
 //This script takes care of all rendering to HTML
 //function to switch active palette (in shared/constants.js)
@@ -46,6 +47,27 @@ export async function render_entries(kanji_data)
         `;
 
     return HTML;
+}
+
+//returns a string of star icons matching a give kanji's mastery level
+export async function render_mastery_rating(kanji, max_level = 8)
+{
+    //max level is hardcoded to 8 on the back end, we will include it as an
+    //argument just in case it ever changes
+
+    //send request for kanji's mastery level
+    const res = await api_request("GET", `/kanji/mastery?kanji=${encodeURIComponent(kanji)}`);
+
+    //check for bad responses (null return from api_request)
+    if(!res) return "???";
+
+    //extract mastery level from json
+    const { mastery_level } = await res.json();
+
+    const full = "★";
+    const empty = "☆";
+
+    return full.repeat(mastery_level) + empty.repeat(max_level - mastery_level);
 }
 
 //This function will make sure that the panel spawns within range

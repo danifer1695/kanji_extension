@@ -12,7 +12,7 @@ import {
     remove_kanji,
 } from "../shared/db.js";
 import { STYLES, kanji_color } from "../shared/styles.js";
-import { correct_position } from "../shared/helpers_render.js";
+import { correct_position, render_mastery_rating } from "../shared/helpers_render.js";
 
 //Elements--------------------------------------------------
 
@@ -54,6 +54,7 @@ function display_big_message(message)
     collection_container.innerHTML = 
         `<p id="no_results" class="collection-text-warnings">${message}</p>`;
 }
+
 
 //Draw the kanji collection. This function can be called repeated times, 
 //no event attaching happens here. 
@@ -129,8 +130,9 @@ async function render_card_data(e, kanji)
         return;
     }
 
-    //get jlpt colors
+    //get jlpt colors and rating string (star icons)
     const {fg} = kanji_color(k.jlpt);
+    const mastery = await render_mastery_rating(kanji);
 
 
     kanji_card_data.innerHTML = `
@@ -139,10 +141,16 @@ async function render_card_data(e, kanji)
                 gap: 12px; 
                 flex-direction: column;
             ">
-                <div>
+                <div style="
+                    display: flex; 
+                    flex-direction: row; 
+                    align-items: center; 
+                    gap: 8px;
+                    justify-content: space-between;">
                     <div class="jlpt-label" style="background: ${fg}">
                         <b>N${k.jlpt}</b>
                     </div>
+                    <b id="kanji-card-mastery">${mastery}</b>
                 </div> 
                 <div class="info">
                     <div>

@@ -19,3 +19,6 @@
 - lookup_panel moved to its own shadow_dom
 - Shirabeyou no longer requires an email to register - a unique username is now enough
 - Practice tab added, master your saved kanji through spaced repetition!
+
+## [1.0.1] - 2026-07-31
+- Added mastery level to collection cards

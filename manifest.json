@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Shirabeyou",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Instant kanji data lookup, storage and review for any Japanese-language text on the web.",
     "icons" : {
         "16": "assets/images/icons/icon_16.png",
