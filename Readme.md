@@ -1,8 +1,9 @@
 # Shirabeyou - Kanji Lookup Extension
 
-This extension will allow you to select any text containing Kanji to get some quick information on their readings, meanings and JLPT level.Built as a portfolio project targeting the Japanese language learning ecosystem.
+Shirabeyou is a Kanji-learning platform that allows the user to lookup and save kanji characters. The platform is made up of a Chromium extension client - with which the user is able to lookup and save kanji on the go while browsing the web, plus a mobile client through which they can access their kanji collection remotely. Both clients include a learning tool to help the user master their kanji library through spaced repetition.
+The UI is designed to be easy to navigate and fun to look at, displaying only the data that will be relevant to the user to avoid overwhelming them. Learning Japanese is hard enough! Additionally, both clients include a 'dark mode' for extra visual confort in low-light environments.
 
-[Watch demo video](https://youtu.be/PPxtL2xv9ZQ?si=VIGNi30__OGoxonW)
+[Watch demo video](https://youtu.be/cdsfZPU8Vvg?si=u9a3i24_BQBo0eqf)
 
 
 <p>
@@ -10,15 +11,11 @@ This extension will allow you to select any text containing Kanji to get some qu
 </p>
 
 
-## A little bit of background
-
-As a long-time Japanese-learning app user, my goal making this extension is to fill a gap I have noticed in most of the services that I've used. Many will include the functionality to scan any Japanese-language website and give you a detailed breakdown of the vocabulary contained within, but what's often lacking is information on the individual kanji those words are made up of. It will typically be up to me to go on to a different tab and look the character up by myself... let's fix that!
-
-
 ## Features
+
 <p>
   <img src="assets/images/screenshots/screenshot_collection_00.png" width="400" />
-  <img src="assets/images/screenshots/screenshot_collection_01.png" width="400" />
+  <img src="assets/images/screenshots/screenshot_practice_01.png" width="400" />
 </p>
 
 
@@ -32,7 +29,7 @@ As a long-time Japanese-learning app user, my goal making this extension is to f
 
 ## Stack
 
-**Extension**
+**Manifest V3 Extension**
 - Vanilla JS, HTML/CSS - Manifest V3
 - [kanjiapi.net](https://kanjiapi.net) for kanji data.
 - [wanakana](https://github.com/WaniKani/WanaKana) for kana/romaji conversion.
@@ -49,7 +46,7 @@ As a long-time Japanese-learning app user, my goal making this extension is to f
 - PostgreSQL - per-user kanji storage
 - JWT authentication (bcrypt + jsonwebtoken)
 - Deployed on Railway
-- Jest + SuperTest - integration testing covering auth, kanji CRUD, input validation and rate limiting
+- Jest + SuperTest - integration testing covering auth, input validation and rate limiting
 - Rate limit and input validation on all endpoints (using Zod and express-rate-limit)
 
 Backend repository: [kanji_extension_backend](https://github.com/danifer1695/kanji_extension_backend)
