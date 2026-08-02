@@ -7,7 +7,7 @@ The UI is designed to be easy to navigate and fun to look at, displaying only th
 
 
 <p>
-  <img src="assets/images/screenshots/screenshot_lookup_00.png" width="400" />
+  <img src="assets/images/screenshots/screenshot_lookup_00.png"/>
 </p>
 
 
