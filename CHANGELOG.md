@@ -21,4 +21,4 @@
 - Practice tab added, master your saved kanji through spaced repetition!
 
 ## [1.0.1] - 2026-07-31
-- Added mastery level to collection cards
+- Added mastery level UI to collection cards

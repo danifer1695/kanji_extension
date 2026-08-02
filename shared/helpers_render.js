@@ -64,6 +64,8 @@ export async function render_mastery_rating(kanji, max_level = 8)
     //extract mastery level from json
     const { mastery_level } = await res.json();
 
+    //const full = "●";
+    //const empty = "○";
     const full = "★";
     const empty = "☆";
 
