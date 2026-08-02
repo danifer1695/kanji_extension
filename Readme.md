@@ -20,6 +20,7 @@ The UI is designed to be easy to navigate and fun to look at, displaying only th
 
 
 - **Instant lookup** - highlight text containing kanji to trigger a popup with readings, meanings and JLPT level.
+- **SRS Learning** - Learn you saved kanji using Shirabeyou's spaced repetition learning tool.
 - **Individual Account** - Create and manager your own Shirabeyou account. Your kanji library will follow you.
 - **JLPT level color coding** - a-la Migaku.
 - **Kanji collection** - save kanji for later review, sorted by saved date or JLPT level.
