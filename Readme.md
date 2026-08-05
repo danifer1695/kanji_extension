@@ -59,10 +59,6 @@ Test credentials are **username: test@test.com, pass: password123**.
 
 ## Installation (in development)
 
-1. Clone this repo
-    git clone https://github.com/danifer1695/kanji_extension.git
-2. Open `chrome://extensions` (or `vivaldi://extensions`... browser just has to be chromium-based)
-3. Enable "Developer mode"
-4. Click on "Load unpacked" and select the project folder
+The latest release of Shirabeyou is available to download from the Chrome Store following this link: [Link to Chrome Store](https://chromewebstore.google.com/detail/nppdilhajmbaihgiannigcejnfegjnfn?utm_source=item-share-cb)
 
 
