@@ -17,7 +17,7 @@ export function display_tab(tab)
     document.querySelectorAll(".tab-panel").forEach(p => p.style.display = "none");
 
     //now we show only the tab we want
-    document.getElementById(`tab-${tab}`).style.display = "block";
+    document.getElementById(`tab-${tab}`).style.display = "flex";
 
     //deselect all buttons
     document.querySelectorAll(".btn-tab-active").forEach(b => b.className = "btn-tab");
@@ -51,7 +51,7 @@ export function show_unauthenticated_ui()
 
 export function show_authenticated_ui()
 {
-    tab_collection_btn.style.display = "block";
-    tab_settings_btn.style.display = "block";
-    tab_practice_btn.style.display = "block";
+    tab_collection_btn.style.display = "flex";
+    tab_settings_btn.style.display = "flex";
+    tab_practice_btn.style.display = "flex";
 }

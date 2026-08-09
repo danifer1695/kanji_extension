@@ -16,6 +16,7 @@ const account_screen_login =        document.getElementById("account-screen-logi
 const account_screen_main =         document.getElementById("account-screen-main");
 const account_screen_change_pass =  document.getElementById("account-screen-change-pass")
 const account_screen_delete =       document.getElementById("account-screen-delete");
+const account_screen_register =       document.getElementById("account-screen-create-account")
 const account_error =               document.getElementById("login-auth-error");
 const account_screen_login_btn =    document.getElementById("login-btn-login");
 const account_register_btn =        document.getElementById("login-btn-register");
@@ -24,6 +25,13 @@ const account_pass_field =          document.getElementById("login-password");
 const account_logout_btn =          document.getElementById("account-btn-logout");
 const account_delete_btn =          document.getElementById("account-btn-delete");
 const account_change_pass_btn =     document.getElementById("account-btn-change-pass");
+
+const register_username =       document.getElementById("register-username")
+const register_pass =           document.getElementById("register-password")
+const register_pass_repeat =    document.getElementById("register-password-repeat")
+const register_error =          document.getElementById("register-error")
+const register_btn =            document.getElementById("register-btn-register")
+const register_back_btn =       document.getElementById("register-btn-back")
 
 const change_pass_current =     document.getElementById("change-pass-current");
 const change_pass_new =         document.getElementById("change-pass-new");
@@ -44,7 +52,7 @@ const delete_back_btn =     document.getElementById("delete-back-btn");
 function account_show_screen(screen)
 {
     //DEBUGGING-------
-    console.log(`Switching account screens to: ${screen}`);
+    //console.log(`Switching account screens to: ${screen}`);
     //----------------
 
     account_screen_login.style.display = 
@@ -58,12 +66,21 @@ function account_show_screen(screen)
  
     account_screen_delete.style.display = 
         screen == "delete" ? "flex" : "none";
+
+    account_screen_register.style.display = 
+        screen == "register" ? "flex" : "none";
 }
 
 function account_show_error(message)
 {
     account_error.textContent = message;
     account_error.style.display = "block";
+}
+
+function register_show_error(message)
+{
+    register_error.textContent = message;
+    register_error.style.display = "block"
 }
 
 //Helper - clear every field in the change-pass subscreen
@@ -75,6 +92,16 @@ function reset_change_pass_screen()
     change_pass_confirm.value = "";
     change_pass_error.textContent = "";
     change_pass_error.style.display = "none";
+}
+
+function reset_register_screen()
+{
+    //Clear all fields.
+    register_username.value = ""
+    register_pass.value = ""
+    register_pass_repeat.value = ""
+    register_error.textContent = ""
+    register_error.style.display = "none"
 }
 
 //API--------------------------------------------------------------------------------
@@ -173,29 +200,7 @@ export function init_account()
 
     account_register_btn.addEventListener("click", async() => {
 
-        //get values from input fields and trim them
-        const username = account_username_field.value.trim();
-        const password = account_pass_field.value;
-
-        //request auth token
-        const res = await api_auth("register", username, password);
-        if(!res) return account_show_error("Could not reach server.");
-
-        //de-stringify response
-        const data = await res.json();
-        if(!res.ok) return account_show_error(data.error || "Registration failed.");
-
-        //if response was ok, set auth token
-        await set_token(data.token);
-
-        //then display main subscreen
-        show_authenticated_ui();
-        account_show_screen("main");
-        display_tab("collection");
-
-        //And re-render the collection tab to display the new logged-in 
-        //user's kanji collection
-        render_collection();
+        account_show_screen("register")
     });
 
     account_logout_btn.addEventListener("click", async() => {
@@ -334,4 +339,44 @@ export function init_account()
             delete_error.style.display = "block";
         }
     });
+
+    //Register Account-----------------------------------------------------
+
+    register_btn.addEventListener("click", async() => {
+
+        //get values from input fields and trim them
+        const username = register_username.value.trim();
+        const password = register_pass.value.trim();
+        const password_repeat = register_pass_repeat.value.trim();
+
+        //input check: make sure both passwords match
+        if(password !== password_repeat) 
+            return register_show_error("Passwords must match")
+
+        //request auth token
+        const res = await api_auth("register", username, password);
+        if(!res) return register_show_error("Could not reach server.");
+
+        //de-stringify response
+        const data = await res.json();
+        if(!res.ok) return register_show_error(data.error || "Registration failed.");
+
+        //if response was ok, set auth token
+        await set_token(data.token);
+
+        //then display main subscreen
+        show_authenticated_ui();
+        account_show_screen("main");
+        display_tab("collection");
+
+        //And re-render the collection tab to display the new logged-in 
+        //user's kanji collection
+        render_collection();
+    });
+    
+    register_back_btn.addEventListener("click", () => {
+
+        reset_register_screen()
+        account_show_screen("login")
+    })
 }

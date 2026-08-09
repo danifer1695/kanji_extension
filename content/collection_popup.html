@@ -12,11 +12,7 @@
     <div class="collection-main-body">
 
         <!--- TAB BAR-------------------------------------------->
-        <div id="tab-bar" style="
-            display: flex;
-            flex-direction: row;
-            padding: 0px;
-        ">
+        <div id="tab-bar">
             <button id="btn-tab-collection" class="btn-tab-active" data-tab="collection">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked-icon lucide-book-marked"><path d="M10 2v8l3-3 3 3V2"/><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
             </button>
@@ -54,7 +50,7 @@
             </div>
 
             <!--- MIDDLE SECTION (kanji grid) -->
-            <div id="middle" style="border-bottom: 1px solid var(--border-box)">
+            <div id="middle">
                 <div id="kanji-grid" class="collection-kanji-grid"></div>
             </div>
 
@@ -77,7 +73,7 @@
         </div>
 
         <!--- TAB: PRACTICE-------------------------------------->
-        <div id="tab-practice" class="tab-panel" style="display: none;">
+        <div id="tab-practice" class="tab-panel" style="display: none; justify-content: center">
             
             <!-- Question Screen ---->
             <div id="practice-question-screen" class="practice-screen" style="display: none">
@@ -120,8 +116,8 @@
 
             <!-- Message Screen ---->
             <div id="practice-message-screen" class="practice-screen" style="display: flex">
-                <b id="practice-message-title">This is a placeholder</b>
-                <b id="practice-message-subtitle">This is a placeholder</b>
+                <b id="practice-message-title">Nothing to see here yet</b>
+                <b id="practice-message-subtitle">Add kanji to your collection to start practicing!</b>
             </div>
 
         </div>
@@ -143,9 +139,31 @@
                     <button id="login-btn-login" class="btn-00" style="width: 100%; margin-top: 16px;">
                         Log In
                     </button>
-                    <button id="login-btn-register" class="btn-00" style="width: 100%">
+                    <button id="login-btn-register" class="btn-01" style="width: 100%">
                         Register
                     </button>
+                </div>
+            </div>
+
+            <!-- Create Account ---->
+            <div id="account-screen-create-account" class="tab-screen" style="display: none;">
+                <h2>New Account</h2>
+                <div class="tab-account-container box-01">
+                    <input id="register-username" class="box-search-01" type="text" placeholder="Username">
+                    <input id="register-password" class="box-search-01" type="password" placeholder="Password">
+                    <input id="register-password-repeat" class="box-search-01" type="password" placeholder="Retype password">
+
+                    <!--Hidden display for auth errors. Content to be set through script-->
+                    <p id="register-error" class="text-error"></p>
+                    <!-------------------------------------------------------------------->
+
+                    <button id="register-btn-register" class="btn-00" style="width: 100%; margin-top: 16px;">
+                        Create Account
+                    </button>
+                    <button id="register-btn-back" class="btn-01" style="width: 100%;">
+                        Back
+                    </button>
+
                 </div>
             </div>
 
@@ -211,7 +229,7 @@
             <div id="settings-screen-main" class="tab-screen">
 
                 <h2>Settings</h2>
-                <div id="settings-content" class="box-01">
+                <div id="settings-content" class="box-01" style="flex: 1">
                     <!-- Palette switcher --->
                     <div id="settings-palette" class="settings-item">
                         <h3>Color Palette</h3>

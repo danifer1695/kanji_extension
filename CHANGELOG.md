@@ -22,3 +22,7 @@
 
 ## [1.0.1] - 2026-07-31
 - Added mastery level UI to collection cards
+
+## [1.0.2] - 2026-08-09
+- Adjusted collection screen element positioning issues
+- Added separate "Create Account" screen

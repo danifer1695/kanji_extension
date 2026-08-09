@@ -19,10 +19,55 @@ h3 {
     color: var(--text-default-color);
     margin: 0px; 
     margin-bottom: 8px;
+}   
+
+html, body 
+{
+    height: 100%;
+    margin: 0;
+}
+
+svg 
+{
+    flex: 1;
+}
+
+#main-body
+{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#tab-bar
+{
+    display: flex;
+    flex-direction: row;
+    align-self: start;
+    width: 100%;
+    justify-self: stretch;
+    padding: 0px;
+}
+
+#tab-collection
+{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+#middle {
+    flex: 1;
+    min-height: 0;      /* stops it growing to fit the grid's content */
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-box);
 }
 
 .btn-tab {
     flex: 1;
+    display: flex;
     padding: 12px;
     background: none;
     border: none;
@@ -33,7 +78,8 @@ h3 {
 }
 
 .btn-tab-active {
-    flex: 1;
+    display: flex;
+    flex:1;
     padding: 12px;
     background: none;
     border: none;
@@ -46,14 +92,14 @@ h3 {
 
 .tab-panel 
 {
-    display: block;
+    width: 100%;
 }
 
 .tab-screen
 {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    width: 100%;
     gap: 8px;
     background: var(--bg-idle-01);
     padding: 16px 32px;
@@ -76,14 +122,15 @@ h3 {
 
 .collection-main-body
 {
+    display: flex;
+    flex-direction: column;
     background-color: var(--bg-idle-01);
     color: var(--text-default-color);
     margin: 0;
     box-sizing: border-box;
-    overflow-x: hidden;
+    height: 100%;
+    overflow: hidden;
     align-items:center;
-    justify-content: center;
-
 }
 
 .collection-kanji-grid 
@@ -95,7 +142,7 @@ h3 {
     flex-wrap: wrap;
     gap: 16px;
     padding: 16px;
-    height: 400px;
+    height: 100%;
     align-content: start;
     justify-self: center;
 
@@ -108,6 +155,7 @@ h3 {
     padding: 16px;
     gap:8px;
     align-items: center;
+    align-self: end;
     bottom: 0;
     left:0;
     border-bottom: 1px solid var(--border-box);
@@ -137,7 +185,7 @@ h3 {
     justify-self: center;
     font-weight: bold; 
     font-size: 1.25rem; 
-    color: rgba(255 255 255 / 20%);
+    color: var(--text-muted);
 }
 
 .collection-db-size-text

@@ -53,8 +53,13 @@ function update_message(title, subtitle = "")
 
 function formatDue(iso)
 {
+    //DEBUGGING==============
+    //console.log(iso)
+    //=======================
+    
     const diffMs = new Date(iso).getTime() - Date.now();
     const hours = Math.round(diffMs / (1000 * 60 * 60));
+    if(!iso || hours == 0) return "" //signal that there are no kanjis saved
     if(hours <= 0) return "shortly";
     if(hours < 24) return `in about ${hours}h`;
     const days = Math.round(hours / 24);
@@ -90,7 +95,10 @@ export async function next_practice()
         const next_raw = res_j.next_due_at;
         const next = formatDue(next_raw); 
 
-        update_message("No reviews for now", `Next due ${next}`);
+        //only show subtitle if there is a next dude date
+        const subtitle = next !== "" ? `Next due ${next}` : ""
+
+        update_message("No reviews for now", subtitle);
         return;
     }
 
