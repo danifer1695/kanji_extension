@@ -61,24 +61,24 @@
                             style="flex: 1; min-width: 0;"
                             id="collection-footer-searchbox"
                             type="text"
-                            placeholder="Search for Kanji...">
+                            placeholder="search for kanji...">
                     <button class="btn-01" id="sort-old">
-                        <span>Sort by date</span>
+                        <span>sort by date</span>
                     </button>
                     <button class="btn-01" id="sort-jlpt">
-                        <span>Sort by level</span>
+                        <span>sort by level</span>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!--- TAB: PRACTICE-------------------------------------->
+        <!--- tab: practice-------------------------------------->
         <div id="tab-practice" class="tab-panel" style="display: none; justify-content: center">
             
-            <!-- Question Screen ---->
+            <!-- question screen ---->
             <div id="practice-question-screen" class="practice-screen" style="display: none">
                 <div class="practice-prompt-box box-01">
-                    <b id="practice-question-prompt">Prompt</b>
+                    <b id="practice-question-prompt">prompt</b>
                     <b id="practice-question-kanji">調</b>
                 </div>
                 <div id="practice-question-answer-row">
@@ -86,22 +86,22 @@
                            style="flex: 4; min-width: 0;"
                            id="practice-question-input"
                            type="text"
-                           placeholder="This should be set dynamically">
+                           placeholder="this should be set dynamically">
                     <button id="practice-question-btn" class="btn-00" style="flex: 1">
-                        Check
+                        check
                     </button>
                 </div>
             </div>
 
-            <!-- Feedback Screen ---->
+            <!-- feedback screen ---->
             <div id="practice-feedback-screen" class="practice-screen" style="display: none">
                 <div id="practice-feedback-correct">
-                    <b>Placeholder</b>
+                    <b>placeholder</b>
                 </div>
                 <div class="practice-prompt-box box-01">
                     <b id="practice-feedback-kanji" style="margin: 0px">調</b>
                     <div id="practice-feedback-feedback">
-                        <b style="color: var(--text-muted);">Also accepted:</b>
+                        <b style="color: var(--text-muted);">also accepted:</b>
                         <b id="practice-feedback-accepted">placeholder, placeholder, placeholder</b>
                     </div>
                     <button id="practice-feedback-btn" class="btn-01" style="
@@ -109,135 +109,158 @@
                         margin-bottom: 32;
                         align-self: stretch;
                     ">
-                        Next
+                        next
                     </button>
                 </div>
             </div>
 
-            <!-- Message Screen ---->
+            <!-- message screen ---->
             <div id="practice-message-screen" class="practice-screen" style="display: flex">
-                <b id="practice-message-title">Nothing to see here yet</b>
-                <b id="practice-message-subtitle">Add kanji to your collection to start practicing!</b>
+                <b id="practice-message-title">nothing to see here yet</b>
+                <b id="practice-message-subtitle">add kanji to your collection to start practicing!</b>
             </div>
 
         </div>
 
-        <!--- TAB: ACCOUNT--------------------------------------->
+        <!--- tab: account--------------------------------------->
         <div id="tab-account" class="tab-panel" style="display: none">
 
-            <!-- Logged Out ---->
+            <!-- logged out ---->
             <div id="account-screen-login" class="tab-screen" style="display: none;">
-                <h2>Log In</h2>
+                <h2>log in</h2>
                 <div class="tab-account-container box-01">
-                    <input id="login-username" class="box-search-01" type="text" placeholder="Username">
-                    <input id="login-password" class="box-search-01" type="password" placeholder="Password">
+                    <input id="login-username" class="box-search-01" type="text" placeholder="username">
+                    <input id="login-password" class="box-search-01" type="password" placeholder="password">
 
-                    <!--Hidden display for auth errors. Content to be set through script-->
+                    <!--hidden display for auth errors. content to be set through script-->
                     <p id="login-auth-error" class="text-error"></p>
                     <!-------------------------------------------------------------------->
 
                     <button id="login-btn-login" class="btn-00" style="width: 100%; margin-top: 16px;">
-                        Log In
+                        log in
                     </button>
                     <button id="login-btn-register" class="btn-01" style="width: 100%">
-                        Register
+                        register
                     </button>
                 </div>
             </div>
 
-            <!-- Create Account ---->
+            <!-- create account ---->
             <div id="account-screen-create-account" class="tab-screen" style="display: none;">
-                <h2>New Account</h2>
+                <h2>new account</h2>
                 <div class="tab-account-container box-01">
-                    <input id="register-username" class="box-search-01" type="text" placeholder="Username">
-                    <input id="register-password" class="box-search-01" type="password" placeholder="Password">
-                    <input id="register-password-repeat" class="box-search-01" type="password" placeholder="Retype password">
+                    <input id="register-username" class="box-search-01" type="text" placeholder="username">
+                    <input id="register-password" class="box-search-01" type="password" placeholder="password">
+                    <input id="register-password-repeat" class="box-search-01" type="password" placeholder="retype password">
 
-                    <!--Hidden display for auth errors. Content to be set through script-->
+                    <!--hidden display for auth errors. content to be set through script-->
                     <p id="register-error" class="text-error"></p>
                     <!-------------------------------------------------------------------->
 
                     <button id="register-btn-register" class="btn-00" style="width: 100%; margin-top: 16px;">
-                        Create Account
+                        create account
                     </button>
                     <button id="register-btn-back" class="btn-01" style="width: 100%;">
-                        Back
+                        back
                     </button>
 
                 </div>
             </div>
 
-            <!-- Logged In ---->
+            <!-- logged in ---->
             <div id="account-screen-main" class="tab-screen" style="display: none;">
-                <h2>Account</h2>
+                <h2>account</h2>
                 <div class="tab-account-container box-01">
                     <button id="account-btn-logout" class="btn-01" style="width: 100%">
-                        Log Out
+                        log out
                     </button>
                     <button id="account-btn-change-pass" class="btn-01" style="width: 100%">
-                        Change Password
+                        change password
                     </button>
                     <button id="account-btn-delete" class="btn-02" style="width: 100%">
-                        Delete Account
+                        delete account
                     </button>
                 </div>
             </div>
 
-            <!-- Change Password --->
+            <!-- change password --->
             <div id="account-screen-change-pass" class="tab-screen" style="display: none">
                 <div class="tab-account-container box-01">
                     
-                    <h3>Change Password</h3>
-                    <input id="change-pass-current" class="box-search-01" type="password" placeholder="Current Password">
-                    <input id="change-pass-new" class="box-search-01" type="password" placeholder="New Password">
-                    <input id="change-pass-confirm" class="box-search-01" type="password" placeholder="Confirm new Password">
+                    <h3>change password</h3>
+                    <input id="change-pass-current" class="box-search-01" type="password" placeholder="current password">
+                    <input id="change-pass-new" class="box-search-01" type="password" placeholder="new password">
+                    <input id="change-pass-confirm" class="box-search-01" type="password" placeholder="confirm new password">
                     
-                    <!--Error message - hidden by default-->
+                    <!--error message - hidden by default-->
                     <p id="change-pass-error" class="text-error" style="display: none"></p>
 
                     <button id="change-pass-submit-btn" class="btn-00" style="width: 100%;">
-                        Change Password
+                        change password
                     </button>
                     <button id="change-pass-back-btn" class="btn-01" style="width: 100%;">
-                        Back
+                        back
                     </button>
                 </div>
             </div>
 
-            <!-- Delete Account --->
+            <!-- delete account --->
             <div id="account-screen-delete" class="tab-screen" style="display: none;">
                 <div class="tab-account-container box-01">
                     <p style="margin: 0; color var(--text-default-color);">
-                        This will permanently delete your account and all saved Kanji. This action cannot be undone.
+                        this will permanently delete your account and all saved kanji. this action cannot be undone.
                     </p>
                     
-                    <!--Error message - hidden by default-->
+                    <!--error message - hidden by default-->
                     <p id="delete-error" class="text-error" style="display: none"></p>
 
                     <button id="delete-confirm-btn" class="btn-00" style="width: 100%">
-                        Confirm Delete
+                        confirm delete
                     </button>
                     <button id="delete-back-btn" class="btn-01" style="width: 100%">
-                        Back
-                    </Button>
+                        back
+                    </button>
                 </div>
             </div>
 
         </div>
-        <!--- TAB: SETTINGS-------------------------------------->
+        <!--- tab: settings-------------------------------------->
         <div id="tab-settings" class="tab-panel" style="display: none">
             <div id="settings-screen-main" class="tab-screen">
 
                 <h2>Settings</h2>
                 <div id="settings-content" class="box-01" style="flex: 1">
-                    <!-- Palette switcher --->
+                    <!-- palette switcher --->
                     <div id="settings-palette" class="settings-item">
-                        <h3>Color Palette</h3>
+                        <h3>Color palette</h3>
                         <div style="display: flex; gap: 8px;">
-                            <button id="palette-dark" class="btn-02">Dark</button>
-                            <button id="palette-light" class="btn-02">Light</button>
+                            <button id="palette-dark" class="btn-02">dark</button>
+                            <button id="palette-light" class="btn-02">light</button>
                         </div>
                     </div>
+                    <!-- account settings --->
+                    <div id="settings-account" class="settings-item" style="gap: 4px;">
+                        <h3>Email address</h3>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+
+                            <!--- email input + button-->
+                            <div style="display: flex; flex-direction: row; gap: 8px">
+                                <input id="settings-email-input" 
+                                       class="box-search-01"
+                                       style="flex: 4; min-width: 0;"
+                                       type="text"
+                                       placeholder="Needed for password recovery and communications">
+                                </input> 
+                                <button id="settings-email-btn" class="btn-00" style="flex: 1">Save</button>
+                            </div>
+
+                            <!--- messages-->
+                            <b id="settings-email-error"></b>
+                            <b id="settings-email-confirmation"></b>
+
+                        </div>
+                    </div>
+
                 </div>
 
             </div>

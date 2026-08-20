@@ -137,6 +137,7 @@ svg
 {
     display: grid;
     grid-template-columns: repeat(6, 84px);
+    box-sizing: border-box;
     scrollbar-width: none;
     overflow-y: auto;
     flex-wrap: wrap;
@@ -199,6 +200,7 @@ svg
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-bottom: 8px;
 }
 
 .info {
@@ -313,4 +315,18 @@ svg
     border: 1px solid var(--btn-03-idle);
     border-radius: 20px; 
     padding: 4px 8px; 
+}
+
+#settings-email-error
+{
+    color: var(--error);
+    display: none;
+    margin-left: 4px;
+}
+
+#settings-email-confirmation
+{
+    color: var(--correct);
+    display: none;
+    margin-left: 4px;
 }

@@ -33,14 +33,14 @@ export async function api_request(method, path, body = null)
         return null;
     }
 
-    //check for bad responses
-    if(!res.ok) 
-    {
-        //Get status text from response.
-        const error = await res.json().catch(() => ({error: res.statusText}));
-        console.error(`db.js:: ${method} ${path} failed (${res.status}): `, error.error);
-        return null;
-    }
+    //check for bad responses outside in individual functions
+    //if(!res.ok) 
+    //{
+    //    //Get status text from response.
+    //    const error = await res.json().catch(() => ({error: res.statusText}));
+    //    console.error(`db.js:: ${method} ${path} failed (${res.status}): `, error.error);
+    //    return null;
+    //}
 
     return res;
 }
@@ -52,7 +52,7 @@ export async function save_kanji(kanji_data)
         ...kanji_data,
         saved_at: Date.now(),
     });
-    if(!res) console.warn(`db.js::save_kanji:: Failed for: ${kanji_data.kanji}`);
+    if(!res || !res.ok) console.warn(`db.js::save_kanji:: Failed for: ${kanji_data.kanji}`);
 }
 
 //send request to remove a kanji from the db
@@ -66,7 +66,7 @@ export async function remove_kanji(kanji_char)
 export async function get_all_kanji()
 {
     const res = await api_request("GET", "/kanji");
-    if(!res) return {};
+    if(!res || !res.ok) return {};
 
     const rows = await res.json();
 
@@ -78,7 +78,7 @@ export async function get_all_kanji()
 export async function db_contains_kanji(kanji)
 {
     const res = await api_request("GET", `/kanji/contains?kanji=${kanji}`);
-    if(!res) return false;
+    if(!res || !res.ok) return false;
 
     //Response should contain a single true / false value
     return await res.json();
@@ -89,7 +89,7 @@ export async function get_db_size()
 {
     const res = await api_request("GET", "/kanji/size");
     //if response is null, return 999999 so we know something is awry
-    if(!res) return 999999;
+    if(!res || !res.ok) return 999999;
     
     return await res.json();
 }

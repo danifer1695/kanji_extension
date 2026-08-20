@@ -59,7 +59,7 @@ export async function render_mastery_rating(kanji, max_level = 8)
     const res = await api_request("GET", `/kanji/mastery?kanji=${encodeURIComponent(kanji)}`);
 
     //check for bad responses (null return from api_request)
-    if(!res) return "???";
+    if(!res || !res.ok) return "???";
 
     //extract mastery level from json
     const { mastery_level } = await res.json();
